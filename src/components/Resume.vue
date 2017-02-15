@@ -216,6 +216,15 @@
     color: #e74c3c;
   }
   
+  .main-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #e74c3c;
+    display: flex;
+    margin-bottom: 0.2rem;
+    margin-top: 2rem;
+  }
+  
   .moto {
     color: #2c3e50;
     text-align: center;
@@ -261,7 +270,16 @@
   .main-container {
     margin: 60px 10% auto 10%;
   }
-  
+  @media (min-width: 1200px){
+    .main-container{
+      margin: 60px 20% auto 20%;
+    }
+  }
+  @media (min-width: 1700px){
+    .main-container{
+      margin: 60px 25% auto 25%;
+    }
+  }
   .re-name {
     font-size: 2.6rem;
     font-weight: bold;
