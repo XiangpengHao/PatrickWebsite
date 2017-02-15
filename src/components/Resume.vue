@@ -59,8 +59,28 @@
       <span class="location">{{mainData.location1}}</span>
     </div>
     <div class="sub-content">
-      {{mainData.expOnePos}} - {{mainData.qscwork}}
+      {{mainData.expOnePos|toUpper}} - {{mainData.qscwork|toUpper}}
       <span class="duration">{{mainData.duration2}}</span>
+    </div>
+    <div>
+      <ul class="list-content">
+        <li>{{mainData.qscwork1}}</li>
+        <li>{{mainData.qscwork2}}</li>
+        <li>{{mainData.qscwork3}}</li>
+        <li>{{mainData.qscwork4}}</li>
+        <li>{{mainData.qscwork5}}</li>
+        <li>Link: <a href="www.qsc.zju.edu.cn">浙江大学求是潮</a></li>
+      </ul>
+    </div>
+
+    <div class="main-title">
+      {{mainData.project|toUpper}}
+      <span class="line">
+      </span>
+    </div>
+    <div class="sub-main-title">
+      {{mainData.projectTmpylee}}
+      <span class="location">{{mainData.location1}}</span>
     </div>
   </div>
 </template>
@@ -90,7 +110,14 @@ export default {
           skills: ['Linux Server', 'Python', 'C++', 'JavaScript', 'Git'],
           expOneTitle: 'QSC Zhejiang University',
           expOnePos: 'Chief Technology Officer',
-          qscwork: 'Web Frontend/Backend'
+          qscwork: 'Web Frontend/Backend',
+          qscwork1: 'Freshman Mannual for Zhejiang University. Use pure css and js without any framwork, integrated various kinds of service to provide excellent user experience',
+          qscwork2: 'Welcome Page for Recruitment in 2016. Use Vue.js and Bootstrap to boost developing efficiency',
+          qscwork3: 'Recruiting Manage System. Python (Django) as the backend server, Bootstrap and Webpack to imporve the performance of such a large project',
+          qscwork4: 'Linux Server management. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
+          qscwork5: 'Telegram Bot. A bot to record all the message in the group and get statastic message everyday.',
+          project: 'project',
+          projectTmpylee: 'Tmplaye'
         }
       }
     }
@@ -173,11 +200,11 @@ export default {
   margin-bottom: 1rem;
   font-style: italic;
 }
-.other-info a{
+ a{
   text-decoration: none;
   color: #2c3e50;
 }
-.other-info a:visited{
+ a:visited{
   text-decoration: none;
   color: #2c3e50;
 }
