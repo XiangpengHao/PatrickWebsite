@@ -19,6 +19,16 @@
     <div class="moto">
       {{mainData.moto}}
     </div>
+
+    <div class="main-title">
+      {{mainData.skillsAbility|toUpper}} 
+      <span class="line">
+      </span>
+    </div>
+    <div class="skill-content">
+        <div class="skill-item" v-for="skill in mainData.skills">{{skill}}</div>
+    </div>
+
     <div class="main-title">
       {{mainData.education|toUpper}} 
       <span class="line">
@@ -38,13 +48,19 @@
         <li>{{mainData.eduTwo}}</li>        
       </ul>
     </div>
+
     <div class="main-title">
-      {{mainData.skillsAbility|toUpper}} 
+      {{mainData.experience|toUpper}} 
       <span class="line">
       </span>
     </div>
-    <div class="skill-content">
-        <div class="skill-item" v-for="skill in mainData.skills">{{skill}}</div>
+    <div class="sub-main-title">
+      {{mainData.expOneTitle}}
+      <span class="location">{{mainData.location1}}</span>
+    </div>
+    <div class="sub-content">
+      {{mainData.expOnePos}} - {{mainData.qscwork}}
+      <span class="duration">{{mainData.duration2}}</span>
     </div>
   </div>
 </template>
@@ -66,11 +82,15 @@ export default {
           location1: 'Hangzhou, China',
           degree: "Bachelor's degree in computer science",
           duration1: 'Sept. 2015 - PRESENT',
+          duration2: 'Sept. 2016 - PRESENT',
           eduOne: 'First two years at Zhejiang University in China majoring Computer Science.',
           eduTwo: 'Simon Fraser University majoring Computer Science',
           experience: 'experience',
           skillsAbility: 'skills/abilities',
-          skills: ['Linux Server', 'Python', 'C++', 'JavaScript', 'Git']
+          skills: ['Linux Server', 'Python', 'C++', 'JavaScript', 'Git'],
+          expOneTitle: 'QSC Zhejiang University',
+          expOnePos: 'Chief Technology Officer',
+          qscwork: 'Web Frontend/Backend'
         }
       }
     }
@@ -100,10 +120,12 @@ export default {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  margin-top: .7rem;
 }
 .skill-item{
   margin-right: 2rem;
-  flex-grow: 1;
+  font-size: 1.2rem;
+  /*flex-grow: 1;*/
 }
 .list-content{
   padding-left: 1.1rem;
@@ -149,6 +171,7 @@ export default {
   text-align: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  font-style: italic;
 }
 .other-info a{
   text-decoration: none;
