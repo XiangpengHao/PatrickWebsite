@@ -216,21 +216,6 @@
     color: #e74c3c;
   }
   
-  .line {
-    border-bottom: 0.1rem solid #2c3e50;
-    width: 100%;
-    margin: auto auto 0.4rem 0.2rem;
-  }
-  
-  .main-title {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #e74c3c;
-    display: flex;
-    margin-bottom: 0.2rem;
-    margin-top: 2rem;
-  }
-  
   .moto {
     color: #2c3e50;
     text-align: center;
