@@ -1,8 +1,11 @@
 <template>
   <div class="main-container">
-    <div class="re-name">
-      {{mainData.name}}
-    </div>
+    <div @click="changeLan" class="language">{{language}}</div>
+    <transition name="fade">    
+      <div class="re-name">
+        {{mainData.name}}
+      </div>
+      </transition>
     <div class="sub-title">
       {{mainData.major | toUpper}} - {{mainData.area| toUpper}}
     </div>
@@ -96,6 +99,7 @@
       </ul>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -146,6 +150,45 @@
             houaa3: 'Server Architect',
             houaa1: 'A Education Sharing Platform'
           }
+        } else if (this.language === 'Ch') {
+          return {
+            name: '郝翔鹏',
+            major: '计算机科学',
+            area: '网站开发',
+            address: '紫金港校区, 浙江大学, 杭州, 浙江省, 中国',
+            moto: '"谁将声震人间，必将长久深自缄默"',
+            education: '教育',
+            school: '浙江大学和 SFU',
+            location1: '杭州, 中国',
+            degree: '计算机科学学士学位',
+            duration1: 'Sept. 2015 - PRESENT',
+            duration2: 'Sept. 2016 - PRESENT',
+            eduOne: '前两年在浙江大学，计算机科学.',
+            eduTwo: 'Simon Fraser University， 计算机科学',
+            experience: '经历',
+            skillsAbility: '技能',
+            skills: ['Linux Server', 'Python', 'C++', 'JavaScript', 'Git'],
+            expOneTitle: '浙江大学求是潮',
+            expOnePos: '技术研发中心总监',
+            qscwork: 'Web Frontend/Backend',
+            qscwork1: '浙江大学新生手册. 使用纯 CSS 和 JS, 与各种第三方服务整合的新生手册',
+            qscwork2: '2016年求是潮纳新前端. 使用 Vue.js 和 Bootstrap 来实现动态报名表',
+            qscwork3: '求是潮纳新系统. Python (Django) 是后端服务器, 用 Bootstrap 和 Webpack 来提高大型工程的执行效率',
+            qscwork4: 'Linux 服务器管理. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
+            qscwork5: 'Telegram 机器人. 记录下所有的群消息，并且获得每日统计，监控垃圾群消息',
+            project: '项目',
+            projectTmpylee: 'Tmplaye',
+            tmplayedesc: 'simple yet powerful',
+            duration3: 'Jan. 2017',
+            tmplaye1: 'A Python3.6 project',
+            tmplaye2: '一个类似 Django 正在使用的模板引擎',
+            tmplaye3: '支持多种 inline 语法和复杂的条件循环控制',
+            projectHouaa: '猴啊家教',
+            duration4: 'Feb. 2017 - Present',
+            houaa2: 'Vue.js + Vue-Router + Vuex + Webpack',
+            houaa3: '负责服务器架构',
+            houaa1: '一个家教分享管理平台'
+          }
         }
       }
     },
@@ -161,6 +204,15 @@
         msg: 'Welcome to Your Vue.js App',
         language: 'En'
       }
+    },
+    methods: {
+      changeLan: function () {
+        if (this.language === 'Ch') {
+          this.language = 'En'
+        } else {
+          this.language = 'Ch'
+        }
+      }
     }
   }
 
@@ -168,6 +220,22 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
+
+.language{
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  /*background-color: #7f8c8d;*/
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
   .skill-content ul {
     list-style-type: none;
   }
