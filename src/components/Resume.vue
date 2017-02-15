@@ -82,6 +82,33 @@
       {{mainData.projectTmpylee}}
       <span class="location">{{mainData.location1}}</span>
     </div>
+    <div class="sub-content">
+      {{mainData.tmplayedesc|toUpper}}
+      <span class="duration">{{mainData.duration3}}</span>
+    </div>
+    <div>
+      <ul class="list-content">
+        <li>{{mainData.tmplaye1}}</li>
+        <li>{{mainData.tmplaye2}}</li>
+        <li>{{mainData.tmplaye3}}</li>
+      </ul>
+    </div>
+
+    <div class="sub-main-title">
+      {{mainData.projectHouaa}}
+      <span class="location">{{mainData.location1}}</span>
+    </div>
+    <div class="sub-content">
+      {{mainData.houaadesc|toUpper}}
+      <span class="duration">{{mainData.duration4}}</span>
+    </div>
+    <div>
+      <ul class="list-content">
+        <li>{{mainData.houaa1}}</li>
+        <li>{{mainData.houaa2}}</li>
+        <li>{{mainData.houaa3}}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -117,7 +144,17 @@ export default {
           qscwork4: 'Linux Server management. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
           qscwork5: 'Telegram Bot. A bot to record all the message in the group and get statastic message everyday.',
           project: 'project',
-          projectTmpylee: 'Tmplaye'
+          projectTmpylee: 'Tmplaye',
+          tmplayedesc: 'simple yet powerful',
+          duration3: 'Jan. 2017',
+          tmplaye1: 'A Python3.6 project',
+          tmplaye2: "A template engine similar to Django's",
+          tmplaye3: 'Support various inline expression and complex condition control',
+          projectHouaa: 'Houaa',
+          duration4: 'Feb. 2017 - Present',
+          houaa2: 'Vue.js + Vue-Router + Vuex + Webpack',
+          houaa3: 'Server Architect',
+          houaa1: 'A Education Sharing Platform'
         }
       }
     }
