@@ -1,5 +1,9 @@
 <template>
   <div class="main-container">
+    <div class="user">
+      {{user.name}}
+      <img style="height: 100%;" :src="user.image">
+    </div>
       <el-input
         type="textarea"
         :rows="4"
@@ -8,6 +12,7 @@
         v-model="content">
       </el-input>
       <el-button @click="pushOne" size="small" type="primary">提交一个</el-button>
+      <el-button @click="googleLogin" size="small" type="primary">听得风就是雨</el-button>
       <el-row style="margin-top: 20px" :gutter="10">
         <el-col :xs="12" :sm="6" :md="4"
          v-for="memo in memos">
@@ -41,7 +46,11 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      content: ''
+      content: '',
+      user: {
+        name: '未登录',
+        image: ''
+      }
     }
   },
   firebase: {
@@ -61,6 +70,26 @@ export default {
     },
     deleteOne: function (memo) {
       memoRef.child(memo['.key']).remove()
+    },
+    googleLogin: function () {
+      let provider = new Firebase.auth.GoogleAuthProvider()
+      let self = this
+      provider.addScope('https://www.googleapis.com/auth/plus.login')
+      Firebase.auth().signInWithPopup(provider).then(
+        result => {
+          let token = result.credential.accessToken
+          let user = result.user
+          self.user.name = result.user.displayName
+          self.user.image = result.user.photoURL
+          console.log(token)
+          console.log(user)
+          console.log(result)
+        }
+      ).catch(
+        error => {
+          console.log(error)
+        }
+      )
     }
   }
 }
@@ -68,6 +97,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.user{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 10%;
+  overflow: hidden;
+}
 .main-container{
   margin: 15%;
 }
