@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Resume from 'components/Resume'
-import Lab from 'components/Lab'
+import Memo from 'components/Memo'
 
 Vue.use(Router)
 
@@ -17,9 +17,9 @@ export default new Router({
       component: Resume
     },
     {
-      path: '/lab',
-      name: 'Lan',
-      component: Lab
+      path: '/memo',
+      name: 'Memo',
+      component: Memo
     }
   ]
 })
