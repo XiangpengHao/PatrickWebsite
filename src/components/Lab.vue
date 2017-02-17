@@ -1,31 +1,5 @@
 <template>
   <div class="main-container">
-    <div class="user">
-      {{user.name}}
-      <img style="height: 100%;" :src="user.image">
-    </div>
-      <el-input
-        type="textarea"
-        :rows="4"
-        placeholder="随便写点什么备忘录"
-        class="input-textarea"
-        v-model="content">
-      </el-input>
-      <el-button @click="pushOne" size="small" type="primary">提交一个</el-button>
-      <el-button @click="googleLogin" size="small" type="primary">听得风就是雨</el-button>
-      <el-row style="margin-top: 20px" :gutter="10">
-        <el-col :xs="12" :sm="6" :md="4"
-         v-for="memo in memos">
-         <el-card style="background-color: #1abc9c;padding: 0px; margin-bottom: 10px">
-           <div style="font-size: 1.1rem;color: #34495e">{{memo.content}}
-           </div>
-           <div style="font-size: 0.7rem;">
-             <span style="color: #ecf0f1;">{{memo.time}}</span>
-             <span @click="deleteOne(memo)" style="cursor: pointer;color: #9b59b6;">Delete</span>
-           </div>
-         </el-card>
-        </el-col>
-      </el-row>
   </div>
 </template>
 
@@ -38,9 +12,8 @@ let config = {
   storageBucket: 'testproject-52cfa.appspot.com',
   messagingSenderId: '363300347449'
 }
-let app = Firebase.initializeApp(config, 'lab')
-let db = app.database()
-let memoRef = db.ref('memos')
+Firebase.initializeApp(config, 'lab')
+
 export default {
   name: 'hello',
   data () {
@@ -54,43 +27,8 @@ export default {
     }
   },
   firebase: {
-    memos: memoRef
   },
   methods: {
-    pushOne: function () {
-      let date = new Date()
-      let memoData = {
-        content: this.content,
-        time: date.getFullYear() + '-' + date.getMonth() + '-' +
-          date.getDate() + '-' + date.getHours()
-      }
-      console.log(memoData)
-      memoRef.push(memoData)
-      this.content = ''
-    },
-    deleteOne: function (memo) {
-      memoRef.child(memo['.key']).remove()
-    },
-    googleLogin: function () {
-      let provider = new Firebase.auth.GoogleAuthProvider()
-      let self = this
-      provider.addScope('https://www.googleapis.com/auth/plus.login')
-      Firebase.auth().signInWithPopup(provider).then(
-        result => {
-          let token = result.credential.accessToken
-          let user = result.user
-          self.user.name = result.user.displayName
-          self.user.image = result.user.photoURL
-          console.log(token)
-          console.log(user)
-          console.log(result)
-        }
-      ).catch(
-        error => {
-          console.log(error)
-        }
-      )
-    }
   }
 }
 </script>
