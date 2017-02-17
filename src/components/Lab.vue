@@ -38,7 +38,7 @@ let config = {
   storageBucket: 'testproject-52cfa.appspot.com',
   messagingSenderId: '363300347449'
 }
-let app = Firebase.initializeApp(config)
+let app = Firebase.initializeApp(config, 'lab')
 let db = app.database()
 let memoRef = db.ref('memos')
 export default {
