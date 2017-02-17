@@ -1,5 +1,7 @@
 <template>
   <div class="main-container">
+   <input @change="onFileChange" type="file" >
+   <el-button @click="upload" type="primary">上传吧</el-button>
   </div>
 </template>
 
@@ -13,7 +15,8 @@ let config = {
   messagingSenderId: '363300347449'
 }
 Firebase.initializeApp(config, 'lab')
-
+let storageRef = Firebase.storage().ref()
+let imagesRef = storageRef.child('images')
 export default {
   name: 'hello',
   data () {
@@ -23,12 +26,30 @@ export default {
       user: {
         name: '未登录',
         image: ''
-      }
+      },
+      file: ''
     }
   },
   firebase: {
   },
   methods: {
+    onFileChange: function (e) {
+      let files = e.target.files || e.dataTransfer.files
+      if (files.length === 1) {
+        this.file = files[0]
+      }
+      console.log(files)
+    },
+    upload: function () {
+      // console.log('aaa')
+      if (this.file === '') return
+      imagesRef.put(this.file).then(
+        snapshot => {
+          console.log('success')
+          console.log(snapshot)
+        }
+      )
+    }
   }
 }
 </script>
