@@ -1,10 +1,13 @@
 <template>
   <div class="main-container">
-   <input @change="onFileChange" type="file" >
+   <input @change="onFileChange" accept="image/*" type="file" >
    <el-button @click="upload" size="small" type="primary">上传吧</el-button>
    <div>
      <el-progress :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
    </div>
+   <!--<div v-for="img in images">
+     {{img}}
+   </div>-->
   </div>
 </template>
 
@@ -19,7 +22,7 @@ let config = {
 }
 Firebase.initializeApp(config, 'lab')
 let storageRef = Firebase.storage().ref()
-let imagesRef = storageRef.child('images')
+let dbRef = Firebase.database().ref('images')
 export default {
   name: 'hello',
   data () {
@@ -35,6 +38,7 @@ export default {
     }
   },
   firebase: {
+    images: dbRef
   },
   methods: {
     onFileChange: function (e) {
@@ -47,11 +51,25 @@ export default {
     upload: function () {
       let self = this
       if (this.file === '') return
+      let fileName = this.file.name
+      let imagesRef = storageRef.child('images/' + fileName)
       let uploadTask = imagesRef.put(this.file)
       uploadTask.on('state_changed',
         snapshot => {
           let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           self.uploadProgress = progress
+        }
+      )
+      uploadTask.then(
+        snapshot => {
+          dbRef.push({
+            totalBytes: snapshot.totalBytes,
+            state: snapshot.state,
+            fullPath: snapshot.c.fullPath,
+            name: snapshot.c.name,
+            downloadURL: snapshot.downloadURL
+          })
+          console.log(snapshot)
         }
       )
     }
