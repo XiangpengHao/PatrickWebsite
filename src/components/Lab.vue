@@ -5,9 +5,14 @@
    <div>
      <el-progress :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
    </div>
-   <!--<div v-for="img in images">
-     {{img}}
-   </div>-->
+   <el-row style="margin-top: 20px;" :gutter="20">
+     <el-col v-for="img in images" :xs="12" :md="8">
+       <el-card>
+         <img style="width: 100%;" :src="img.downloadURL">
+       </el-card>
+     </el-col>
+   </el-row>
+
   </div>
 </template>
 
