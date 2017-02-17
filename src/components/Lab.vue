@@ -1,7 +1,10 @@
 <template>
   <div class="main-container">
    <input @change="onFileChange" type="file" >
-   <el-button @click="upload" type="primary">上传吧</el-button>
+   <el-button @click="upload" size="small" type="primary">上传吧</el-button>
+   <div>
+     <el-progress :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
+   </div>
   </div>
 </template>
 
@@ -27,7 +30,8 @@ export default {
         name: '未登录',
         image: ''
       },
-      file: ''
+      file: '',
+      uploadProgress: 0
     }
   },
   firebase: {
@@ -41,12 +45,13 @@ export default {
       console.log(files)
     },
     upload: function () {
-      // console.log('aaa')
+      let self = this
       if (this.file === '') return
-      imagesRef.put(this.file).then(
+      let uploadTask = imagesRef.put(this.file)
+      uploadTask.on('state_changed',
         snapshot => {
-          console.log('success')
-          console.log(snapshot)
+          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          self.uploadProgress = progress
         }
       )
     }
