@@ -110,9 +110,16 @@ export default {
         }
       }).then(
         response => {
-          self.MSInfo = response.data
+          self.uploadBasicInfo.MSInfo = response.data
+          self.saveToDatabse()
           console.log(response.data)
         }
+      )
+    },
+    saveToDatabse: function () {
+      let self = this
+      dbRef.push(
+        self.uploadBasicInfo
       )
     }
   }
