@@ -1,7 +1,9 @@
 <template>
   <div class="main-container">
    <input @change="onFileChange" accept="image/*" type="file" >
-   <el-button @click="upload" size="small" type="primary">上传吧</el-button>
+   <el-button @click="upload"
+    size="small" type="primary"
+    v-loading.fullscreen.lock="loading">上传吧</el-button>
    <div style="margin-top: 1rem;">
      <el-progress :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
    </div>
@@ -54,7 +56,8 @@ export default {
       uploadBasicInfo: '',
       msTags: '',
       msCaptions: '',
-      userCaptions: ''
+      userCaptions: '',
+      loading: false
     }
   },
   firebase: {
@@ -79,6 +82,7 @@ export default {
       let self = this
       if (this.file === '') return
       let fileName = this.file.name
+      self.loading = true
       let imagesRef = storageRef.child('images/' + fileName)
       let uploadTask = imagesRef.put(this.file)
       uploadTask.on('state_changed',
@@ -118,6 +122,7 @@ export default {
         response => {
           self.msCaptions = response.data.description.captions
           self.msTags = response.data.description.tags
+          self.loading = false
           // self.saveToDatabse()
           console.log(response.data)
         }
@@ -125,11 +130,16 @@ export default {
     },
     saveToDatabse: function () {
       let self = this
+      self.loading = true
       self.uploadBasicInfo.tags = self.msTags
       self.uploadBasicInfo.captions = self.msCaptions
       self.uploadBasicInfo.userCaptions = self.userCaptions
       dbRef.push(
         self.uploadBasicInfo
+      ).then(
+        function () {
+          self.loading = false
+        }
       )
     },
     tagClose: function (tag) {
@@ -141,12 +151,14 @@ export default {
     },
     deleteIt: function (tag) {
       let self = this
+      self.loading = true
       if (this.uploadBasicInfo.fullPath === '') return
       storageRef.child(this.uploadBasicInfo.fullPath).delete().then(
         function () {
           console.log('successful')
           self.uploadBasicInfo = ''
           self.uploadProgress = 0
+          self.loading = false
         }
       )
     }
