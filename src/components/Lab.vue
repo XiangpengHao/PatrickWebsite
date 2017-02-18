@@ -2,18 +2,22 @@
   <div class="main-container">
    <input @change="onFileChange" accept="image/*" type="file" >
    <el-button @click="upload" size="small" type="primary">上传吧</el-button>
-   <div>
+   <div style="margin-top: 1rem;">
      <el-progress :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
    </div>
-   <el-row style="margin-top: 20px;" :gutter="20">
-     <el-col v-if="uploadBasicInfo" :span="16">
+   <el-row v-if="uploadBasicInfo" style="margin-top: 20px;" :gutter="20">
+     <el-col :span="16">
        <el-card>
          <img style="width: 100%;" :src="uploadBasicInfo.downloadURL">
        </el-card>
      </el-col>
      <el-col :span="8">
-       <el-input style="margin-bottom: 10px;" v-if="msCaptions" :placeholder="msCaptions[0].text" v-model="msCaptions[0].text"></el-input>
+       <el-input type="textarea" autosize style="margin-bottom: 10px;" v-if="msCaptions" :placeholder="msCaptions[0].text" v-model="msCaptions[0].text"></el-input>
        <el-tag style="margin-left: 0.2rem; margin-bottom: 0.2rem;" type="primary" :closable="true" :close-transition="true" @close="tagClose(tag)" v-for="tag in msTags">{{tag}} </el-tag>
+       <div style="margin-top: 1rem;">
+         <el-button @click="saveToDatabse" size="small" type="primary">就酱</el-button>
+         <el-button @click="deleteIt" size="small" type="primary">我不要这个啦</el-button>
+       </div>
      </el-col>
    </el-row>
 
@@ -41,10 +45,6 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
       content: '',
-      user: {
-        name: '未登录',
-        image: ''
-      },
       file: '',
       uploadProgress: 0,
       imgInfo: {
@@ -125,6 +125,9 @@ export default {
     },
     saveToDatabse: function () {
       let self = this
+      self.uploadBasicInfo.tags = self.msTags
+      self.uploadBasicInfo.captions = self.msCaptions
+      self.uploadBasicInfo.userCaptions = self.userCaptions
       dbRef.push(
         self.uploadBasicInfo
       )
@@ -135,6 +138,17 @@ export default {
         this.msTags.splice(tagIndex, 1)
       }
       console.log(tag)
+    },
+    deleteIt: function (tag) {
+      let self = this
+      if (this.uploadBasicInfo.fullPath === '') return
+      storageRef.child(this.uploadBasicInfo.fullPath).delete().then(
+        function () {
+          console.log('successful')
+          self.uploadBasicInfo = ''
+          self.uploadProgress = 0
+        }
+      )
     }
   }
 }
@@ -152,6 +166,7 @@ export default {
 }
 .main-container{
   margin: 15%;
+  margin-top: 4rem;
 }
 .input-textarea{
   margin-bottom: 0.4rem;
