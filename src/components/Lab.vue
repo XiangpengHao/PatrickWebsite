@@ -18,6 +18,7 @@
 
 <script>
 import Firebase from 'firebase'
+import axios from 'axios'
 let config = {
   apiKey: 'AIzaSyBYDjrYBVpyiCBGyrMHTrhElsajvebynpM',
   authDomain: 'testproject-52cfa.firebaseapp.com',
@@ -44,7 +45,8 @@ export default {
         width: 0,
         height: 0
       },
-      uploadBasicInfo: ''
+      uploadBasicInfo: '',
+      MSInfo: ''
     }
   },
   firebase: {
@@ -90,12 +92,28 @@ export default {
             width: self.imgInfo.width,
             height: self.imgInfo.height
           }
+          self.cognitiveService()
           console.log(snapshot)
         }
       )
     },
     cognitiveService: function () {
       if (this.uploadBasicInfo === '') return
+      let self = this
+      let url = 'https://westus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description&language=en'
+      axios({
+        method: 'post',
+        url: url,
+        headers: {'Ocp-Apim-Subscription-Key': 'cdadff4e7f014956b816f3f1236c1203'},
+        data: {
+          'url': self.uploadBasicInfo.downloadURL
+        }
+      }).then(
+        response => {
+          self.MSInfo = response.data
+          console.log(response.data)
+        }
+      )
     }
   }
 }
