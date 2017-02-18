@@ -6,10 +6,14 @@
      <el-progress :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
    </div>
    <el-row style="margin-top: 20px;" :gutter="20">
-     <el-col v-for="img in images" style="margin-bottom: 20px;" :xs="12" :md="8">
+     <el-col v-if="uploadBasicInfo" :span="16">
        <el-card>
-         <img style="width: 100%;" :src="img.downloadURL">
+         <img style="width: 100%;" :src="uploadBasicInfo.downloadURL">
        </el-card>
+     </el-col>
+     <el-col :span="8">
+       <el-input style="margin-bottom: 10px;" v-if="msCaptions" :placeholder="msCaptions[0].text" v-model="msCaptions[0].text"></el-input>
+       <el-tag style="margin-left: 0.2rem; margin-bottom: 0.2rem;" type="primary" :closable="true" :close-transition="true" @close="tagClose(tag)" v-for="tag in msTags">{{tag}} </el-tag>
      </el-col>
    </el-row>
 
@@ -31,6 +35,8 @@ let storageRef = Firebase.storage().ref()
 let dbRef = Firebase.database().ref('images')
 export default {
   name: 'hello',
+  computed: {
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -46,11 +52,12 @@ export default {
         height: 0
       },
       uploadBasicInfo: '',
-      MSInfo: ''
+      msTags: '',
+      msCaptions: '',
+      userCaptions: ''
     }
   },
   firebase: {
-    images: dbRef
   },
   methods: {
     onFileChange: function (e) {
@@ -66,7 +73,6 @@ export default {
         self.imgInfo.height = this.height
       }
       img.src = _URL.createObjectURL(this.file)
-      console.log('src: ' + img.src)
       console.log(this.file)
     },
     upload: function () {
@@ -110,8 +116,9 @@ export default {
         }
       }).then(
         response => {
-          self.uploadBasicInfo.MSInfo = response.data
-          self.saveToDatabse()
+          self.msCaptions = response.data.description.captions
+          self.msTags = response.data.description.tags
+          // self.saveToDatabse()
           console.log(response.data)
         }
       )
@@ -121,6 +128,13 @@ export default {
       dbRef.push(
         self.uploadBasicInfo
       )
+    },
+    tagClose: function (tag) {
+      let tagIndex = this.msTags.indexOf(tag)
+      if (tagIndex > -1) {
+        this.msTags.splice(tagIndex, 1)
+      }
+      console.log(tag)
     }
   }
 }
