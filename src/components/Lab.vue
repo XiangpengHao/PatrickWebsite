@@ -6,7 +6,7 @@
      <el-progress :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
    </div>
    <el-row style="margin-top: 20px;" :gutter="20">
-     <el-col v-for="img in images" :xs="12" :md="8">
+     <el-col v-for="img in images" style="margin-bottom: 20px;" :xs="12" :md="8">
        <el-card>
          <img style="width: 100%;" :src="img.downloadURL">
        </el-card>
@@ -39,7 +39,12 @@ export default {
         image: ''
       },
       file: '',
-      uploadProgress: 0
+      uploadProgress: 0,
+      imgInfo: {
+        width: 0,
+        height: 0
+      },
+      uploadBasicInfo: ''
     }
   },
   firebase: {
@@ -48,10 +53,19 @@ export default {
   methods: {
     onFileChange: function (e) {
       let files = e.target.files || e.dataTransfer.files
+      let self = this
+      let _URL = window.URL || window.webkitURL
       if (files.length === 1) {
         this.file = files[0]
       }
-      console.log(files)
+      let img = new Image()
+      img.onload = function () {
+        self.imgInfo.width = this.width
+        self.imgInfo.height = this.height
+      }
+      img.src = _URL.createObjectURL(this.file)
+      console.log('src: ' + img.src)
+      console.log(this.file)
     },
     upload: function () {
       let self = this
@@ -67,16 +81,21 @@ export default {
       )
       uploadTask.then(
         snapshot => {
-          dbRef.push({
+          self.uploadBasicInfo = {
             totalBytes: snapshot.totalBytes,
             state: snapshot.state,
             fullPath: snapshot.c.fullPath,
             name: snapshot.c.name,
-            downloadURL: snapshot.downloadURL
-          })
+            downloadURL: snapshot.downloadURL,
+            width: self.imgInfo.width,
+            height: self.imgInfo.height
+          }
           console.log(snapshot)
         }
       )
+    },
+    cognitiveService: function () {
+      if (this.uploadBasicInfo === '') return
     }
   }
 }
