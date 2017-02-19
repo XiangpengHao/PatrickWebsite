@@ -1,11 +1,12 @@
 <template>
   <div class="main-container">
-   <input @change="onFileChange" accept="image/*" type="file" >
-   <el-button @click="upload"
-    size="small" type="primary"
-    v-loading.fullscreen.lock="loading">上传吧</el-button>
+    <label for="file-upload" class="custom-file-upload">
+      <i class="fa fa-cloud-upload"></i> 上传吧
+    </label>
+   <input id="file-upload" @change="onFileChange" accept="image/*" type="file" >
+
    <div style="margin-top: 1rem;">
-     <el-progress :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
+     <el-progress  v-loading.fullscreen.lock="loading" :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
    </div>
    <el-row v-if="uploadBasicInfo" style="margin-top: 20px;" :gutter="20">
      <el-col :span="16">
@@ -67,6 +68,7 @@ export default {
       let files = e.target.files || e.dataTransfer.files
       let self = this
       let _URL = window.URL || window.webkitURL
+      this.loading = true
       if (files.length === 1) {
         this.file = files[0]
       }
@@ -77,12 +79,12 @@ export default {
       }
       img.src = _URL.createObjectURL(this.file)
       console.log(this.file)
+      self.upload()
     },
     upload: function () {
       let self = this
       if (this.file === '') return
       let fileName = this.file.name
-      self.loading = true
       let imagesRef = storageRef.child('images/' + fileName)
       let uploadTask = imagesRef.put(this.file)
       uploadTask.on('state_changed',
@@ -168,6 +170,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload{
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 3px 6px;
+  cursor: pointer;
+}
 .user{
   position: absolute;
   right: 0;
