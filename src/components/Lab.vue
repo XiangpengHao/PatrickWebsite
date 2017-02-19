@@ -137,7 +137,6 @@ export default {
         return
       }
       let self = this
-      self.loading = true
       self.uploadBasicInfo.tags = self.msTags
       self.uploadBasicInfo.captions = self.msCaptions
       self.uploadBasicInfo.userCaptions = self.userCaptions
@@ -145,14 +144,13 @@ export default {
         self.uploadBasicInfo
       ).then(
         function () {
-          self.loading = false
+          self.$message({
+            message: '我已经记下了',
+            type: 'success'
+          })
         }
       )
       self.saved = true
-      self.$message({
-        message: '我已经记下了',
-        type: 'success'
-      })
     },
     tagClose: function (tag) {
       let tagIndex = this.msTags.indexOf(tag)
@@ -177,6 +175,10 @@ export default {
           self.loading = false
         }
       )
+    },
+    destroyed: function () {
+      if (this.saved) return
+      this.deleteIt()
     }
   }
 }
