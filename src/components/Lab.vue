@@ -3,10 +3,14 @@
     <div>
       HLH 的私藏照
     </div>
-    <el-row>
-      <el-col>
-      </el-col>
-    </el-row>
+    <section class="img-container">
+      <div  v-for="img in images"
+        v-bind:style="{ width: img.width*200/img.height + 'px', flexGrow: img.width*200/img.height }"
+       class="each-container">
+        <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
+        <img class="each-img" width="100%" :src="img.downloadURL" />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -21,13 +25,16 @@ let config = {
 }
 let app = Firebase.initializeApp(config, 'lab')
 let db = app.database()
-let memoRef = db.ref('images')
+let imageRef = db.ref('images')
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  firebase: {
+    images: imageRef
   }
 }
 </script>
@@ -35,4 +42,27 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+.img-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+.img-container::after{
+  content: '';
+  flex-grow: 999999;
+}
+
+.each-container{
+  margin: 2px;
+  background-color: #95a5a6;
+  position: relative;
+}
+i{
+  display: block;
+}
+.each-img{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  vertical-align: bottom;
+}
 </style>
