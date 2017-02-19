@@ -174,9 +174,12 @@ input[type="file"] {
   display: none;
 }
 .custom-file-upload{
-  border: 1px solid #ccc;
+  border: 1px solid #2980b9;
   display: inline-block;
-  padding: 3px 6px;
+  padding: 1px 6px;
+  font-size: 0.9rem;
+  color: #2980b9;
+  border-radius: 5px;
   cursor: pointer;
 }
 .user{
