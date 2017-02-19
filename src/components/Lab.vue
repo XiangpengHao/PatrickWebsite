@@ -58,7 +58,8 @@ export default {
       msTags: '',
       msCaptions: '',
       userCaptions: '',
-      loading: false
+      loading: false,
+      saved: false
     }
   },
   firebase: {
@@ -131,6 +132,10 @@ export default {
       )
     },
     saveToDatabse: function () {
+      if (this.saved === true) {
+        this.$message.error('噢不，你已经保存过了')
+        return
+      }
       let self = this
       self.loading = true
       self.uploadBasicInfo.tags = self.msTags
@@ -143,6 +148,11 @@ export default {
           self.loading = false
         }
       )
+      self.saved = true
+      self.$message({
+        message: '我已经记下了',
+        type: 'success'
+      })
     },
     tagClose: function (tag) {
       let tagIndex = this.msTags.indexOf(tag)
@@ -152,6 +162,10 @@ export default {
       console.log(tag)
     },
     deleteIt: function (tag) {
+      if (this.saved === true) {
+        this.$message.error('噢不，你已经保存过了')
+        return
+      }
       let self = this
       self.loading = true
       if (this.uploadBasicInfo.fullPath === '') return
