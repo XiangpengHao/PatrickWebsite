@@ -37,7 +37,7 @@ let config = {
   storageBucket: 'testproject-52cfa.appspot.com',
   messagingSenderId: '363300347449'
 }
-Firebase.initializeApp(config, 'lab')
+Firebase.initializeApp(config, 'upload')
 let storageRef = Firebase.storage().ref()
 let dbRef = Firebase.database().ref('images')
 export default {
