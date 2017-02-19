@@ -5,7 +5,7 @@
     </div>
     <section class="img-container">
       <div  v-for="img in images"
-        v-bind:style="{ width: img.width*200/img.height + 'px', flexGrow: img.width*200/img.height }"
+        v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }"
        class="each-container">
         <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
         <img class="each-img" width="100%" :src="img.downloadURL" />
@@ -52,9 +52,10 @@ export default {
 }
 
 .each-container{
-  margin: 2px;
+  margin: 4px;
   background-color: #95a5a6;
   position: relative;
+  box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.5);
 }
 i{
   display: block;
