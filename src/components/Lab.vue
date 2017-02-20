@@ -4,12 +4,15 @@
       HLH 的私藏照
     </div>
     <section class="img-container">
-      <div  v-for="img in images"
+      <div @click="toDetail" v-for="img in images"
         v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }"
        class="each-container">
         <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
         <img class="each-img" width="100%" :src="img.downloadURL" />
-        <figcaption class="caption">{{img.captions[0].text}}</figcaption>
+        <figcaption class="caption">
+          <div>{{img.captions[0].text}}</div>
+          <span style="font-size: 0.7rem;color: #7f8c8d" v-for="tag in img.tags.slice(0,5)">{{tag}} </span>
+        </figcaption>
       </div>
     </section>
   </div>
@@ -31,11 +34,17 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      detail: false
     }
   },
   firebase: {
     images: imageRef
+  },
+  methods: {
+    toDetail: function () {
+      this.detail = true
+    }
   }
 }
 </script>
@@ -58,6 +67,7 @@ export default {
 .each-img:hover + .caption{
   opacity: 1;
 }
+
 .img-container{
   display: flex;
   flex-wrap: wrap;
