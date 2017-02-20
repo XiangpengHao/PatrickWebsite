@@ -17,7 +17,18 @@
      <el-col :span="8">
        <el-input type="textarea" autosize style="margin-bottom: 10px;" v-if="msCaptions" :placeholder="msCaptions[0].text" v-model="msCaptions[0].text"></el-input>
        <el-tag style="margin-left: 0.2rem; margin-bottom: 0.2rem;" type="primary" :closable="true" :close-transition="true" @close="tagClose(tag)" v-for="tag in msTags">{{tag}} </el-tag>
-       <div style="margin-top: 1rem;">
+       <el-input
+         class="input-new-tag"
+         v-if="inputVisible"
+         v-model="tagValue"
+         ref="saveTagInput"
+         size="mini"
+         style="width: 60px; margin-left: 0.2rem;"
+         @keyup.enter.native="handleInputConfirm"
+       >
+       </el-input>
+       <el-button style="font-size: 0.7rem;margin-left: 0.2rem;border-color: rgba(32,159,255,.2);background-color: rgba(32,159,255,.1);color: #20a0ff" type="primary" v-else class="button-new-tag" size="mini" @click="changeInputVisible">+ New Tag</el-button>
+       <div style="margin-top: 1rem; margin-left: 0.2rem;">
          <el-button @click="saveToDatabse" size="small" type="primary">就酱</el-button>
          <el-button @click="deleteIt" size="small" type="primary">我不要这个啦</el-button>
        </div>
@@ -59,12 +70,25 @@ export default {
       msCaptions: '',
       userCaptions: '',
       loading: false,
-      saved: false
+      saved: false,
+      inputVisible: false,
+      tagValue: ''
     }
   },
   firebase: {
   },
   methods: {
+    handleInputConfirm: function () {
+      let inputValue = this.tagValue
+      if (inputValue) {
+        this.msTags.push(inputValue)
+      }
+      this.inputVisible = false
+      this.tagValue = ''
+    },
+    changeInputVisible: function () {
+      this.inputVisible = true
+    },
     onFileChange: function (e) {
       let files = e.target.files || e.dataTransfer.files
       let self = this
@@ -85,6 +109,7 @@ export default {
     upload: function () {
       let self = this
       if (this.file === '') return
+      self.saved = false
       let fileName = this.file.name
       let imagesRef = storageRef.child('images/' + fileName)
       let uploadTask = imagesRef.put(this.file)
