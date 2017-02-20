@@ -9,6 +9,7 @@
        class="each-container">
         <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
         <img class="each-img" width="100%" :src="img.downloadURL" />
+        <figcaption class="caption">{{img.captions[0].text}}</figcaption>
       </div>
     </section>
   </div>
@@ -41,7 +42,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.caption{
+  position: absolute;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 10px 20px;
+  opacity: 0;
+  bottom: 0;
+  left: 0;
+  transition: all 0.6s ease;
+  -webkit-transition: all 0.6s ease;
+  -moz-transition:    all 0.6s ease;
+  -o-transition:      all 0.6s ease;
+}
+.each-img:hover + .caption{
+  opacity: 1;
+}
 .img-container{
   display: flex;
   flex-wrap: wrap;
