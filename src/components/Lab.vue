@@ -1,10 +1,14 @@
 <template>
   <div class="hello">
-    <div>
-      HLH 的私藏照
+    <div style="font-size: 1.5rem;color: #34495e; margin: 4px">
+      HLH 的影像放映馆
     </div>
+    <div class="user-section" v-if="user" >
+      {{user.displayName}}
+    </div>
+    <div v-else @click="login" style="cursor: pointer" class="user-section">登录</div>
     <section class="img-container">
-      <div @click="toDetail" v-for="img in images"
+      <div @click="toDetail(img)" v-for="img in images"
         v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }"
        class="each-container">
         <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
@@ -15,6 +19,11 @@
         </figcaption>
       </div>
     </section>
+    <el-dialog title="Details" v-if="currentImage" v-model="detail">
+
+      <img  style="max-width: 100%; max-height: 70%" :src="currentImage.downloadURL">
+      <el-button type="text" @click="toDelete">Delete</el-button>
+      </el-dialog>
   </div>
 </template>
 
@@ -35,15 +44,50 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      detail: false
+      detail: false,
+      currentImage: '',
+      user: '',
+      token: ''
     }
   },
   firebase: {
     images: imageRef
   },
   methods: {
-    toDetail: function () {
+    toDetail: function (image) {
+      this.currentImage = image
+      // if (this.currentImage.height > window.innerHeight * 0.7) {
+      //   let ratio = this.currentImage.width / this.currentImage.height
+      //   this.currentImage.height = window.innerHeight * 0.6
+      //   this.currentImage.width = this.currentImage.height * ratio
+      // } else if (this.currentImage.height < window.innerWidth){
+
+      // }
+      // this.currentImage.maxheight = window.innerHeight * 0.9
       this.detail = true
+    },
+    toDelete: function () {
+      console.log(this.user.displayName !== 'Hao Xiangpeng')
+      if (this.user.displayName !== 'Hao Xiangpeng') {
+        this.$message.error('只有HLH可以删除这里的照片哦')
+        return
+      }
+      imageRef.child(this.currentImage['.key']).remove()
+      let storageImageRef = Firebase.storage().ref().child(this.currentImage.fullPath)
+      storageImageRef.delete()
+      this.currentImage = ''
+      this.detail = true
+    },
+    login: function () {
+      let self = this
+      let provider = new Firebase.auth.GoogleAuthProvider()
+      provider.addScope('https://www.googleapis.com/auth/plus.login')
+      Firebase.auth().signInWithPopup(provider).then(
+        result => {
+          self.token = result.credential.accessToken
+          self.user = result.user
+        }
+      )
     }
   }
 }
@@ -51,6 +95,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.user-section{
+color: #34495e;
+font-size: 0.85rem;
+margin-left: 4px;
+}
+.el-dialog{
+  width: 80%;
+}
 .caption{
   position: absolute;
   background: rgba(0,0,0,0.5);
