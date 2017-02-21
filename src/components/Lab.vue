@@ -133,9 +133,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .img-floater{
-  position: fixed !important;
+  /*position: fixed !important;
   left: auto;
-  top: 0;
+  top: 0;*/
 }
 .detailview{
   /*width: 75% !important;*/
