@@ -63,7 +63,6 @@ export default {
   },
   methods: {
     toDetail: function (image) {
-      let self = true
       this.currentImage = image
       // if (this.currentImage.height > window.innerHeight * 0.7) {
       //   let ratio = this.currentImage.width / this.currentImage.height
@@ -73,17 +72,19 @@ export default {
 
       // }
       // this.currentImage.maxheight = window.innerHeight * 0.9
-      let index = this.images.indexOf(image)
       this.detail = true
-      for (let i = 0; i < this.images.length; i++) {
-        let newValue = self.images[i]
-        newValue.hidden = true
-        self.$set(this.images, i, newValue)
-      }
-
-      let currentNew = this.images[index]
-      currentNew.hidden = false
-      self.$set(this.images, index, currentNew)
+      let newArray = this.images.map(
+        eachImage => {
+          let newImage = eachImage
+          if (eachImage.fullPath === image.fullPath) {
+            newImage.hidden = false
+          } else {
+            newImage.hidden = true
+          }
+          return newImage
+        }
+      )
+      this.images = newArray
     },
     toDelete: function () {
       console.log(this.user.displayName !== 'Hao Xiangpeng')
