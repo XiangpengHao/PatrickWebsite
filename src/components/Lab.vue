@@ -1,15 +1,16 @@
 <template>
   <div class="hello">
-    <div @click="this.detail=false" style="font-size: 1.5rem;color: #34495e; margin: 4px">
+    <div @click="reset" style="font-size: 1.5rem;color: #34495e; margin: 4px">
       HLH 的影像放映馆
     </div>
     <div class="user-section" v-if="user" >
       {{user.displayName}}
     </div>
     <div v-else @click="login" style="cursor: pointer" class="user-section">登录</div>
-    <transition name="fade">
+
       <section class="img-container" >
-        <div @click="toDetail(img)" v-for="img in images" v-show="!img.hidden"
+        <div @click="toDetail($event, img)" v-for="img in images" 
+          v-bind:class="{detailview: !img.hidden&&detail}" :key="img"
          v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }"
         class="each-container" >
          <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
@@ -19,8 +20,11 @@
            <span style="font-size: 0.7rem;color: #7f8c8d" v-for="tag in img.tags.slice(0,5)">{{tag}} </span>
          </figcaption>
         </div>
-      </section>
-    </transition>
+    </section>
+
+    <div v-if="currentImage" class="img-floater">
+      <img width="90%" :src="currentImage.downloadURL">
+    </div>
     <!--<el-dialog title="Details" v-if="currentImage" v-model="detail">
 
       <img  style="max-width: 100%; max-height: 70%" :src="currentImage.downloadURL">
@@ -62,7 +66,19 @@ export default {
     }
   },
   methods: {
-    toDetail: function (image) {
+    reset: function () {
+      this.detail = false
+      this.currentImage = ''
+      let newArray = this.images.map(
+        eachImage => {
+          let newImage = eachImage
+          newImage.hidden = false
+          return newImage
+        }
+      )
+      this.images = newArray
+    },
+    toDetail: function (event, image) {
       this.currentImage = image
       // if (this.currentImage.height > window.innerHeight * 0.7) {
       //   let ratio = this.currentImage.width / this.currentImage.height
@@ -72,19 +88,20 @@ export default {
 
       // }
       // this.currentImage.maxheight = window.innerHeight * 0.9
-      this.detail = true
-      let newArray = this.images.map(
-        eachImage => {
-          let newImage = eachImage
-          if (eachImage.fullPath === image.fullPath) {
-            newImage.hidden = false
-          } else {
-            newImage.hidden = true
-          }
-          return newImage
-        }
-      )
-      this.images = newArray
+      console.log(event)
+      // this.detail = true
+      // let newArray = this.images.map(
+      //   eachImage => {
+      //     let newImage = eachImage
+      //     if (eachImage.fullPath === image.fullPath) {
+      //       newImage.hidden = false
+      //     } else {
+      //       newImage.hidden = true
+      //     }
+      //     return newImage
+      //   }
+      // )
+      // this.images = newArray
     },
     toDelete: function () {
       console.log(this.user.displayName !== 'Hao Xiangpeng')
@@ -115,6 +132,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.img-floater{
+  position: fixed !important;
+  left: auto;
+  top: 0;
+}
+.detailview{
+  /*width: 75% !important;*/
+  /*position: fixed !important;*/
+}
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
