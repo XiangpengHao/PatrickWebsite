@@ -1,29 +1,31 @@
 <template>
   <div class="hello">
-    <div style="font-size: 1.5rem;color: #34495e; margin: 4px">
+    <div @click="this.detail=false" style="font-size: 1.5rem;color: #34495e; margin: 4px">
       HLH 的影像放映馆
     </div>
     <div class="user-section" v-if="user" >
       {{user.displayName}}
     </div>
     <div v-else @click="login" style="cursor: pointer" class="user-section">登录</div>
-    <section class="img-container">
-      <div @click="toDetail(img)" v-for="img in images"
-        v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }"
-       class="each-container">
-        <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
-        <img class="each-img" width="100%" :src="img.downloadURL" />
-        <figcaption class="caption">
-          <div>{{img.captions[0].text}}</div>
-          <span style="font-size: 0.7rem;color: #7f8c8d" v-for="tag in img.tags.slice(0,5)">{{tag}} </span>
-        </figcaption>
-      </div>
-    </section>
-    <el-dialog title="Details" v-if="currentImage" v-model="detail">
+    <transition name="fade">
+      <section class="img-container" >
+        <div @click="toDetail(img)" v-for="img in images" v-show="!img.hidden"
+         v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }"
+        class="each-container" >
+         <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
+         <img class="each-img" width="100%" :src="img.downloadURL" />
+         <figcaption class="caption">
+           <div>{{img.captions[0].text}}</div>
+           <span style="font-size: 0.7rem;color: #7f8c8d" v-for="tag in img.tags.slice(0,5)">{{tag}} </span>
+         </figcaption>
+        </div>
+      </section>
+    </transition>
+    <!--<el-dialog title="Details" v-if="currentImage" v-model="detail">
 
       <img  style="max-width: 100%; max-height: 70%" :src="currentImage.downloadURL">
       <el-button type="text" @click="toDelete">Delete</el-button>
-      </el-dialog>
+      </el-dialog>-->
   </div>
 </template>
 
@@ -53,8 +55,15 @@ export default {
   firebase: {
     images: imageRef
   },
+  created: function () {
+    let user = Firebase.auth().currentUser
+    if (user) {
+      this.user = user
+    }
+  },
   methods: {
     toDetail: function (image) {
+      let self = true
       this.currentImage = image
       // if (this.currentImage.height > window.innerHeight * 0.7) {
       //   let ratio = this.currentImage.width / this.currentImage.height
@@ -64,7 +73,17 @@ export default {
 
       // }
       // this.currentImage.maxheight = window.innerHeight * 0.9
+      let index = this.images.indexOf(image)
       this.detail = true
+      for (let i = 0; i < this.images.length; i++) {
+        let newValue = self.images[i]
+        newValue.hidden = true
+        self.$set(this.images, i, newValue)
+      }
+
+      let currentNew = this.images[index]
+      currentNew.hidden = false
+      self.$set(this.images, index, currentNew)
     },
     toDelete: function () {
       console.log(this.user.displayName !== 'Hao Xiangpeng')
@@ -95,6 +114,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
 .user-section{
 color: #34495e;
 font-size: 0.85rem;
@@ -134,6 +159,7 @@ margin-left: 4px;
   background-color: #95a5a6;
   position: relative;
   box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.5);
+  transition: all 0.6s ease;
 }
 i{
   display: block;
