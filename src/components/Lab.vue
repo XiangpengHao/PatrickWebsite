@@ -16,7 +16,7 @@
          <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
          <img class="each-img" width="100%" :src="img.downloadURL" />
          <figcaption class="caption">
-           <div>{{img.captions[0].text}}</div>
+           <div>{{img.captions[0].text | capitalize}}</div>
            <span style="font-size: 0.7rem;color: #7f8c8d" v-for="tag in img.tags.slice(0,5)">{{tag}} </span>
          </figcaption>
         </div>
@@ -29,7 +29,7 @@
         <img style="width: 100%" :src="currentImage.downloadURL">
         </el-col>
         <el-col :span="24 - currentImage.imageSpan" >
-          <p>{{currentImage.captions[0].text}}</p>
+          <p style="font-size: 1.2rem;">{{currentImage.captions[0].text|capitalize}}</p>
            <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;" 
             type="primary"  :close-transition="true" 
             @close="tagClose(tag)" v-for="tag in currentImage.tags">{{tag}} </el-tag>
@@ -63,6 +63,11 @@ export default {
       currentImage: '',
       user: '',
       token: ''
+    }
+  },
+  filters: {
+    capitalize: function (value) {
+      return value.slice(0, 1).toUpperCase() + value.slice(1)
     }
   },
   firebase: {
