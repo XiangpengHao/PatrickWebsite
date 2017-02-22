@@ -104,7 +104,10 @@ export default {
     },
     getEXIF: function () {
       let self = this
-      EXIF.getData(this.$refs.imgElement, function () {
+      let newImage = new Image()
+      newImage.src = self.uploadBasicInfo.downloadURL
+      // console.log(newImage.src)
+      EXIF.getData(newImage, function () {
         self.exifInfo.model = EXIF.getTag(this, 'Model')
         self.exifInfo.exposureTime = EXIF.getTag(this, 'ExposureTime')
         self.exifInfo.iso = EXIF.getTag(this, 'ISOSpeedRatings')

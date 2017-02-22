@@ -99,7 +99,9 @@ export default {
   methods: {
     testElement: function () {
       let self = this
-      EXIF.getData(this.$refs.imageElement, function () {
+      let newImage = new Image()
+      newImage.src = self.currentImage.downloadURL
+      EXIF.getData(newImage, function () {
         self.exifInfo.push(EXIF.getTag(this, 'Model'))
         self.exifInfo.push(EXIF.getTag(this, 'ExposureTime') + 's')
         self.exifInfo.push('ISO ' + EXIF.getTag(this, 'ISOSpeedRatings'))
