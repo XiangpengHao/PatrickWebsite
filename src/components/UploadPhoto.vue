@@ -11,7 +11,7 @@
    <el-row v-if="uploadBasicInfo" style="margin-top: 20px;" :gutter="20">
      <el-col :span="16">
        <el-card>
-         <img style="width: 100%;" :src="uploadBasicInfo.downloadURL">
+         <img style="width: 100%;" @load="getEXIF" ref="imgElement" :src="uploadBasicInfo.downloadURL">
        </el-card>
      </el-col>
      <el-col :span="8">
@@ -28,6 +28,17 @@
        >
        </el-input>
        <el-button style="font-size: 0.7rem;margin-left: 0.2rem;border-color: rgba(32,159,255,.2);background-color: rgba(32,159,255,.1);color: #20a0ff" type="primary" v-else class="button-new-tag" size="mini" @click="changeInputVisible">+ New Tag</el-button>
+       
+       <div style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;color: #7f8c8d">
+         <p style="margin-bottom: 0.2rem;">{{exifInfo.model}} </p>
+         <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
+         <span>{{exifInfo.exposureTime}}s /</span>
+         <span> ISO {{exifInfo.iso}} /</span>
+         <span> f/{{exifInfo.fnumber}} /</span>
+         <span> {{exifInfo.focalLength}}</span>
+         </p>
+         <p style="font-size: 0.75rem;margin-top: 0;"> {{exifInfo.date}} </p>
+       </div>
        <div style="margin-top: 1rem; margin-left: 0.2rem;">
          <el-button @click="saveToDatabse" size="small" type="primary">就酱</el-button>
          <el-button @click="deleteIt" size="small" type="primary">我不要这个啦</el-button>
@@ -40,6 +51,7 @@
 
 <script>
 import Firebase from 'firebase'
+import EXIF from 'exif-js'
 import axios from 'axios'
 let config = {
   apiKey: 'AIzaSyBYDjrYBVpyiCBGyrMHTrhElsajvebynpM',
@@ -72,7 +84,8 @@ export default {
       loading: false,
       saved: false,
       inputVisible: false,
-      tagValue: ''
+      tagValue: '',
+      exifInfo: {}
     }
   },
   firebase: {
@@ -88,6 +101,18 @@ export default {
     },
     changeInputVisible: function () {
       this.inputVisible = true
+    },
+    getEXIF: function () {
+      let self = this
+      EXIF.getData(this.$refs.imgElement, function () {
+        self.exifInfo.model = EXIF.getTag(this, 'Model')
+        self.exifInfo.exposureTime = EXIF.getTag(this, 'ExposureTime')
+        self.exifInfo.iso = EXIF.getTag(this, 'ISOSpeedRatings')
+        self.exifInfo.fnumber = EXIF.getTag(this, 'FNumber')
+        self.exifInfo.date = EXIF.getTag(this, 'DateTimeDigitized')
+        self.exifInfo.focalLength = EXIF.getTag(this, 'FocalLength')
+        console.log(self.exifInfo)
+      })
     },
     onFileChange: function (e) {
       let files = e.target.files || e.dataTransfer.files
@@ -131,6 +156,7 @@ export default {
             height: self.imgInfo.height
           }
           self.cognitiveService()
+          // self.getEXIF()
           console.log(snapshot)
         }
       )
@@ -165,6 +191,7 @@ export default {
       self.uploadBasicInfo.tags = self.msTags
       self.uploadBasicInfo.captions = self.msCaptions
       self.uploadBasicInfo.userCaptions = self.userCaptions
+      self.uploadBasicInfo.exifInfo = self.exifInfo
       dbRef.push(
         self.uploadBasicInfo
       ).then(
@@ -191,6 +218,7 @@ export default {
       }
       let self = this
       self.loading = true
+      self.exifInfo = {}
       if (this.uploadBasicInfo.fullPath === '') return
       storageRef.child(this.uploadBasicInfo.fullPath).delete().then(
         function () {

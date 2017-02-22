@@ -95,10 +95,7 @@ export default {
         self.exifInfo.push('ISO ' + EXIF.getTag(this, 'ISOSpeedRatings'))
         self.exifInfo.push('f' + EXIF.getTag(this, 'FNumber'))
         self.exifInfo.push('Date: ' + EXIF.getTag(this, 'DateTimeDigitized'))
-        self.exifInfo.push(EXIF.getTag(this, 'SpectralSensitivity'))
-        self.exifInfo.push(EXIF.getTag(this, 'ApertureValue'))
-        self.exifInfo.push(EXIF.getTag(this, 'Flash'))
-        self.exifInfo.push(EXIF.getTag(this, 'SubjectArea'))
+        self.exifInfo.push(EXIF.getTag(this, 'FocalLength') + 'mm')
         console.log(self.exifInfo)
       })
     },
