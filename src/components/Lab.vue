@@ -28,8 +28,14 @@
         <el-col :span="currentImage.imageSpan">
         <img style="width: 100%" :src="currentImage.downloadURL">
         </el-col>
-        <el-col :span="24 - currentImage.imageSpan">
-        <el-button type="text" @click="toDelete">Delete</el-button>
+        <el-col :span="24 - currentImage.imageSpan" >
+          <p>{{currentImage.captions[0].text}}</p>
+           <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;" 
+            type="primary"  :close-transition="true" 
+            @close="tagClose(tag)" v-for="tag in currentImage.tags">{{tag}} </el-tag>
+          <div>
+            <el-button type="text" @click="toDelete">Delete</el-button>
+          </div>
         </el-col>
       </el-row>  
     </el-dialog>
