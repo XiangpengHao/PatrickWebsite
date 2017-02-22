@@ -38,6 +38,16 @@
             type="primary"  :close-transition="true" 
              v-for="tag in exifInfo">{{tag}} </el-tag>
           </div>
+           <div v-if="currentImage.exifInfo" style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;">
+            <p style="margin-bottom: 0.2rem;">{{currentImage.exifInfo.model}} </p>
+            <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
+            <span>{{currentImage.exifInfo.exposureTime.numerator}}/{{currentImage.exifInfo.exposureTime.denominator}}s </span>
+            <span> ISO {{currentImage.exifInfo.iso}} </span>
+            <span> f/{{currentImage.exifInfo.fnumber.numerator/currentImage.exifInfo.fnumber.denominator}} </span>
+            <span> {{currentImage.exifInfo.focalLength.numerator/currentImage.exifInfo.focalLength.denominator}}mm</span>
+            </p>
+            <p style="font-size: 0.75rem;margin-top: 0;"> {{exifInfo.date}} </p>
+          </div>
           <div>
             <el-button type="text" v-if="user" style="color: #c0392b" @click="toDelete">Delete</el-button>
           </div>
@@ -174,7 +184,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+p span {
+  margin-right: 1rem;
+}
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }

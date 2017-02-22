@@ -29,12 +29,12 @@
        </el-input>
        <el-button style="font-size: 0.7rem;margin-left: 0.2rem;border-color: rgba(32,159,255,.2);background-color: rgba(32,159,255,.1);color: #20a0ff" type="primary" v-else class="button-new-tag" size="mini" @click="changeInputVisible">+ New Tag</el-button>
        
-       <div style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;color: #7f8c8d">
+       <div style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;color: #34495e">
          <p style="margin-bottom: 0.2rem;">{{exifInfo.model}} </p>
          <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
-         <span>{{exifInfo.exposureTime}}s /</span>
-         <span> ISO {{exifInfo.iso}} /</span>
-         <span> f/{{exifInfo.fnumber}} /</span>
+         <span>{{exifInfo.exposureTime}}s </span>
+         <span> ISO {{exifInfo.iso}} </span>
+         <span> f/{{exifInfo.fnumber}} </span>
          <span> {{exifInfo.focalLength}}</span>
          </p>
          <p style="font-size: 0.75rem;margin-top: 0;"> {{exifInfo.date}} </p>
@@ -241,6 +241,9 @@ export default {
 <style scoped>
 input[type="file"] {
   display: none;
+}
+p span {
+  margin-right: 1rem;
 }
 .custom-file-upload{
   border: 1px solid #2980b9;
