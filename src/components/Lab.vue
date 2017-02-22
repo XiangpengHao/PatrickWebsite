@@ -22,14 +22,17 @@
         </div>
     </section>
 
-    <div v-if="currentImage" class="img-floater">
-      <img width="90%" :src="currentImage.downloadURL">
-    </div>
-    <!--<el-dialog title="Details" v-if="currentImage" v-model="detail">
-
-      <img  style="max-width: 100%; max-height: 70%" :src="currentImage.downloadURL">
-      <el-button type="text" @click="toDelete">Delete</el-button>
-      </el-dialog>-->
+    <el-dialog style="margin-bottom: 0px"
+     :size="currentImage.dialogSize" title="Details" v-if="currentImage" v-model="detail">
+      <el-row :gutter="20">
+        <el-col :span="currentImage.imageSpan">
+        <img style="width: 100%" :src="currentImage.downloadURL">
+        </el-col>
+        <el-col :span="24 - currentImage.imageSpan">
+        <el-button type="text" @click="toDelete">Delete</el-button>
+        </el-col>
+      </el-row>  
+    </el-dialog>
   </div>
 </template>
 
@@ -80,6 +83,14 @@ export default {
     },
     toDetail: function (event, image) {
       this.currentImage = image
+      this.detail = true
+      if (this.currentImage.height > this.currentImage.width) {
+        this.currentImage.imageSpan = 14
+        this.currentImage.dialogSize = 'small'
+      } else {
+        this.currentImage.imageSpan = 16
+        this.currentImage.dialogSize = 'large'
+      }
       // if (this.currentImage.height > window.innerHeight * 0.7) {
       //   let ratio = this.currentImage.width / this.currentImage.height
       //   this.currentImage.height = window.innerHeight * 0.6
@@ -132,15 +143,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.img-floater{
-  /*position: fixed !important;
-  left: auto;
-  top: 0;*/
-}
-.detailview{
-  /*width: 75% !important;*/
-  /*position: fixed !important;*/
-}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
