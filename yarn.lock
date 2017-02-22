@@ -2226,6 +2226,10 @@ evp_bytestokey@^1.0.0:
   dependencies:
     create-hash "^1.1.1"
 
+exif-js@^2.1.1:
+  version "2.1.1"
+  resolved "http://registry.npm.taobao.org/exif-js/download/exif-js-2.1.1.tgz#2962e6aa6600340a454b24c52e458b81ccf1e6d6"
+
 exit-hook@^1.0.0:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/exit-hook/download/exit-hook-1.1.1.tgz#f05ca233b48c05d54fff07765df8507e95c02ff8"

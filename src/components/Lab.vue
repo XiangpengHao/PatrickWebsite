@@ -26,15 +26,20 @@
      :size="currentImage.dialogSize" title="Details" v-if="currentImage" v-model="detail">
       <el-row :gutter="20">
         <el-col :span="currentImage.imageSpan">
-        <img style="width: 100%" :src="currentImage.downloadURL">
+        <img style="width: 100%" ref="imageElement" @click="testElement" :src="currentImage.downloadURL">
         </el-col>
         <el-col :span="24 - currentImage.imageSpan" >
           <p style="font-size: 1.2rem;">{{currentImage.captions[0].text|capitalize}}</p>
            <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;" 
             type="primary"  :close-transition="true" 
-            @close="tagClose(tag)" v-for="tag in currentImage.tags">{{tag}} </el-tag>
+             v-for="tag in currentImage.tags">{{tag}} </el-tag>
           <div>
-            <el-button type="text" @click="toDelete">Delete</el-button>
+            <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;" 
+            type="primary"  :close-transition="true" 
+             v-for="tag in exifInfo">{{tag}} </el-tag>
+          </div>
+          <div>
+            <el-button type="text" v-if="user" style="color: #c0392b" @click="toDelete">Delete</el-button>
           </div>
         </el-col>
       </el-row>  
@@ -44,6 +49,7 @@
 
 <script>
 import Firebase from 'firebase'
+import EXIF from 'exif-js'
 let config = {
   apiKey: 'AIzaSyBYDjrYBVpyiCBGyrMHTrhElsajvebynpM',
   authDomain: 'testproject-52cfa.firebaseapp.com',
@@ -62,7 +68,8 @@ export default {
       detail: false,
       currentImage: '',
       user: '',
-      token: ''
+      token: '',
+      exifInfo: []
     }
   },
   filters: {
@@ -80,6 +87,21 @@ export default {
     }
   },
   methods: {
+    testElement: function () {
+      let self = this
+      EXIF.getData(this.$refs.imageElement, function () {
+        self.exifInfo.push(EXIF.getTag(this, 'Model'))
+        self.exifInfo.push(EXIF.getTag(this, 'ExposureTime') + 's')
+        self.exifInfo.push('ISO ' + EXIF.getTag(this, 'ISOSpeedRatings'))
+        self.exifInfo.push('f' + EXIF.getTag(this, 'FNumber'))
+        self.exifInfo.push('Date: ' + EXIF.getTag(this, 'DateTimeDigitized'))
+        self.exifInfo.push(EXIF.getTag(this, 'SpectralSensitivity'))
+        self.exifInfo.push(EXIF.getTag(this, 'ApertureValue'))
+        self.exifInfo.push(EXIF.getTag(this, 'Flash'))
+        self.exifInfo.push(EXIF.getTag(this, 'SubjectArea'))
+        console.log(self.exifInfo)
+      })
+    },
     reset: function () {
       this.detail = false
       this.currentImage = ''
@@ -95,6 +117,7 @@ export default {
     toDetail: function (event, image) {
       this.currentImage = image
       this.detail = true
+      this.exifInfo = []
       if (this.currentImage.height > this.currentImage.width) {
         this.currentImage.imageSpan = 14
         this.currentImage.dialogSize = 'small'
