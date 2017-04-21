@@ -1,58 +1,80 @@
 <template>
   <div class="hello">
-    <div @click="reset" style="font-size: 1.5rem;color: #34495e; margin: 4px">
+    <div @click="reset"
+         style="font-size: 1.5rem;color: #34495e; margin: 4px">
       HLH 的影像放映馆
     </div>
-    <div class="user-section" v-if="user" >
+    <div class="user-section"
+         v-if="user">
       {{user.displayName}}
     </div>
-    <div v-else @click="login" style="cursor: pointer" class="user-section">登录</div>
-
-      <section class="img-container" >
-        <div @click="toDetail($event, img)" v-for="img in images" 
-          v-bind:class="{detailview: !img.hidden&&detail}" :key="img"
-         v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }"
-        class="each-container" >
-         <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
-         <img class="each-img" width="100%" :src="img.downloadURL" />
-         <figcaption class="caption">
-           <div>{{img.captions[0].text | capitalize}}</div>
-           <span style="font-size: 0.7rem;color: #7f8c8d" v-for="tag in img.tags.slice(0,5)">{{tag}} </span>
-         </figcaption>
-        </div>
+    <div v-else
+         @click="login"
+         style="cursor: pointer"
+         class="user-section">登录</div>
+  
+    <section class="img-container">
+      <div @click="toDetail($event, img)"
+           v-for="img in reverseImage"
+           v-bind:class="{detailview: !img.hidden&&detail}"
+           :key="img"
+           v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }"
+           class="each-container">
+        <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
+        <img class="each-img"
+             width="100%"
+             :src="img.downloadURL" />
+        <figcaption class="caption">
+          <div>{{img.captions[0].text | capitalize}}</div>
+          <span style="font-size: 0.7rem;color: #7f8c8d"
+                v-for="tag in img.tags.slice(0,5)">{{tag}} </span>
+        </figcaption>
+      </div>
     </section>
-
+  
     <el-dialog style="margin-bottom: 0px"
-     :size="currentImage.dialogSize" title="Details" v-if="currentImage" v-model="detail">
+               :size="currentImage.dialogSize"
+               title="Details"
+               v-if="currentImage"
+               v-model="detail">
       <el-row :gutter="20">
         <el-col :span="currentImage.imageSpan">
-        <img style="width: 100%" ref="imageElement" @click="testElement" :src="currentImage.downloadURL">
+          <img style="width: 100%"
+               ref="imageElement"
+               @click="testElement"
+               :src="currentImage.downloadURL">
         </el-col>
-        <el-col :span="24 - currentImage.imageSpan" >
+        <el-col :span="24 - currentImage.imageSpan">
           <p style="font-size: 1.2rem;">{{currentImage.captions[0].text|capitalize}}</p>
-           <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;" 
-            type="primary"  :close-transition="true" 
-             v-for="tag in currentImage.tags">{{tag}} </el-tag>
+          <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;"
+                  type="primary"
+                  :close-transition="true"
+                  v-for="tag in currentImage.tags">{{tag}} </el-tag>
           <div>
-            <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;" 
-            type="primary"  :close-transition="true" 
-             v-for="tag in exifInfo">{{tag}} </el-tag>
+            <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;"
+                    type="primary"
+                    :close-transition="true"
+                    v-for="tag in exifInfo">{{tag}} </el-tag>
           </div>
-           <div v-if="currentImage.exifInfo" style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;">
+          <div v-if="currentImage.exifInfo"
+               style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;">
             <p style="margin-bottom: 0.2rem;">{{currentImage.exifInfo.model}} </p>
             <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
-            <span>{{currentImage.exifInfo.exposureTime.numerator}}/{{currentImage.exifInfo.exposureTime.denominator}}s </span>
-            <span> ISO {{currentImage.exifInfo.iso}} </span>
-            <span> f/{{currentImage.exifInfo.fnumber.numerator/currentImage.exifInfo.fnumber.denominator}} </span>
-            <span> {{currentImage.exifInfo.focalLength.numerator/currentImage.exifInfo.focalLength.denominator}}mm</span>
+              <span>{{currentImage.exifInfo.exposureTime.numerator}}/{{currentImage.exifInfo.exposureTime.denominator}}s </span>
+              <span> ISO {{currentImage.exifInfo.iso}} </span>
+              <span> f/{{currentImage.exifInfo.fnumber.numerator/currentImage.exifInfo.fnumber.denominator}} </span>
+              <span> {{currentImage.exifInfo.focalLength.numerator/currentImage.exifInfo.focalLength.denominator}}mm</span>
             </p>
             <p style="font-size: 0.75rem;margin-top: 0;"> {{exifInfo.date}} </p>
           </div>
           <div>
-            <el-button type="text" v-if="user" style="color: #c0392b" @click="toDelete">Delete</el-button>
+            <el-button type="text"
+                       v-if="user"
+                       style="color: #c0392b"
+                       @click="toDelete">Delete</el-button>
           </div>
         </el-col>
-      </el-row>  
+      </el-row>
     </el-dialog>
   </div>
 </template>
@@ -72,7 +94,7 @@ let db = app.database()
 let imageRef = db.ref('images')
 export default {
   name: 'hello',
-  data () {
+  data() {
     return {
       msg: 'Welcome to Your Vue.js App',
       detail: false,
@@ -85,6 +107,11 @@ export default {
   filters: {
     capitalize: function (value) {
       return value.slice(0, 1).toUpperCase() + value.slice(1)
+    }
+  },
+  computed: {
+    reverseImage: function () {
+      return this.images.reverse()
     }
   },
   firebase: {
@@ -189,23 +216,33 @@ export default {
 p span {
   margin-right: 1rem;
 }
-.fade-enter-active, .fade-leave-active {
+
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active in <2.1.8 */
+
+{
   opacity: 0
 }
-.user-section{
-color: #34495e;
-font-size: 0.85rem;
-margin-left: 4px;
+
+.user-section {
+  color: #34495e;
+  font-size: 0.85rem;
+  margin-left: 4px;
 }
-.el-dialog{
+
+.el-dialog {
   width: 80%;
 }
-.caption{
+
+.caption {
   position: absolute;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 10px 20px;
   opacity: 0;
@@ -213,33 +250,37 @@ margin-left: 4px;
   left: 0;
   transition: all 0.6s ease;
   -webkit-transition: all 0.6s ease;
-  -moz-transition:    all 0.6s ease;
-  -o-transition:      all 0.6s ease;
+  -moz-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
 }
-.each-img:hover + .caption{
+
+.each-img:hover+.caption {
   opacity: 1;
 }
 
-.img-container{
+.img-container {
   display: flex;
   flex-wrap: wrap;
 }
-.img-container::after{
+
+.img-container::after {
   content: '';
   flex-grow: 999999;
 }
 
-.each-container{
+.each-container {
   margin: 4px;
   background-color: #95a5a6;
   position: relative;
-  box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.5);
   transition: all 0.6s ease;
 }
-i{
+
+i {
   display: block;
 }
-.each-img{
+
+.each-img {
   position: absolute;
   top: 0;
   width: 100%;
