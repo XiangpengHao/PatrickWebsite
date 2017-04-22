@@ -4,15 +4,27 @@
          style="font-size: 1.5rem;color: #34495e; margin: 4px">
       HLH 的影像放映馆
     </div>
-    <div class="user-section"
-         v-if="user">
-      {{user.displayName}}
-    </div>
-    <div v-else
-         @click="login"
-         style="cursor: pointer"
-         class="user-section">登录</div>
-  
+    <el-row>
+      <el-col :span="10">
+        <div class="user-section"
+             v-if="user">
+          {{user.displayName}}
+        </div>
+        <div v-else
+             @click="login"
+             style="cursor: pointer"
+             class="user-section">登录
+        </div>
+      </el-col>
+      <el-col offset="10" :span="4">
+        <el-input size="mini"
+                  placeholder="Filter by tag"
+                  icon="search"
+                  v-model="searchInput"
+                  :on-icon-click="handleSearchClick">
+        </el-input>
+      </el-col>
+    </el-row>
     <section class="img-container">
       <div @click="toDetail($event, img)"
            v-for="img in reverseImage"
@@ -101,7 +113,8 @@ export default {
       currentImage: '',
       user: '',
       token: '',
-      exifInfo: []
+      exifInfo: [],
+      searchInput: ''
     }
   },
   filters: {
@@ -124,6 +137,10 @@ export default {
     }
   },
   methods: {
+    handleSearchClick: function () {
+      let self = this
+      console.log(self.searchInput)
+    },
     testElement: function () {
       let self = this
       let newImage = new Image()

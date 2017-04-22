@@ -4,6 +4,7 @@ import Resume from 'components/Resume'
 import Memo from 'components/Memo'
 import UploadPhoto from 'components/UploadPhoto'
 import Lab from 'components/Lab'
+import Word from 'components/Word'
 
 Vue.use(Router)
 
@@ -11,7 +12,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/upload'
+      redirect: '/resume'
     },
     {
       path: '/resume',
@@ -32,6 +33,11 @@ export default new Router({
       path: '/lab',
       name: 'Lab',
       component: Lab
+    },
+    {
+      path: '/word',
+      name: 'word',
+      component: Word
     }
   ]
 })
