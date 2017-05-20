@@ -12,7 +12,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/upload'
+      redirect: '/iot'
     },
     {
       path: '/resume',

@@ -1,5 +1,8 @@
 <template>
   <div class='hello'>
+    <div  style="font-size: 1.5rem;color: #34495e; margin: 4px; margin-bottom:1rem;">
+      HLH 的 IoT 实验室
+    </div>
     <chart :options='polar'></chart>
   </div>
 </template>
@@ -10,7 +13,7 @@ import Echarts from 'vue-echarts/components/ECharts.vue'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/legend'
 // import 'echarts/lib/chart/marker'
-import 'echarts/lib/component/toolbox'
+// import 'echarts/lib/component/toolbox'
 import 'echarts/lib/component/dataZoom'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
@@ -54,7 +57,7 @@ export default {
       let self = this
       return {
         title: {
-          text: 'Bifeng 3-417'
+          text: '碧3-417 凌乱的桌子'
           // subtext: 'by hlh'
         },
         tooltip: {
@@ -68,7 +71,7 @@ export default {
             show: true,
             realtime: false,
             start: 65,
-            end: 95
+            end: 100
           },
           {
             type: 'inside',
@@ -100,11 +103,14 @@ export default {
             axisLabel: {
               formatter: '{value} °C'
             },
-            name: 'temperature'
+            name: 'Temperature'
           },
           {
             type: 'value',
-            name: 'humidity',
+            name: 'Humidity',
+            axisLabel: {
+              formatter: '{value} %'
+            },
             max: 100
           }
         ],
