@@ -4,6 +4,7 @@ import Resume from 'components/Resume'
 import Memo from 'components/Memo'
 import UploadPhoto from 'components/UploadPhoto'
 import Lab from 'components/Lab'
+import IoT from 'components/IoT'
 
 Vue.use(Router)
 
@@ -32,6 +33,11 @@ export default new Router({
       path: '/lab',
       name: 'Lab',
       component: Lab
+    },
+    {
+      path: '/iot',
+      name: 'IoT',
+      component: IoT
     }
   ]
 })
