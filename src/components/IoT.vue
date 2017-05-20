@@ -10,7 +10,8 @@ import Echarts from 'vue-echarts/components/ECharts.vue'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/legend'
 // import 'echarts/lib/chart/marker'
-// import 'echarts/lib/component/toolbox'
+import 'echarts/lib/component/toolbox'
+import 'echarts/lib/component/dataZoom'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
 let config = {
@@ -62,15 +63,29 @@ export default {
         legend: {
           data: ['Temperature', 'Humidity']
         },
+        dataZoom: [
+          {
+            show: true,
+            realtime: false,
+            start: 65,
+            end: 95
+          },
+          {
+            type: 'inside',
+            realtime: false,
+            start: 65,
+            end: 95
+          }
+        ],
         toolbox: {
           show: true,
           feature: {
             dataZoom: {
               yAxisIndex: 'none'
             },
-            dataView: { readOnly: false },
-            magicType: { type: ['line', 'bar'] },
-            restore: {},
+            // dataView: { readOnly: false },
+            // magicType: { type: ['line', 'bar'] },
+            // restore: {},
             saveAsImage: {}
           }
         },
@@ -102,7 +117,8 @@ export default {
           {
             name: 'Humidity',
             type: 'line',
-            data: self.axisHumidity
+            data: self.axisHumidity,
+            yAxisIndex: 1
           }
         ]
       }
