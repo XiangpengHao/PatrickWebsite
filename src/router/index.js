@@ -5,14 +5,14 @@ import Memo from 'components/Memo'
 import UploadPhoto from 'components/UploadPhoto'
 import Lab from 'components/Lab'
 import Word from 'components/Word'
-
+import IoT from 'components/IoT'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/resume'
+      redirect: '/iot'
     },
     {
       path: '/resume',
@@ -38,6 +38,10 @@ export default new Router({
       path: '/word',
       name: 'word',
       component: Word
+    }, {
+      path: '/iot',
+      name: 'IoT',
+      component: IoT
     }
   ]
 })
