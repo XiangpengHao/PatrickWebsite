@@ -16,7 +16,7 @@
      </el-col>
      <el-col :span="8">
        <el-input type="textarea" autosize style="margin-bottom: 10px;" v-if="msCaptions" :placeholder="msCaptions[0].text" v-model="msCaptions[0].text"></el-input>
-       <el-tag style="margin-left: 0.2rem; margin-bottom: 0.2rem;" type="primary" :closable="true" :close-transition="true" @close="tagClose(tag)" v-for="tag in msTags">{{tag}} </el-tag>
+       <el-tag style="margin-left: 0.2rem; margin-bottom: 0.2rem;" type="primary" :closable="true" :close-transition="true" @close="tagClose(tag)" :key="tag" v-for="tag in msTags">{{tag}} </el-tag>
        <el-input
          class="input-new-tag"
          v-if="inputVisible"

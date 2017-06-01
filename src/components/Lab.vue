@@ -39,7 +39,7 @@
         <figcaption class="caption">
           <div>{{img.captions[0].text | capitalize}}</div>
           <span style="font-size: 0.7rem;color: #7f8c8d"
-                v-for="tag in img.tags.slice(0,5)">{{tag}} </span>
+                v-for="tag in img.tags.slice(0,5)" :key="tag">{{tag}} </span>
         </figcaption>
       </div>
     </section>
@@ -61,12 +61,12 @@
           <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;"
                   type="primary"
                   :close-transition="true"
-                  v-for="tag in currentImage.tags">{{tag}} </el-tag>
+                  v-for="tag in currentImage.tags" :key="tag">{{tag}} </el-tag>
           <div>
             <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;"
                     type="primary"
                     :close-transition="true"
-                    v-for="tag in exifInfo">{{tag}} </el-tag>
+                    v-for="tag in exifInfo" :key="tag">{{tag}} </el-tag>
           </div>
           <div v-if="currentImage.exifInfo"
                style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;">

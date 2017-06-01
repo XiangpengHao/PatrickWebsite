@@ -15,7 +15,7 @@
       <el-button @click="googleLogin" size="small" type="primary">听得风就是雨</el-button>
       <el-row style="margin-top: 20px" :gutter="10">
         <el-col :xs="12" :sm="6" :md="4"
-         v-for="memo in memos">
+         v-for="memo in memos" :key="memo">
          <el-card style="background-color: #1abc9c;padding: 0px; margin-bottom: 10px">
            <div style="font-size: 1.1rem;color: #34495e">{{memo.content}}
            </div>
