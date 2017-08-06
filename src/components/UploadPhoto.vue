@@ -50,19 +50,13 @@
 </template>
 
 <script>
-import Firebase from 'firebase'
 import EXIF from 'exif-js'
 import axios from 'axios'
-let config = {
-  apiKey: 'AIzaSyBYDjrYBVpyiCBGyrMHTrhElsajvebynpM',
-  authDomain: 'testproject-52cfa.firebaseapp.com',
-  databaseURL: 'https://testproject-52cfa.firebaseio.com',
-  storageBucket: 'testproject-52cfa.appspot.com',
-  messagingSenderId: '363300347449'
-}
-Firebase.initializeApp(config, 'upload')
-let storageRef = Firebase.storage().ref()
-let dbRef = Firebase.database().ref('images')
+
+import { db, storage } from './firebase'
+
+let storageRef = storage.ref()
+let dbRef = db.ref('images')
 export default {
   name: 'hello',
   computed: {

@@ -1,6 +1,6 @@
 <template>
   <div class='hello'>
-    <div  style="font-size: 1.5rem;color: #34495e; margin: 4px; margin-bottom:1rem;">
+    <div style="font-size: 1.5rem;color: #34495e; margin: 4px; margin-bottom:1rem;">
       HLH 的 IoT 实验室
     </div>
     <chart :options='polar'></chart>
@@ -8,7 +8,8 @@
 </template>
 
 <script>
-import Firebase from 'firebase'
+import { db } from './firebase'
+// import Firebase from 'firebase'
 import Echarts from 'vue-echarts/components/ECharts.vue'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/legend'
@@ -17,15 +18,7 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/component/dataZoom'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
-let config = {
-  apiKey: 'AIzaSyBYDjrYBVpyiCBGyrMHTrhElsajvebynpM',
-  authDomain: 'testproject-52cfa.firebaseapp.com',
-  databaseURL: 'https://testproject-52cfa.firebaseio.com',
-  storageBucket: 'testproject-52cfa.appspot.com',
-  messagingSenderId: '363300347449'
-}
-let app = Firebase.initializeApp(config, 'IoT')
-let db = app.database()
+
 let infoRef = db.ref('iot')
 export default {
   name: 'IoT',

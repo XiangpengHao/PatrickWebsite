@@ -1,75 +1,44 @@
 <template>
   <div class="hello">
-    <div @click="reset"
-         style="font-size: 1.5rem;color: #34495e; margin: 4px">
+    <div @click="reset" style="font-size: 1.5rem;color: #34495e; margin: 4px">
       HLH 的影像放映馆
     </div>
     <el-row>
       <el-col :span="10">
-        <div class="user-section"
-             v-if="user">
+        <div class="user-section" v-if="user">
           {{user.displayName}}
         </div>
-        <div v-else
-             @click="login"
-             style="cursor: pointer"
-             class="user-section">登录
+        <div v-else @click="login" style="cursor: pointer" class="user-section">登录
         </div>
       </el-col>
-      <el-col offset="10" :span="4">
-        <el-input size="mini"
-                  placeholder="Filter by tag"
-                  icon="search"
-                  v-model="searchInput"
-                  :on-icon-click="handleSearchClick">
+      <el-col :offset="10" :span="4">
+        <el-input size="mini" placeholder="Filter by tag" icon="search" v-model="searchInput" :on-icon-click="handleSearchClick">
         </el-input>
       </el-col>
     </el-row>
     <section class="img-container">
-      <div @click="toDetail($event, img)"
-           v-for="img in reverseImage"
-           v-bind:class="{detailview: !img.hidden&&detail}"
-           :key="img"
-           v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }"
-           class="each-container">
+      <div @click="toDetail($event, img)" v-for="(img,index) in reverseImage" v-bind:class="{detailview: !img.hidden&&detail}" :key="index" v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }" class="each-container">
         <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
-        <img class="each-img"
-             width="100%"
-             :src="img.downloadURL" />
+        <img class="each-img" width="100%" :src="img.downloadURL" />
         <figcaption class="caption">
           <div>{{img.captions[0].text | capitalize}}</div>
-          <span style="font-size: 0.7rem;color: #7f8c8d"
-                v-for="tag in img.tags.slice(0,5)" :key="tag">{{tag}} </span>
+          <span style="font-size: 0.7rem;color: #7f8c8d" v-for="tag in img.tags.slice(0,5)" :key="tag">{{tag}} </span>
         </figcaption>
       </div>
     </section>
   
-    <el-dialog style="margin-bottom: 0px"
-               :size="currentImage.dialogSize"
-               title="Details"
-               v-if="currentImage"
-               v-model="detail">
+    <el-dialog style="margin-bottom: 0px" :size="currentImage.dialogSize" title="Details" v-if="currentImage" v-model="detail">
       <el-row :gutter="20">
         <el-col :span="currentImage.imageSpan">
-          <img style="width: 100%"
-               ref="imageElement"
-               @click="testElement"
-               :src="currentImage.downloadURL">
+          <img style="width: 100%" ref="imageElement" @click="testElement" :src="currentImage.downloadURL">
         </el-col>
         <el-col :span="24 - currentImage.imageSpan">
           <p style="font-size: 1.2rem;">{{currentImage.captions[0].text|capitalize}}</p>
-          <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;"
-                  type="primary"
-                  :close-transition="true"
-                  v-for="tag in currentImage.tags" :key="tag">{{tag}} </el-tag>
+          <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;" type="primary" :close-transition="true" v-for="tag in currentImage.tags" :key="tag">{{tag}} </el-tag>
           <div>
-            <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;"
-                    type="primary"
-                    :close-transition="true"
-                    v-for="tag in exifInfo" :key="tag">{{tag}} </el-tag>
+            <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;" type="primary" :close-transition="true" v-for="tag in exifInfo" :key="tag">{{tag}} </el-tag>
           </div>
-          <div v-if="currentImage.exifInfo"
-               style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;">
+          <div v-if="currentImage.exifInfo" style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;">
             <p style="margin-bottom: 0.2rem;">{{currentImage.exifInfo.model}} </p>
             <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
               <span>{{currentImage.exifInfo.exposureTime.numerator}}/{{currentImage.exifInfo.exposureTime.denominator}}s </span>
@@ -80,10 +49,7 @@
             <p style="font-size: 0.75rem;margin-top: 0;"> {{exifInfo.date}} </p>
           </div>
           <div>
-            <el-button type="text"
-                       v-if="user"
-                       style="color: #c0392b"
-                       @click="toDelete">Delete</el-button>
+            <el-button type="text" v-if="user" style="color: #c0392b" @click="toDelete">Delete</el-button>
           </div>
         </el-col>
       </el-row>
@@ -94,15 +60,8 @@
 <script>
 import Firebase from 'firebase'
 import EXIF from 'exif-js'
-let config = {
-  apiKey: 'AIzaSyBYDjrYBVpyiCBGyrMHTrhElsajvebynpM',
-  authDomain: 'testproject-52cfa.firebaseapp.com',
-  databaseURL: 'https://testproject-52cfa.firebaseio.com',
-  storageBucket: 'testproject-52cfa.appspot.com',
-  messagingSenderId: '363300347449'
-}
-let app = Firebase.initializeApp(config, 'lab')
-let db = app.database()
+import { db, storage, authFunc, auth } from './firebase'
+
 let imageRef = db.ref('images')
 export default {
   name: 'hello',
@@ -131,7 +90,7 @@ export default {
     images: imageRef
   },
   created: function () {
-    let user = Firebase.auth().currentUser
+    let user = auth.currentUser
     if (user) {
       this.user = user
     }
@@ -208,7 +167,7 @@ export default {
         return
       }
       imageRef.child(this.currentImage['.key']).remove()
-      let storageImageRef = Firebase.storage().ref().child(this.currentImage.fullPath)
+      let storageImageRef = storage.ref().child(this.currentImage.fullPath)
       storageImageRef.delete()
       this.currentImage = ''
       this.detail = true
@@ -217,7 +176,7 @@ export default {
       let self = this
       let provider = new Firebase.auth.GoogleAuthProvider()
       provider.addScope('https://www.googleapis.com/auth/plus.login')
-      Firebase.auth().signInWithPopup(provider).then(
+      authFunc.signInWithPopup(provider).then(
         result => {
           self.token = result.credential.accessToken
           self.user = result.user
