@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Resume from 'components/Resume'
-import Memo from 'components/Memo'
-import UploadPhoto from 'components/UploadPhoto'
-import Lab from 'components/Lab'
-import Word from 'components/Word'
-import IoT from 'components/IoT'
+import Resume from '../components/Resume'
+import Memo from '../components/Memo'
+import UploadPhoto from '../components/UploadPhoto'
+import Lab from '../components/Lab'
+// import Word from '../components/Word'
+import IoT from '../components/IoT'
 Vue.use(Router)
 
 export default new Router({
@@ -35,10 +35,6 @@ export default new Router({
       component: Lab
     },
     {
-      path: '/word',
-      name: 'word',
-      component: Word
-    }, {
       path: '/iot',
       name: 'IoT',
       component: IoT
