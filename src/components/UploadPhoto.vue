@@ -3,49 +3,41 @@
     <label for="file-upload" class="custom-file-upload">
       <i class="fa fa-cloud-upload"></i> 上传吧
     </label>
-   <input id="file-upload" @change="onFileChange" accept="image/*" type="file" >
-
-   <div style="margin-top: 1rem;">
-     <el-progress  v-loading.fullscreen.lock="loading" :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
-   </div>
-   <el-row v-if="uploadBasicInfo" style="margin-top: 20px;" :gutter="20">
-     <el-col :span="16">
-       <el-card>
-         <img style="width: 100%;" @load="getEXIF" ref="imgElement" :src="uploadBasicInfo.downloadURL">
-       </el-card>
-     </el-col>
-     <el-col :span="8">
-       <el-input type="textarea" autosize style="margin-bottom: 10px;" v-if="msCaptions" :placeholder="msCaptions[0].text" v-model="msCaptions[0].text"></el-input>
-       <el-tag style="margin-left: 0.2rem; margin-bottom: 0.2rem;" type="primary" :closable="true" :close-transition="true" @close="tagClose(tag)" :key="tag" v-for="tag in msTags">{{tag}} </el-tag>
-       <el-input
-         class="input-new-tag"
-         v-if="inputVisible"
-         v-model="tagValue"
-         ref="saveTagInput"
-         size="mini"
-         style="width: 60px; margin-left: 0.2rem;"
-         @keyup.enter.native="handleInputConfirm"
-       >
-       </el-input>
-       <el-button style="font-size: 0.7rem;margin-left: 0.2rem;border-color: rgba(32,159,255,.2);background-color: rgba(32,159,255,.1);color: #20a0ff" type="primary" v-else class="button-new-tag" size="mini" @click="changeInputVisible">+ New Tag</el-button>
-       
-       <div style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;color: #34495e">
-         <p style="margin-bottom: 0.2rem;">{{exifInfo.model}} </p>
-         <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
-         <span>{{exifInfo.exposureTime}}s </span>
-         <span> ISO {{exifInfo.iso}} </span>
-         <span> f/{{exifInfo.fnumber}} </span>
-         <span> {{exifInfo.focalLength}}</span>
-         </p>
-         <p style="font-size: 0.75rem;margin-top: 0;"> {{exifInfo.date}} </p>
-       </div>
-       <div style="margin-top: 1rem; margin-left: 0.2rem;">
-         <el-button @click="saveToDatabse" size="small" type="primary">就酱</el-button>
-         <el-button @click="deleteIt" size="small" type="primary">我不要这个啦</el-button>
-       </div>
-     </el-col>
-   </el-row>
-
+    <input id="file-upload" @change="onFileChange" accept="image/*" type="file">
+  
+    <div style="margin-top: 1rem;">
+      <el-progress v-loading.fullscreen.lock="loading" :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
+    </div>
+    <el-row v-if="uploadBasicInfo" style="margin-top: 20px;" :gutter="20">
+      <el-col :span="16">
+        <el-card>
+          <img style="width: 100%;" @load="getEXIF" ref="imgElement" :src="uploadBasicInfo.downloadURL">
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-input type="textarea" autosize style="margin-bottom: 10px;" v-if="msCaptions" :placeholder="msCaptions[0].text" v-model="msCaptions[0].text"></el-input>
+        <el-tag style="margin-left: 0.2rem; margin-bottom: 0.2rem;" type="primary" :closable="true" :close-transition="true" @close="tagClose(tag)" :key="tag" v-for="tag in msTags">{{tag}} </el-tag>
+        <el-input class="input-new-tag" v-if="inputVisible" v-model="tagValue" ref="saveTagInput" size="mini" style="width: 60px; margin-left: 0.2rem;" @keyup.enter.native="handleInputConfirm">
+        </el-input>
+        <el-button style="font-size: 0.7rem;margin-left: 0.2rem;border-color: rgba(32,159,255,.2);background-color: rgba(32,159,255,.1);color: #20a0ff" type="primary" v-else class="button-new-tag" size="mini" @click="changeInputVisible">+ New Tag</el-button>
+  
+        <div style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;color: #34495e">
+          <p style="margin-bottom: 0.2rem;">{{exifInfo.model}} </p>
+          <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
+            <span>{{exifInfo.exposureTime}}s </span>
+            <span> ISO {{exifInfo.iso}} </span>
+            <span> f/{{exifInfo.fnumber}} </span>
+            <span> {{exifInfo.focalLength}}</span>
+          </p>
+          <p style="font-size: 0.75rem;margin-top: 0;"> {{exifInfo.date}} </p>
+        </div>
+        <div style="margin-top: 1rem; margin-left: 0.2rem;">
+          <el-button @click="saveToDatabse" size="small" type="primary">就酱</el-button>
+          <el-button @click="deleteIt" size="small" type="primary">我不要这个啦</el-button>
+        </div>
+      </el-col>
+    </el-row>
+  
   </div>
 </template>
 
@@ -61,7 +53,7 @@ export default {
   name: 'hello',
   computed: {
   },
-  data () {
+  data() {
     return {
       msg: 'Welcome to Your Vue.js App',
       content: '',
@@ -165,7 +157,7 @@ export default {
       axios({
         method: 'post',
         url: url,
-        headers: {'Ocp-Apim-Subscription-Key': 'cdadff4e7f014956b816f3f1236c1203'},
+        headers: { 'Ocp-Apim-Subscription-Key': 'cdadff4e7f014956b816f3f1236c1203' },
         data: {
           'url': self.uploadBasicInfo.downloadURL
         }
@@ -177,7 +169,7 @@ export default {
           // self.saveToDatabse()
           console.log(response.data)
         }
-      )
+        )
     },
     saveToDatabse: function () {
       if (this.saved === true) {
@@ -198,7 +190,7 @@ export default {
             type: 'success'
           })
         }
-      )
+        )
       self.saved = true
     },
     tagClose: function (tag) {
@@ -239,10 +231,12 @@ export default {
 input[type="file"] {
   display: none;
 }
+
 p span {
   margin-right: 1rem;
 }
-.custom-file-upload{
+
+.custom-file-upload {
   border: 1px solid #2980b9;
   display: inline-block;
   padding: 1px 6px;
@@ -251,7 +245,8 @@ p span {
   border-radius: 5px;
   cursor: pointer;
 }
-.user{
+
+.user {
   position: absolute;
   right: 0;
   top: 0;
@@ -259,11 +254,13 @@ p span {
   height: 10%;
   overflow: hidden;
 }
-.main-container{
+
+.main-container {
   margin: 15%;
   margin-top: 4rem;
 }
-.input-textarea{
+
+.input-textarea {
   margin-bottom: 0.4rem;
 }
 </style>

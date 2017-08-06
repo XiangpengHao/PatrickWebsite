@@ -5,6 +5,7 @@ import Memo from '../components/Memo'
 import UploadPhoto from '../components/UploadPhoto'
 import Lab from '../components/Lab'
 // import Word from '../components/Word'
+import Digits from '../components/Digits'
 import IoT from '../components/IoT'
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export default new Router({
       path: '/iot',
       name: 'IoT',
       component: IoT
+    },
+    {
+      path: '/digits',
+      name: 'Digits',
+      component: Digits
     }
   ]
 })
