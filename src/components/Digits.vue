@@ -1,11 +1,11 @@
 <template>
   <div class="hello">
     <div style="display:flex;">
-      <canvas v-on:mousemove="mouseMove" v-on:click="paint" id="canvas" width="257" height="257"></canvas>
+      <canvas v-on:mousemove="mouseMove" v-on:click="paint" id="canvas" width="225" height="225"></canvas>
       <transition name="el-zoom-in-center">
-        <div v-if="result" style="flex-direction:column;">
-          <div style="margin-left:1em;">KNN gets a {{result.result32}}</div>
-          <div style="margin-left:1em;">While neuron network gets a {{result.result28}}</div>
+        <div style="flex-direction:column;">
+          <div v-if="knnResult" style="margin-left:1em;">KNN gets {{knnResult}}</div>
+          <div v-if="neuronResult" style="margin-left:1em;">While neuron network gets a {{neuronResult}}</div>
         </div>
       </transition>
     </div>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+let debug = false
 import axios from 'axios'
 export default {
   name: 'digits',
@@ -25,8 +26,8 @@ export default {
       canvas: '',
       ctx: '',
       drawData: [],
-      data28: [],
-      result: ''
+      knnResult: '',
+      neuronResult: ''
     }
   },
   mounted: function () {
@@ -43,40 +44,26 @@ export default {
         ctx.beginPath()
         ctx.lineWidth = 1
         ctx.moveTo(0, 0)
-        for (let i = 0.5; i <= 256.5; i += 8) {
+        for (let i = 0.5; i <= 224.5; i += 8) {
           ctx.moveTo(i, 0)
           ctx.strokeStyle = '#7f8c8d'
-          ctx.lineTo(i, 256)
+          ctx.lineTo(i, 254)
           ctx.stroke()
           ctx.moveTo(0, i)
-          ctx.lineTo(256, i)
+          ctx.lineTo(254, i)
           ctx.stroke()
         }
       }
     },
     setData: function (x, y) {
-      let x32 = Math.floor(x / 8)
-      let x28 = Math.floor(x / 9.14)
-      let y32 = Math.floor(y / 8)
-      let y28 = Math.floor(y / 9.14)
-
-      this.$set(this.drawData, x32 + 32 * y32, 1)
-      this.$set(this.drawData, x32 + 32 * y32 - 1, 1)
-      this.$set(this.drawData, x32 + 32 * y32 + 1, 1)
-      this.$set(this.drawData, x32 + 31 * y32, 1)
-      this.$set(this.drawData, x32 + 33 * y32, 1)
-
-      this.$set(this.data28, x28 + 28 * y28, 1)
-      this.$set(this.data28, x28 + 28 * y28 - 1, 1)
-      this.$set(this.data28, x28 + 28 * y28 + 1, 1)
-      this.$set(this.data28, x28 + 27 * y28, 1)
-      this.$set(this.data28, x28 + 29 * y28, 1)
+      this.$set(this.drawData, x + 28 * y, 1)
     },
     drawPixel: function (x, y) {
       let ctx = this.ctx
       // ctx.beginPath(x * 8 + y * 8)
       ctx.fillStyle = '#e74c3c'
       ctx.fillRect(x * 8 + 1, y * 8 + 1, 7, 7)
+      this.setData(x, y)
     },
     drawTrace: function (x, y) {
       this.drawPixel(x, y)
@@ -84,13 +71,11 @@ export default {
       this.drawPixel(x - 1, y)
       this.drawPixel(x, y - 1)
       this.drawPixel(x, y + 1)
-      this.drawPixel(x + 1, y + 1)
     },
     paint: function (e) {
       let offsetX = e.offsetX
       let offsetY = e.offsetY
       this.drawTrace(Math.floor(offsetX / 8), Math.floor(offsetY / 8))
-      this.setData(offsetX, offsetY)
     },
     mouseMove: function (e) {
       if (e.which === 1) {
@@ -98,40 +83,40 @@ export default {
       }
     },
     reset: function () {
-      this.ctx.clearRect(0, 0, 257, 257)
+      this.ctx.clearRect(0, 0, 225, 225)
       this.initCanvas()
       this.drawData = []
       this.result = ''
       this.data28 = []
     },
-    submit: function () {
+    submit: async function () {
       let self = this
-      let data32 = this.drawData
-      for (let i = 0; i < 1024; i++) {
-        data32[i] = data32[i] ? 1 : 0
-      }
-      data32 = data32.slice(0, 1024)
 
-      let data28 = this.data28
+      let data28 = this.drawData
       for (let i = 0; i < 784; i++) {
         data28[i] = data28[i] ? 1 : 0
       }
       data28 = data28.slice(0, 784)
-
+      let debugURL = 'http://localhost:5000/'
+      let productionURL = 'https://digits.haoxp.xyz/'
       // console.log(data)
-      axios({
+      let result = await axios({
         method: 'post',
-        url: 'https://digits.haoxp.xyz/digit',
+        url: (debug ? debugURL : productionURL) + 'neuron',
         data: {
-          'data32': data32,
-          'data28': data28
+          'drawData': data28
         }
-      }).then(
-        response => {
-          self.result = response.data
-          console.log(response.data)
+      })
+      self.neuronResult = result['data']['result28']
+
+      result = await axios({
+        method: 'post',
+        url: (debug ? debugURL : productionURL) + 'knn',
+        data: {
+          'drawData': data28
         }
-        )
+      })
+      self.knnResult = result['data']['result28']
     }
   }
 }
