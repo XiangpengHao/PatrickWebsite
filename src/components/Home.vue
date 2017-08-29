@@ -1,7 +1,7 @@
 <template>
   <div style="width:100%;height:100%;position:absolute;">
     <div style="z-index:-1;background-color:#c0392b;position:absolute;width:100%;height:100%;">
-      <vue-particles color="#dedede" :particleOpacity="0.7" :particlesNumber="80" shapeType="circle" :particleSize="4" linesColor="#dedede" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
+      <vue-particles color="#dedede" :particleOpacity="0.7" :particlesNumber="80" shapeType="circle" :particleSize="4" linesColor="#dedede" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3" :hoverEffect="false" hoverMode="grab" :clickEffect="false" clickMode="push">
       </vue-particles>
     </div>
     <div style="width:100%;height:100%;display:flex;flex-direction:column;  justify-content: center;">
