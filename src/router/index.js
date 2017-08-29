@@ -6,6 +6,7 @@ import UploadPhoto from '../components/UploadPhoto'
 import Lab from '../components/Lab'
 // import Word from '../components/Word'
 import Digits from '../components/Digits'
+import Home from '../components/Home'
 import IoT from '../components/IoT'
 Vue.use(Router)
 
@@ -13,7 +14,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/iot'
+      redirect: '/home'
     },
     {
       path: '/resume',
@@ -44,6 +45,11 @@ export default new Router({
       path: '/digits',
       name: 'Digits',
       component: Digits
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
     }
   ]
 })
