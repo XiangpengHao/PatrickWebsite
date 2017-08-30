@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Resume from '../components/Resume'
 import Memo from '../components/Memo'
 import UploadPhoto from '../components/UploadPhoto'
-import Lab from '../components/Lab'
+import Photos from '../components/Photos'
 // import Word from '../components/Word'
 import Digits from '../components/Digits'
 import Home from '../components/Home'
@@ -32,9 +32,9 @@ export default new Router({
       component: UploadPhoto
     },
     {
-      path: '/lab',
-      name: 'Lab',
-      component: Lab
+      path: '/photos',
+      name: 'Photos',
+      component: Photos
     },
     {
       path: '/iot',
