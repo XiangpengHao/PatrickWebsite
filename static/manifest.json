@@ -1,14 +1,14 @@
 {
-  "name": "new_profile",
+  "name": "Hao Xiangpeng",
   "short_name": "Hao",
   "icons": [
     {
-      "src": "/static/img/icons/android-chrome-192x192.png",
+      "src": "/static/img/icons/hao_192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/static/img/icons/android-chrome-512x512.png",
+      "src": "/static/img/icons/hao_512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
