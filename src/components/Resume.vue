@@ -17,7 +17,7 @@
         <a href="https://github.com/HaoPatrick"> Hao Patrick</a>
       </i>|
       <i class="fa fa-envelope" aria-hidden="true">
-        <a href="mailto:haoxiangpeng@hotmail.com"> haoxiangpeng@hotmail.com</a>
+        <a href="mailto:haoxiangpeng@hotmail.com"> haoxiangpeng123@gmail.com</a>
       </i>|
       <i class="fa fa-home" aria-hidden="true">
         <a href="https://haoxp.xyz"> haoxp.xyz</a>
@@ -32,14 +32,14 @@
     <div class="moto">
       {{mainData.moto}}
     </div>
-  
+
     <subtitle :title="mainData.skillsAbility"></subtitle>
     <div class="skill-content">
-      <div class="skill-item" v-for="skill in mainData.skills">{{skill}}</div>
+      <div class="skill-item" v-for="(skill,index) in mainData.skills" :key="index">{{skill}}</div>
     </div>
-  
+
     <subtitle :title="mainData.education"></subtitle>
-  
+
     <div class="sub-main-title">
       {{mainData.school}} ({{mainData.major}})
       <span class="location">{{mainData.location1}}</span>
@@ -54,7 +54,7 @@
         <li>{{mainData.eduTwo}}</li>
       </ul>
     </div>
-  
+
     <subtitle :title="mainData.experience"></subtitle>
     <div class="sub-main-title">
       {{mainData.expOneTitle}}
@@ -76,7 +76,7 @@
         </li>
       </ul>
     </div>
-  
+
     <subtitle :title="mainData.project"></subtitle>
     <div class="sub-main-title">
       {{mainData.projectTmpylee}}
@@ -93,7 +93,7 @@
         <li>{{mainData.tmplaye3}}</li>
       </ul>
     </div>
-  
+
     <div class="sub-main-title">
       {{mainData.projectHouaa}}
       <span class="location">{{mainData.location1}}</span>
@@ -109,7 +109,7 @@
         <li>{{mainData.houaa3}}</li>
       </ul>
     </div>
-  
+
     <div class="sub-main-title">
       <a href="http://www.qsc.zju.edu.cn/120">
         {{mainData.projectAssist}}
@@ -138,14 +138,14 @@ export default {
     subtitle
   },
   computed: {
-    mainData: function () {
+    mainData: function() {
       if (this.language === 'En') {
         return {
           name: 'Hao Xiangpeng',
           major: 'Computer Science',
           area: 'Web Enginnering',
           address: 'Zijingang Campus, Zhejiang University, Hangzhou, Zhejiang Province, China',
-          moto: '"Who end the acoustic shock the world, will be a long time deep self silence"',
+          moto: '"He who has to kindle the lightning one day, must for a long time -- be a cloud."',
           education: 'Education',
           school: 'Zhejiang University and Simon Fraser University',
           location1: 'Hangzhou, China',
@@ -220,13 +220,18 @@ export default {
           duration4: 'Feb. 2017 - Present',
           houaa2: 'Vue.js + Vue-Router + Vuex + Webpack',
           houaa3: '负责服务器架构',
-          houaa1: '一个家教分享管理平台'
+          houaa1: '一个家教分享管理平台',
+          projectAssist: '浙江大学120周年校庆助手',
+          duration5: 'May. 2017 - Jun. 2017',
+          assist1: 'Vue.js + Vue-Router + Vuex + Webpack',
+          assist2: '前端开发',
+          assist3: '浙大校庆助手'
         }
       }
     }
   },
   filters: {
-    toUpper: function (value) {
+    toUpper: function(value) {
       if (!value) return ''
       value = value.toString()
       return value.toUpperCase()
@@ -239,7 +244,7 @@ export default {
     }
   },
   methods: {
-    changeLan: function () {
+    changeLan: function() {
       if (this.language === 'Ch') {
         this.language = 'En'
       } else {
@@ -374,6 +379,7 @@ a:visited {
 
 .main-container {
   margin: 60px 10% auto 10%;
+  font-family: "Noto Sans", "Noto Sans CJK JP", sans-serif;
 }
 
 @media (min-width: 1200px) {

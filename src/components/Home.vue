@@ -11,7 +11,7 @@
       <div style="font-family:'Slabo 27px', serif;font-size:1.2em;">
         <ul style="display:inline;list-style:none;margin:0;">
           <li class="inline-li">He who has to kindle the lightning one day, </li>
-          <li class="inline-li">must for a long time--be a cloud.</li>
+          <li class="inline-li">must for a long time -- be a cloud.</li>
         </ul>
       </div>
       <ul class="icon-ul">
