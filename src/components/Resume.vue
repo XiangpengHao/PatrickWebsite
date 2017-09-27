@@ -72,7 +72,7 @@
         <li>{{mainData.qscwork4}}</li>
         <li>{{mainData.qscwork5}}</li>
         <li>Link:
-          <a href="www.qsc.zju.edu.cn">浙江大学求是潮</a>
+          <a href="https://www.qsc.zju.edu.cn">浙江大学求是潮</a>
         </li>
       </ul>
     </div>
