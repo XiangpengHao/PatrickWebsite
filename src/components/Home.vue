@@ -10,7 +10,7 @@
       </h1>
       <div style="font-family:'Slabo 27px', serif;font-size:1.2em;">
         <ul style="display:inline;list-style:none;margin:0;">
-          <li class="inline-li">He who has to kindle the lightning one day, </li>
+          <li class="inline-li">He who has to kindle the lighting one day, </li>
           <li class="inline-li">must for a long time -- be a cloud.</li>
         </ul>
       </div>
@@ -39,7 +39,7 @@
         </li>
         <li>
           <router-link to="digits">
-            <i class="fa fa-terminal" aria-hidden="true"></i>
+            <i class="fa fa-terminal" aria-hidden="true"> </i>
           </router-link>
         </li>
       </ul>
@@ -58,7 +58,7 @@ export default {
     }
   },
   computed: {
-    year: function() {
+    year: function () {
       let date = new Date()
       return date.getFullYear()
     }
@@ -97,10 +97,10 @@ h1 {
 }
 
 .icon-ul {
-  margin-top: 70%;
+  margin-top: 50%;
 }
 
-.icon-ul>li {
+.icon-ul > li {
   display: inline;
   margin-right: 0.4em;
   margin-left: 0.4em;
