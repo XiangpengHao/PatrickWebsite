@@ -56,76 +56,37 @@
     </div>
 
     <subtitle :title="mainData.experience"></subtitle>
-    <div class="sub-main-title">
-      {{mainData.expOneTitle}}
-      <span class="location">{{mainData.location1}}</span>
-    </div>
-    <div class="sub-content">
-      {{mainData.expOnePos|toUpper}} - {{mainData.qscwork|toUpper}}
-      <span class="duration">{{mainData.duration2}}</span>
-    </div>
-    <div>
-      <ul class="list-content">
-        <li>{{mainData.qscwork1}}</li>
-        <li>{{mainData.qscwork2}}</li>
-        <li>{{mainData.qscwork3}}</li>
-        <li>{{mainData.qscwork4}}</li>
-        <li>{{mainData.qscwork5}}</li>
-        <li>Link:
-          <a href="https://www.qsc.zju.edu.cn">浙江大学求是潮</a>
-        </li>
-      </ul>
+    <div v-for="(item,index) in mainData.experienceDetail" :key="index">
+      <div class="sub-main-title">
+        {{item.title}}
+        <span class="location">{{item.location}}</span>
+      </div>
+      <div class="sub-content">
+        {{item.job|toUpper}} - {{item.mainWork|toUpper}}
+        <span class="duration">{{item.duration}}</span>
+      </div>
+      <div>
+        <ul class="list-content">
+          <li v-for="(detail,j) in item.workDetails" :key="j">{{detail}}</li>
+        </ul>
+      </div>
     </div>
 
     <subtitle :title="mainData.project"></subtitle>
-    <div class="sub-main-title">
-      {{mainData.projectTmpylee}}
-      <span class="location">{{mainData.location1}}</span>
-    </div>
-    <div class="sub-content">
-      {{mainData.tmplayedesc|toUpper}}
-      <span class="duration">{{mainData.duration3}}</span>
-    </div>
-    <div>
-      <ul class="list-content">
-        <li>{{mainData.tmplaye1}}</li>
-        <li>{{mainData.tmplaye2}}</li>
-        <li>{{mainData.tmplaye3}}</li>
-      </ul>
-    </div>
-
-    <div class="sub-main-title">
-      {{mainData.projectHouaa}}
-      <span class="location">{{mainData.location1}}</span>
-    </div>
-    <div class="sub-content">
-      {{mainData.houaadesc|toUpper}}
-      <span class="duration">{{mainData.duration4}}</span>
-    </div>
-    <div>
-      <ul class="list-content">
-        <li>{{mainData.houaa1}}</li>
-        <li>{{mainData.houaa2}}</li>
-        <li>{{mainData.houaa3}}</li>
-      </ul>
-    </div>
-
-    <div class="sub-main-title">
-      <a href="http://www.qsc.zju.edu.cn/120">
-        {{mainData.projectAssist}}
-      </a>
-      <span class="location">{{mainData.location1}}</span>
-    </div>
-    <div class="sub-content">
-      {{mainData.houaadesc|toUpper}}
-      <span class="duration">{{mainData.duration5}}</span>
-    </div>
-    <div>
-      <ul class="list-content">
-        <li>{{mainData.assist1}}</li>
-        <li>{{mainData.assist2}}</li>
-        <li>{{mainData.assist3}}</li>
-      </ul>
+    <div v-for="(item,index) in mainData.projectDetail" :key="index">
+      <div class="sub-main-title">
+        <a :href="item.link">
+          {{item.name}}
+        </a>
+        <span class="location">{{item.location}}</span>
+      </div>
+      <div>
+        <ul class="list-content">
+          <li>{{item.feature0}}</li>
+          <li>{{item.feature1}}</li>
+          <li>{{item.feature2}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -137,101 +98,8 @@ export default {
   components: {
     subtitle
   },
-  computed: {
-    mainData: function() {
-      if (this.language === 'En') {
-        return {
-          name: 'Hao Xiangpeng',
-          major: 'Computer Science',
-          area: 'Web Enginnering',
-          address: 'Zijingang Campus, Zhejiang University, Hangzhou, Zhejiang Province, China',
-          moto: '"He who has to kindle the lightning one day, must for a long time -- be a cloud."',
-          education: 'Education',
-          school: 'Zhejiang University and Simon Fraser University',
-          location1: 'Hangzhou, China',
-          degree: "Bachelor's degree in computer science",
-          duration1: 'Sept. 2015 - PRESENT',
-          duration2: 'Sept. 2016 - PRESENT',
-          eduOne: 'First two years at Zhejiang University in China majoring Computer Science.',
-          eduTwo: 'Simon Fraser University majoring Computer Science',
-          experience: 'experience',
-          skillsAbility: 'skills/abilities',
-          skills: ['Linux Server', 'Python', 'C++', 'JavaScript', 'Git'],
-          expOneTitle: 'QSC Zhejiang University',
-          expOnePos: 'Chief Technology Officer',
-          qscwork: 'Web Frontend/Backend',
-          qscwork1: 'Freshman Mannual for Zhejiang University. Use pure css and js without any framwork, integrated various kinds of service to provide excellent user experience',
-          qscwork2: 'Welcome Page for Recruitment in 2016. Use Vue.js and Bootstrap to boost developing efficiency',
-          qscwork3: 'Recruiting Manage System. Python (Django) as the backend server, Bootstrap and Webpack to imporve the performance of such a large project',
-          qscwork4: 'Linux Server management. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
-          qscwork5: 'Telegram Bot. A bot to record all the message in the group and get statastic message everyday.',
-          project: 'project',
-          projectTmpylee: 'Tmplaye',
-          tmplayedesc: 'simple yet powerful',
-          duration3: 'Jan. 2017',
-          tmplaye1: 'A Python3.6 project',
-          tmplaye2: "A template engine similar to Django's",
-          tmplaye3: 'Support various inline expression and complex condition control',
-          projectHouaa: 'Houaa',
-          duration4: 'Feb. 2017 - Present',
-          houaa2: 'Vue.js + Vue-Router + Vuex + Webpack',
-          houaa3: 'Server Architect',
-          houaa1: 'A Education Sharing Platform',
-          projectAssist: 'Anniversary Assistant of Zhejiang University',
-          duration5: 'May. 2017 - Jun. 2017',
-          assist1: 'Vue.js + Vue-Router + Vuex + Webpack',
-          assist2: 'Frontend develop',
-          assist3: 'Assistant of Zhejiang University'
-        }
-      } else if (this.language === 'Ch') {
-        return {
-          name: '郝翔鹏',
-          major: '计算机科学',
-          area: '网站开发',
-          address: '紫金港校区, 浙江大学, 杭州, 浙江省, 中国',
-          moto: '"谁将声震人间，必将长久深自缄默"',
-          education: '教育',
-          school: '浙江大学和 SFU',
-          location1: '杭州, 中国',
-          degree: '计算机科学学士学位',
-          duration1: 'Sept. 2015 - PRESENT',
-          duration2: 'Sept. 2016 - PRESENT',
-          eduOne: '前两年在浙江大学，计算机科学.',
-          eduTwo: 'Simon Fraser University， 计算机科学',
-          experience: '经历',
-          skillsAbility: '技能',
-          skills: ['Linux Server', 'Python', 'C++', 'JavaScript', 'Git'],
-          expOneTitle: '浙江大学求是潮',
-          expOnePos: '技术研发中心总监',
-          qscwork: 'Web Frontend/Backend',
-          qscwork1: '浙江大学新生手册. 使用纯 CSS 和 JS, 与各种第三方服务整合的新生手册',
-          qscwork2: '2016年求是潮纳新前端. 使用 Vue.js 和 Bootstrap 来实现动态报名表',
-          qscwork3: '求是潮纳新系统. Python (Django) 是后端服务器, 用 Bootstrap 和 Webpack 来提高大型工程的执行效率',
-          qscwork4: 'Linux 服务器管理. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
-          qscwork5: 'Telegram 机器人. 记录下所有的群消息，并且获得每日统计，监控垃圾群消息',
-          project: '项目',
-          projectTmpylee: 'Tmplaye',
-          tmplayedesc: 'simple yet powerful',
-          duration3: 'Jan. 2017',
-          tmplaye1: 'A Python3.6 project',
-          tmplaye2: '一个类似 Django 正在使用的模板引擎',
-          tmplaye3: '支持多种 inline 语法和复杂的条件循环控制',
-          projectHouaa: '猴啊家教',
-          duration4: 'Feb. 2017 - Present',
-          houaa2: 'Vue.js + Vue-Router + Vuex + Webpack',
-          houaa3: '负责服务器架构',
-          houaa1: '一个家教分享管理平台',
-          projectAssist: '浙江大学120周年校庆助手',
-          duration5: 'May. 2017 - Jun. 2017',
-          assist1: 'Vue.js + Vue-Router + Vuex + Webpack',
-          assist2: '前端开发',
-          assist3: '浙大校庆助手'
-        }
-      }
-    }
-  },
   filters: {
-    toUpper: function(value) {
+    toUpper: function (value) {
       if (!value) return ''
       value = value.toString()
       return value.toUpperCase()
@@ -240,16 +108,137 @@ export default {
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
-      language: 'En'
+      language: null,
+      allData: {
+        /* eslint-disable */
+        // I don't want to deal with double qoute from JSON.stringfy :(
+        name: ["Hao Xiangpeng", "郝翔鹏"],
+        major: ["Computer Science", "计算机科学"],
+        area: ["Web Enginnering", "网站开发"],
+        address: ["Zijingang Campus, Zhejiang University, Hangzhou, Zhejiang Province, China", "紫金港校区, 浙江大学, 杭州, 浙江省, 中国"],
+        moto: ["\"He who has to kindle the lightning one day, must for a long time -- be a cloud.\"", "\"谁将声震人间，必将长久深自缄默\""],
+        education: ["Education", "教育"],
+        school: ["Zhejiang University and Simon Fraser University", "浙江大学和 SFU"],
+        location1: ["Hangzhou, China", "杭州, 中国"],
+        degree: ["Bachelor's degree in computer science", "计算机科学学士学位"],
+        duration1: ["Sept. 2015 - PRESENT", "Sept. 2015 - PRESENT"],
+        duration2: ["Sept. 2016 - PRESENT", "Sept. 2016 - PRESENT"],
+        eduOne: ["First two years at Zhejiang University in China majoring Computer Science.", "前两年在浙江大学，计算机科学."],
+        eduTwo: ["Simon Fraser University majoring Computer Science", "Simon Fraser University， 计算机科学"],
+        experience: ["experience", "经历"],
+        skillsAbility: ["skills/abilities", "技能"],
+        skills: [["Linux Server", "Python", "C++", "JavaScript", "Git"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
+        experienceDetail: [
+          [{
+            title: 'QSC in Zhejiang University',
+            duration: 'June. 2016 - June. 2017',
+            location: 'Hangzhou, China',
+            job: 'Chief Technology Officer',
+            mainWork: 'Web Developing Frontend&Backend',
+            workDetails: [
+              'Freshman Mannual for Zhejiang University. Use pure css and js without any framwork, integrated various kinds of service to provide excellent user experience',
+              'Welcome Page for Recruitment in 2016. Use Vue.js and Bootstrap to boost developing efficiency',
+              'Recruiting Manage System. Python (Django) as the backend server, Bootstrap and Webpack to imporve the performance of such a large project',
+              'Linux Server management. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
+              'Telegram Bot. A bot to record all the message in the group and get statastic message everyday'
+            ]
+          }],
+          [{
+            title: '浙江大学求是潮',
+            duration: 'June. 2016 - June. 2017',
+            location: '中国，杭州',
+            job: '技术研发中心总监',
+            mainWork: '网页前后端开发',
+            workDetails: [
+              '浙江大学新生手册. 使用纯 CSS 和 JS, 与各种第三方服务整合的新生手册',
+              '2016年求是潮纳新前端. 使用 Vue.js 和 Bootstrap 来实现动态报名表',
+              '求是潮纳新系统. Python (Django) 是后端服务器, 用 Bootstrap 和 Webpack 来提高大型工程的执行效率',
+              'Linux 服务器管理. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
+              'Telegram 机器人. 记录下所有的群消息，并且获得每日统计，监控垃圾群消息'
+            ]
+          }]
+        ],
+        project: ["project", "项目"],
+        projectDetail: [
+          [
+            {
+              name: 'Tmplaye',
+              link: 'https://github.com/HaoPatrick/Tmplaye',
+              location: 'Hangzhou, China',
+              duration: 'Jan. 2017',
+              feature0: 'A Python3.6 project',
+              feature1: 'A template engine similar to Django\'s',
+              feature2: 'Support various inline expression and complex condition control'
+            },
+            {
+              name: 'Houaa',
+              link: 'https://houaa.xyz',
+              location: 'Hangzhou, China',
+              duration: 'Feb. 2017 - Sept. 2017',
+              feature0: 'An Education Sharing Platform',
+              feature1: 'Vue.js + Vue-Router + Vuex + Webpack',
+              feature2: 'Web app developing, Server Architect'
+            }, {
+              name: 'Anniversary Assistant of Zhejiang University',
+              link: 'https://120.zjuqsc.com',
+              location: 'Hangzhou, China',
+              duration: 'May. 2017 - Jun. 2017',
+              feature0: 'Official 120th Anniversary Assistant of Zhejiang University',
+              feature1: 'Webpack, Gaode map, Vue',
+              feature2: 'Frontend develop, Server Architect'
+            }
+          ],
+          [
+            {
+              name: 'Tmplaye',
+              location: '中国，杭州',
+              link: 'https://github.com/HaoPatrick/Tmplaye',
+              duration: 'Jan. 2017',
+              feature0: 'A Python3.6 project',
+              feature1: '一个类似 Django 正在使用的模板引擎',
+              feature2: '支持多种 inline 语法和复杂的条件循环控制'
+            },
+            {
+              name: '猴啊家教',
+              location: '中国，杭州',
+              link: 'https://houaa.xyz',
+              duration: 'Feb. 2017 - Sept. 2017',
+              feature0: '一个家教分享管理平台',
+              feature1: 'Vue.js + Vue-Router + Vuex + Webpack',
+              feature2: '网页端开发，服务器架构'
+            }, {
+              name: '浙江大学120周年校庆助手',
+              location: '中国，杭州',
+              link: 'https://120.zjuqsc.com',
+              duration: 'May. 2017 - Jun. 2017',
+              feature0: '浙江大学120周年官方校庆助手',
+              feature1: 'Webpack, Gaode map, Vue',
+              feature2: '网页端开发，服务器架构'
+            }
+          ]
+        ]
+        /* eslint-enable */
+      },
+      mainData: {}
     }
   },
+  created() {
+    this.changeLan()
+  },
   methods: {
-    changeLan: function() {
-      if (this.language === 'Ch') {
+    changeLan: function () {
+      if (this.language === null) {
+        this.language = 'En'
+      } else if (this.language === 'Ch') {
         this.language = 'En'
       } else {
         this.language = 'Ch'
       }
+      let newLanedData = {}
+      for (let key in this.allData) {
+        newLanedData[key] = this.allData[key][this.language === 'Ch' ? 1 : 0]
+      }
+      this.mainData = newLanedData
     }
   }
 }
@@ -260,12 +249,12 @@ export default {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .3s
+  transition: opacity 0.3s;
 }
 
 .fade-enter,
 .fade-leave-to {
-  opacity: 0
+  opacity: 0;
 }
 
 .language {
@@ -286,7 +275,7 @@ export default {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  margin-top: .7rem;
+  margin-top: 0.7rem;
 }
 
 .skill-item {
