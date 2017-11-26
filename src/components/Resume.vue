@@ -58,7 +58,8 @@
     <subtitle :title="mainData.experience"></subtitle>
     <div v-for="(item,index) in mainData.experienceDetail" :key="index">
       <div class="sub-main-title">
-        {{item.title}}
+        <a :href="item.link">
+          {{item.title}}</a>
         <span class="location">{{item.location}}</span>
       </div>
       <div class="sub-content">
@@ -130,6 +131,7 @@ export default {
         skills: [["Linux Server", "Python", "C++", "JavaScript", "Git"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
         experienceDetail: [
           [{
+            link: 'https://www.zjuqsc.com',
             title: 'QSC in Zhejiang University',
             duration: 'June. 2016 - June. 2017',
             location: 'Hangzhou, China',
@@ -145,6 +147,7 @@ export default {
           }],
           [{
             title: '浙江大学求是潮',
+            link: 'https://www.zjuqsc.com',
             duration: 'June. 2016 - June. 2017',
             location: '中国，杭州',
             job: '技术研发中心总监',
@@ -304,7 +307,8 @@ export default {
 .sub-main-title {
   font-weight: 600;
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
+  margin-top: 0.4em;
 }
 
 .location {
@@ -318,7 +322,7 @@ export default {
 .main-title {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #e74c3c;
+  /* color: #e74c3c; */
   display: flex;
   margin-bottom: 0.2rem;
   margin-top: 2rem;
@@ -350,12 +354,18 @@ a:visited {
   font-size: 0.7rem;
   text-align: center;
 }
+.other-info > i > a {
+  font-family: "Noto Sans", "Noto Sans CJK JP", sans-serif;
+}
 
+li {
+  margin-bottom: 0.3em;
+}
 .address {
   text-align: center;
   font-size: 0.7rem;
-  font-style: italic;
-  color: #7f8c8d;
+  /* font-style: italic; */
+  /* color: #7f8c8d; */
   margin-bottom: 0.3rem;
   margin-top: 0.3rem;
 }

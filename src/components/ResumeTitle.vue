@@ -1,7 +1,6 @@
 <template>
   <div class="main-title">
-    <span>{{title|toUpper|getFirst}}</span>
-    <span style="color: #2c3e50">{{title|toUpper|getRemain}}</span>
+    <span style="color: #2c3e50">{{title|toUpper}}</span>
     <span class="line">
     </span>
   </div>
