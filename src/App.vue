@@ -15,7 +15,6 @@ export default {
   name: 'app',
   methods: {
     backhome: function () {
-      console.log('asss')
       this.$router.replace('/')
     }
   },

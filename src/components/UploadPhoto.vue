@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <label for="file-upload" class="custom-file-upload">
-      <i class="fa fa-cloud-upload"></i> 上传吧
+      <i class="fa fa-cloud-upload"></i> Upload
     </label>
     <input id="file-upload" @change="onFileChange" accept="image/*" type="file">
   

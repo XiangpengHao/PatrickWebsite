@@ -1,15 +1,17 @@
 <template>
   <div class="hello">
     <div @click="reset" style="font-size: 1.5rem;color: #34495e; margin: 4px">
-      HLH 的影像放映馆
+      Patrick's Gallery
     </div>
     <el-row>
       <el-col :span="10">
         <div class="user-section" v-if="user">
           {{user.displayName}}
         </div>
-        <div v-else @click="login" style="cursor: pointer" class="user-section">登录
-        </div>
+        <span v-else @click="login" style="cursor: pointer" class="user-section">Login
+        </span>
+        <span @click="upload" style="cursor: pointer" class="user-section">Upload
+        </span>
       </el-col>
       <el-col :offset="10" :span="4">
         <el-input size="mini" placeholder="Filter by tag" icon="search" v-model="searchInput" :on-icon-click="handleSearchClick">
@@ -26,7 +28,7 @@
         </figcaption>
       </div>
     </section>
-  
+
     <el-dialog style="margin-bottom: 0px" :size="currentImage.dialogSize" title="Details" v-if="currentImage" v-model="detail">
       <el-row :gutter="20">
         <el-col :span="currentImage.imageSpan">
@@ -182,6 +184,9 @@ export default {
           self.user = result.user
         }
       )
+    },
+    upload: function () {
+      this.$router.push('/upload')
     }
   }
 }
@@ -195,15 +200,12 @@ p span {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .5s
+  transition: opacity 0.5s;
 }
 
 .fade-enter,
-.fade-leave-to
-/* .fade-leave-active in <2.1.8 */
-
-{
-  opacity: 0
+.fade-leave-to {
+  opacity: 0;
 }
 
 .user-section {
@@ -230,7 +232,7 @@ p span {
   -o-transition: all 0.6s ease;
 }
 
-.each-img:hover+.caption {
+.each-img:hover + .caption {
   opacity: 1;
 }
 
@@ -240,7 +242,7 @@ p span {
 }
 
 .img-container::after {
-  content: '';
+  content: "";
   flex-grow: 999999;
 }
 
