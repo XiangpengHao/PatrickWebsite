@@ -72,10 +72,12 @@ export default {
 body {
   margin: 0;
 }
+
 </style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 #particles-js {
   width: 100%;
   height: 100%;

@@ -1,7 +1,7 @@
 <template>
-  <div class='hello'>
+  <div class='iot-wrapper'>
     <div style="font-size: 1.5rem;color: #34495e; margin: 4px; margin-bottom:1rem;">
-      HLH 的 IoT 实验室
+      Patrick's IoT Lab
     </div>
     <chart :options='polar'></chart>
   </div>
@@ -9,7 +9,6 @@
 
 <script>
 import { db } from './firebase'
-// import Firebase from 'firebase'
 import Echarts from 'vue-echarts/components/ECharts.vue'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/legend'
@@ -19,7 +18,7 @@ import 'echarts/lib/component/dataZoom'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
 
-let infoRef = db.ref('iot')
+let infoRef = db.ref('iot').limitToLast(1000)
 export default {
   name: 'IoT',
   data() {
@@ -50,7 +49,7 @@ export default {
       let self = this
       return {
         title: {
-          text: '碧3-417 凌乱的桌子'
+          text: 'Coquitlam(indoors)'
           // subtext: 'by hlh'
         },
         tooltip: {
@@ -134,5 +133,7 @@ export default {
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
-
+.iot-wrapper {
+  margin: 1em 1em 1em 1em; 
+}
 </style>
