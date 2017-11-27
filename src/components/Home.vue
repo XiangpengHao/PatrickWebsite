@@ -17,29 +17,39 @@
       <ul class="icon-ul">
         <li>
           <a href="https://github.com/HaoPatrick">
-            <i class="fa fa-github" aria-hidden="true">
-            </i>
+            <el-tooltip class="item" effect="dark" content="GitHub" placement="top">
+              <i class="fa fa-github" aria-hidden="true">
+              </i>
+            </el-tooltip>
           </a>
         </li>
         <li>
           <router-link to="photos">
-            <i class="fa fa-camera" aria-hidden="true">
-            </i>
+            <el-tooltip class="item" effect="dark" content="Photography" placement="top">
+              <i class="fa fa-camera" aria-hidden="true">
+              </i>
+            </el-tooltip>
           </router-link>
         </li>
         <li>
           <router-link to="resume">
-            <i class="fa fa-address-card" aria-hidden="true"></i>
+            <el-tooltip class="item" effect="dark" content="Resume" placement="top">
+              <i class="fa fa-address-card" aria-hidden="true"></i>
+            </el-tooltip>
           </router-link>
         </li>
         <li>
           <router-link to="iot">
-            <i class="fa fa-flask" aria-hidden="true"></i>
+            <el-tooltip class="item" effect="dark" content="IoT Lab" placement="top">
+              <i class="fa fa-flask" aria-hidden="true"></i>
+            </el-tooltip>
           </router-link>
         </li>
         <li>
           <router-link to="digits">
-            <i class="fa fa-terminal" aria-hidden="true"> </i>
+            <el-tooltip class="item" effect="dark" content="Playground" placement="top">
+              <i class="fa fa-terminal" aria-hidden="true"> </i>
+            </el-tooltip>
           </router-link>
         </li>
       </ul>
@@ -72,12 +82,10 @@ export default {
 body {
   margin: 0;
 }
-
 </style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 #particles-js {
   width: 100%;
   height: 100%;
