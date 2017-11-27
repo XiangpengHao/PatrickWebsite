@@ -126,6 +126,7 @@ export default {
       let query = dbRef.orderByChild('name').equalTo(self.timeStampAsFileName)
       query.once('child_added', snapshot => {
         self.cloudValue = snapshot.val()
+        console.log(JSON.stringify(self.cloudValue))
         snapshot.ref.update({ basic: self.uploadBasicInfo })
         self.getEXIF()
       })

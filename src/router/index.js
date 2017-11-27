@@ -8,7 +8,7 @@ import Photos from '../components/Photos'
 import Digits from '../components/Digits'
 import Home from '../components/Home'
 import IoT from '../components/IoT'
-import test from '../components/test'
+import test from '../components/subcomponents/ImageDetail'
 Vue.use(Router)
 
 export default new Router({
