@@ -106,7 +106,8 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
         return admin.database().ref('Photos').push({
           path: fileUrl,
           thumbnail: thumbFileUrl,
-          annotation: result
+          annotation: result,
+          name: fileName
         })
       })
   }).then(() => console.log('Thumbnail URLs saved to database.'))

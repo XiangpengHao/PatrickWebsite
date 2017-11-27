@@ -11,17 +11,18 @@
     <el-row v-if="uploadBasicInfo" style="margin-top: 20px;" :gutter="20">
       <el-col :span="16">
         <el-card>
-          <img style="width: 100%;" @load="getEXIF" ref="imgElement" :src="uploadBasicInfo.downloadURL">
+          <img style="width: 100%;" id='uploadedImage' ref="imgElement" :src="uploadBasicInfo.downloadURL">
         </el-card>
       </el-col>
       <el-col :span="8">
-        <el-input type="textarea" autosize style="margin-bottom: 10px;" v-if="msCaptions" :placeholder="msCaptions[0].text" v-model="msCaptions[0].text"></el-input>
-        <el-tag style="margin-left: 0.2rem; margin-bottom: 0.2rem;" type="primary" :closable="true" :close-transition="true" @close="tagClose(tag)" :key="tag" v-for="tag in msTags">{{tag}} </el-tag>
-        <el-input class="input-new-tag" v-if="inputVisible" v-model="tagValue" ref="saveTagInput" size="mini" style="width: 60px; margin-left: 0.2rem;" @keyup.enter.native="handleInputConfirm">
-        </el-input>
-        <el-button style="font-size: 0.7rem;margin-left: 0.2rem;border-color: rgba(32,159,255,.2);background-color: rgba(32,159,255,.1);color: #20a0ff" type="primary" v-else class="button-new-tag" size="mini" @click="changeInputVisible">+ New Tag</el-button>
-
-        <div style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;color: #34495e">
+        <el-tabs v-if="cloudValue" v-model="activeTabName">
+          <el-tab-pane v-for="(item,index) in Object.entries(cloudValue.annotation)" :key="index" :label="item[0]">
+            <div :key="index2" v-for="(kk,index2) in Object.entries( item[1])">
+              {{kk[0]}}-{{kk[1]}}
+            </div>
+          </el-tab-pane>
+        </el-tabs>
+        <div v-if="exifInfo" style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;color: #34495e">
           <p style="margin-bottom: 0.2rem;">{{exifInfo.model}} </p>
           <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
             <span>{{exifInfo.exposureTime}}s </span>
@@ -32,8 +33,8 @@
           <p style="font-size: 0.75rem;margin-top: 0;"> {{exifInfo.date}} </p>
         </div>
         <div style="margin-top: 1rem; margin-left: 0.2rem;">
-          <el-button @click="saveToDatabse" size="small" type="primary">就酱</el-button>
-          <el-button @click="deleteIt" size="small" type="primary">我不要这个啦</el-button>
+          <el-button @click="saveToDatabse" size="small" type="primary">That't is</el-button>
+          <el-button @click="deleteIt" size="small" type="primary">I don't like it</el-button>
         </div>
       </el-col>
     </el-row>
@@ -48,14 +49,13 @@ import axios from 'axios'
 import { db, storage } from './firebase'
 
 let storageRef = storage.ref()
-let dbRef = db.ref('images')
+let dbRef = db.ref('Photos')
 export default {
   name: 'hello',
   computed: {
   },
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
       content: '',
       file: '',
       uploadProgress: 0,
@@ -64,14 +64,14 @@ export default {
         height: 0
       },
       uploadBasicInfo: '',
-      msTags: '',
-      msCaptions: '',
-      userCaptions: '',
       loading: false,
       saved: false,
       inputVisible: false,
       tagValue: '',
-      exifInfo: {}
+      exifInfo: null,
+      timeStampAsFileName: '',
+      cloudValue: null,
+      activeTabName: ''
     }
   },
   firebase: {
@@ -92,7 +92,6 @@ export default {
       let self = this
       let newImage = new Image()
       newImage.src = self.uploadBasicInfo.downloadURL
-      // console.log(newImage.src)
       EXIF.getData(newImage, function () {
         self.exifInfo.model = EXIF.getTag(this, 'Model')
         self.exifInfo.exposureTime = EXIF.getTag(this, 'ExposureTime')
@@ -107,7 +106,6 @@ export default {
       let files = e.target.files || e.dataTransfer.files
       let self = this
       let _URL = window.URL || window.webkitURL
-      this.loading = true
       if (files.length === 1) {
         this.file = files[0]
       }
@@ -117,15 +115,27 @@ export default {
         self.imgInfo.height = this.height
       }
       img.src = _URL.createObjectURL(this.file)
-      console.log(this.file)
+      this.generalPipeLine()
+      // self.upload()
+    },
+    generalPipeLine: function () {
+      let self = this
+      this.loading = true
       self.upload()
+      self.loading = false
+      let query = dbRef.orderByChild('name').equalTo(self.timeStampAsFileName)
+      query.once('child_added', snapshot => {
+        self.cloudValue = snapshot.val()
+        snapshot.ref.update({ basic: self.uploadBasicInfo })
+        self.getEXIF()
+      })
     },
     upload: function () {
       let self = this
       if (this.file === '') return
       self.saved = false
-      let fileName = this.file.name
-      let imagesRef = storageRef.child('images/' + fileName)
+      this.timeStampAsFileName = Date.now().toString() + '.jpg'
+      let imagesRef = storageRef.child('images/' + this.timeStampAsFileName)
       let uploadTask = imagesRef.put(this.file)
       uploadTask.on('state_changed',
         snapshot => {
@@ -135,7 +145,6 @@ export default {
       )
       uploadTask.then(
         snapshot => {
-          console.log(snapshot)
           self.uploadBasicInfo = {
             totalBytes: snapshot.totalBytes,
             state: snapshot.state,
@@ -145,7 +154,7 @@ export default {
             width: self.imgInfo.width,
             height: self.imgInfo.height
           }
-          self.cognitiveService()
+          // self.cognitiveService()
           // self.getEXIF()
         }
       )
@@ -165,9 +174,7 @@ export default {
         response => {
           self.msCaptions = response.data.description.captions
           self.msTags = response.data.description.tags
-          self.loading = false
           // self.saveToDatabse()
-          console.log(response.data)
         }
         )
     },
@@ -198,7 +205,6 @@ export default {
       if (tagIndex > -1) {
         this.msTags.splice(tagIndex, 1)
       }
-      console.log(tag)
     },
     deleteIt: function (tag) {
       if (this.saved === true) {
@@ -211,7 +217,6 @@ export default {
       if (this.uploadBasicInfo.fullPath === '') return
       storageRef.child(this.uploadBasicInfo.fullPath).delete().then(
         function () {
-          console.log('successful')
           self.uploadBasicInfo = ''
           self.uploadProgress = 0
           self.loading = false
