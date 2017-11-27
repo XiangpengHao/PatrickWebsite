@@ -4,7 +4,7 @@
       <i class="fa fa-cloud-upload"></i> Upload
     </label>
     <input id="file-upload" @change="onFileChange" accept="image/*" type="file">
-  
+
     <div style="margin-top: 1rem;">
       <el-progress v-loading.fullscreen.lock="loading" :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
     </div>
@@ -20,7 +20,7 @@
         <el-input class="input-new-tag" v-if="inputVisible" v-model="tagValue" ref="saveTagInput" size="mini" style="width: 60px; margin-left: 0.2rem;" @keyup.enter.native="handleInputConfirm">
         </el-input>
         <el-button style="font-size: 0.7rem;margin-left: 0.2rem;border-color: rgba(32,159,255,.2);background-color: rgba(32,159,255,.1);color: #20a0ff" type="primary" v-else class="button-new-tag" size="mini" @click="changeInputVisible">+ New Tag</el-button>
-  
+
         <div style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;color: #34495e">
           <p style="margin-bottom: 0.2rem;">{{exifInfo.model}} </p>
           <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
@@ -37,7 +37,7 @@
         </div>
       </el-col>
     </el-row>
-  
+
   </div>
 </template>
 
@@ -135,18 +135,18 @@ export default {
       )
       uploadTask.then(
         snapshot => {
+          console.log(snapshot)
           self.uploadBasicInfo = {
             totalBytes: snapshot.totalBytes,
             state: snapshot.state,
-            fullPath: snapshot.c.fullPath,
-            name: snapshot.c.name,
+            fullPath: snapshot.metadata.fullPath,
+            name: snapshot.metadata.name,
             downloadURL: snapshot.downloadURL,
             width: self.imgInfo.width,
             height: self.imgInfo.height
           }
           self.cognitiveService()
           // self.getEXIF()
-          console.log(snapshot)
         }
       )
     },

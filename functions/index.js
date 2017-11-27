@@ -1,4 +1,3 @@
-
 const functions = require('firebase-functions')
 const mkdirp = require('mkdirp-promise')
 // Include a Service Account Key to use a Signed URL
@@ -11,6 +10,7 @@ const spawn = require('child-process-promise').spawn
 const path = require('path')
 const os = require('os')
 const fs = require('fs')
+const imageVision = require('./imageVision.js')
 
 // Max height and width of the thumbnail in pixels.
 const THUMB_MAX_HEIGHT = 200
@@ -60,7 +60,6 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
   const metadata = {
     contentType: contentType
   }
-
   // Create the temp directory where the storage file will be downloaded.
   return mkdirp(tempLocalDir).then(() => {
     // Download file from bucket.
@@ -100,10 +99,15 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
     const originalResult = results[1]
     const thumbFileUrl = thumbResult[0]
     const fileUrl = originalResult[0]
-    // Add the URLs to the Database
-    return admin.database().ref('thumbImages').push({
-      path: fileUrl,
-      thumbnail: thumbFileUrl
-    })
+    return imageVision(fileUrl)
+      .then(response => {
+        const result = response.data.responses[0]
+        // Add the URLs to the Database
+        return admin.database().ref('Photos').push({
+          path: fileUrl,
+          thumbnail: thumbFileUrl,
+          annotation: result
+        })
+      })
   }).then(() => console.log('Thumbnail URLs saved to database.'))
 })
