@@ -66,10 +66,9 @@ import { db, storage, authFunc, auth } from './firebase'
 
 let imageRef = db.ref('images')
 export default {
-  name: 'hello',
+  name: 'photos',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
       detail: false,
       currentImage: '',
       user: '',
@@ -89,7 +88,7 @@ export default {
     }
   },
   firebase: {
-    images: imageRef
+    images: imageRef.limitToFirst(10)
   },
   created: function () {
     let user = auth.currentUser
@@ -139,28 +138,7 @@ export default {
         this.currentImage.imageSpan = 16
         this.currentImage.dialogSize = 'large'
       }
-      // if (this.currentImage.height > window.innerHeight * 0.7) {
-      //   let ratio = this.currentImage.width / this.currentImage.height
-      //   this.currentImage.height = window.innerHeight * 0.6
-      //   this.currentImage.width = this.currentImage.height * ratio
-      // } else if (this.currentImage.height < window.innerWidth){
-
-      // }
-      // this.currentImage.maxheight = window.innerHeight * 0.9
       console.log(event)
-      // this.detail = true
-      // let newArray = this.images.map(
-      //   eachImage => {
-      //     let newImage = eachImage
-      //     if (eachImage.fullPath === image.fullPath) {
-      //       newImage.hidden = false
-      //     } else {
-      //       newImage.hidden = true
-      //     }
-      //     return newImage
-      //   }
-      // )
-      // this.images = newArray
     },
     toDelete: function () {
       console.log(this.user.displayName !== 'Hao Xiangpeng')
