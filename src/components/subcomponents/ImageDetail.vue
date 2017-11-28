@@ -1,12 +1,38 @@
 <template>
   <el-tabs v-if='detailData' v-model='activeTabName'>
+    <el-tab-pane label="Properties" v-if="imageProperties">
+      <div class="sectiontitle">Dominant Color</div>
+      <div style="height: 400px; display:flex;">
+        <div style="height:400px;" v-on:mouseover="changeColor(item)" :style='{ width: parseWidth(item), backgroundColor: parseColor(item.color)}' v-for="(item,index) in imageProperties.dominantColors.colors" :key="index">
+        </div>
+      </div>
+      <div style="margin-top: 1em; color:#0e0e0e;">
+        <!-- TODO: Add HEX color value, add pixelFraction -->
+        <div>RGB({{mouseOverColor.red}},{{mouseOverColor.green}},{{mouseOverColor.blue}})</div>
+        <div class="color-bar" :style="{backgroundColor: parseColor(mouseOverColor)}"> </div>
+      </div>
+    </el-tab-pane>
+    <el-tab-pane label="Web" v-if="webDetection">
+      <div class="subsection">
+        <div class="subtitle">Web entities</div>
+        <div v-for="(item,index) in webDetection.webEntities" :key="index">
+          {{item.description}} -- {{item.score}}
+        </div>
+      </div>
+      <div class="subsection">
+        <div class="subtitle">Similar Images</div>
+        <div v-for="(item,index) in webDetection.visuallySimilarImages" :key="index">
+          <a :href="item.url">{{item.url}}</a>
+        </div>
+      </div>
+    </el-tab-pane>
     <el-tab-pane label="Faces" v-if="face">
       <div v-for="(item,index) in face" :key="index">
-        <div style="margin-bottom:1em;padding-bottom:0.5em;border-bottom: 2px solid #20a0ff;">
-        <div>Face {{index+1}}</div>
-        <div v-if="typeof detail[1] !=='object'" v-for="(detail,index) in Object.entries(item)" :key="index">
-          {{detail[0]}} -- {{detail[1]}}
-        </div>
+        <div class="subsection">
+          <div class="subtitle">Face {{index+1}}</div>
+          <div v-if="typeof detail[1] !=='object'" v-for="(detail,index) in Object.entries(item)" :key="index">
+            {{detail[0]}} -- {{detail[1]}}
+          </div>
         </div>
       </div>
     </el-tab-pane>
@@ -31,6 +57,7 @@ export default {
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
+      mouseOverColor: '',
       activeTabName: '',
       cropHint: '',
       face: '',
@@ -57,17 +84,42 @@ export default {
         self.face = item[1]
       } else if (item[0] === 'imagePropertiesAnnotation') {
         self.imageProperties = item[1]
+        self.mouseOverColor = item[1].dominantColors.colors[0].color
       } else if (item[0] === 'labelAnnotations') {
         self.labels = item[1]
       } else if (item[0] === 'webDetection') {
         self.webDetection = item[1]
       }
     })
+  },
+  methods: {
+    parseColor: function (item) {
+      return 'rgb(' + item.red + ',' + item.green + ',' + item.blue + ')'
+    },
+    parseWidth: function (item) {
+      return item.pixelFraction * 100 + '%'
+    },
+    changeColor: function (item) {
+      console.log(item)
+      this.mouseOverColor = item.color
+    }
   }
 }
 </script>
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
-
+.color-bar {
+  height: 2em;
+  transition: all 0.5s;
+}
+.subsection {
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid #20a0ff;
+}
+.subtitle {
+  font-size: 1.2em;
+  margin-bottom: 0.3em;
+}
 </style>
