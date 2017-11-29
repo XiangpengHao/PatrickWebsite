@@ -6,7 +6,7 @@
     <input id="file-upload" @change="onFileChange" accept="image/*" type="file">
 
     <div style="margin-top: 1rem;">
-      <el-progress v-loading.fullscreen.lock="loading" :text-inside="true" :stroke-width="18" :percentage="uploadProgress"></el-progress>
+      <el-progress v-loading.fullscreen.lock="loading" :text-inside="true" :stroke-width="18" :percentage="parseInt(uploadProgress)"></el-progress>
     </div>
     <el-row v-if="uploadBasicInfo" style="margin-top: 20px;" :gutter="20">
       <el-col :span="16">
@@ -15,13 +15,7 @@
         </el-card>
       </el-col>
       <el-col :span="8">
-        <el-tabs v-if="cloudValue" v-model="activeTabName">
-          <el-tab-pane v-for="(item,index) in Object.entries(cloudValue.annotation)" :key="index" :label="item[0]">
-            <div :key="index2" v-for="(kk,index2) in Object.entries( item[1])">
-              {{kk[0]}}-{{kk[1]}}
-            </div>
-          </el-tab-pane>
-        </el-tabs>
+        <imageDetail v-if="cloudValue" :detailData="cloudValue.annotation"></imageDetail>
         <div v-if="exifInfo" style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;color: #34495e">
           <p style="margin-bottom: 0.2rem;">{{exifInfo.model}} </p>
           <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
@@ -47,12 +41,15 @@ import EXIF from 'exif-js'
 import axios from 'axios'
 
 import { db, storage } from './firebase'
-
+import imageDetail from './subcomponents/ImageDetail.vue'
 let storageRef = storage.ref()
 let dbRef = db.ref('Photos')
 export default {
   name: 'hello',
   computed: {
+  },
+  components: {
+    imageDetail
   },
   data() {
     return {
