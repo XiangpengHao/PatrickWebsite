@@ -1,12 +1,12 @@
 <template>
-  <el-tabs v-if='detailData' v-model='activeTabName'>
+  <el-tabs style="color:#545d6a" v-if='detailData' v-model='activeTabName'>
     <el-tab-pane label="Properties" v-if="imageProperties">
       <div class="sectiontitle">Dominant Color</div>
       <div style="height: 400px; display:flex;">
         <div style="height:400px;" v-on:mouseover="changeColor(item)" :style='{ width: parseWidth(item), backgroundColor: parseColor(item.color)}' v-for="(item,index) in imageProperties.dominantColors.colors" :key="index">
         </div>
       </div>
-      <div style="margin-top: 1em; color:#0e0e0e;">
+      <div style="margin-top: 1em;">
         <!-- TODO: Add HEX color value, add pixelFraction -->
         <div>RGB({{mouseOverColor.red}},{{mouseOverColor.green}},{{mouseOverColor.blue}})</div>
         <div class="color-bar" :style="{backgroundColor: parseColor(mouseOverColor)}"> </div>
@@ -100,7 +100,6 @@ export default {
       return item.pixelFraction * 100 + '%'
     },
     changeColor: function (item) {
-      console.log(item)
       this.mouseOverColor = item.color
     }
   }
@@ -122,4 +121,11 @@ export default {
   font-size: 1.2em;
   margin-bottom: 0.3em;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+  /* text-decoration-color: none; */
+}
 </style>
+
+
