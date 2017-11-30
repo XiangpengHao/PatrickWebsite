@@ -14,7 +14,7 @@
           <img style="width: 100%;" id='uploadedImage' ref="imgElement" :src="uploadBasicInfo.downloadURL">
         </el-card>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="8" v-loading="cloudValue===null" style="min-height:200px;">
         <imageDetail v-if="cloudValue" :detailData="cloudValue.annotation"></imageDetail>
         <div v-if="exifInfo" style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;color: #34495e">
           <p style="margin-bottom: 0.2rem;">{{exifInfo.model}} </p>
@@ -25,10 +25,6 @@
             <span> {{exifInfo.focalLength}}</span>
           </p>
           <p style="font-size: 0.75rem;margin-top: 0;"> {{exifInfo.date}} </p>
-        </div>
-        <div style="margin-top: 1rem; margin-left: 0.2rem;">
-          <el-button @click="saveToDatabse" size="small" type="primary">That't is</el-button>
-          <el-button @click="deleteIt" size="small" type="primary">I don't like it</el-button>
         </div>
       </el-col>
     </el-row>
@@ -102,6 +98,7 @@ export default {
     onFileChange: function (e) {
       let files = e.target.files || e.dataTransfer.files
       let self = this
+      self.cloudValue = null
       let _URL = window.URL || window.webkitURL
       if (files.length === 1) {
         this.file = files[0]
@@ -176,50 +173,11 @@ export default {
         }
         )
     },
-    saveToDatabse: function () {
-      if (this.saved === true) {
-        this.$message.error('噢不，你已经保存过了')
-        return
-      }
-      let self = this
-      self.uploadBasicInfo.tags = self.msTags
-      self.uploadBasicInfo.captions = self.msCaptions
-      self.uploadBasicInfo.userCaptions = self.userCaptions
-      self.uploadBasicInfo.exifInfo = self.exifInfo
-      dbRef.push(
-        self.uploadBasicInfo
-      ).then(
-        function () {
-          self.$message({
-            message: '我已经记下了',
-            type: 'success'
-          })
-        }
-        )
-      self.saved = true
-    },
     tagClose: function (tag) {
       let tagIndex = this.msTags.indexOf(tag)
       if (tagIndex > -1) {
         this.msTags.splice(tagIndex, 1)
       }
-    },
-    deleteIt: function (tag) {
-      if (this.saved === true) {
-        this.$message.error('噢不，你已经保存过了')
-        return
-      }
-      let self = this
-      self.loading = true
-      self.exifInfo = {}
-      if (this.uploadBasicInfo.fullPath === '') return
-      storageRef.child(this.uploadBasicInfo.fullPath).delete().then(
-        function () {
-          self.uploadBasicInfo = ''
-          self.uploadProgress = 0
-          self.loading = false
-        }
-      )
     },
     destroyed: function () {
       if (this.saved) return

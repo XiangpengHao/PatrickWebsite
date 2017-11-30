@@ -13,8 +13,8 @@ const fs = require('fs')
 const imageVision = require('./imageVision.js')
 
 // Max height and width of the thumbnail in pixels.
-const THUMB_MAX_HEIGHT = 200
-const THUMB_MAX_WIDTH = 200
+const THUMB_MAX_HEIGHT = 500
+const THUMB_MAX_WIDTH = 500
 // Thumbnail prefix added to file names.
 const THUMB_PREFIX = 'thumb_'
 

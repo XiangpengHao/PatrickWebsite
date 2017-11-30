@@ -15,7 +15,7 @@ const imageVision = function (imageUri) {
         },
         {
           'type': 'WEB_DETECTION',
-          'maxResults': 1
+          'maxResults': 5
         }, {
           'type': 'IMAGE_PROPERTIES'
         }, {
@@ -24,6 +24,10 @@ const imageVision = function (imageUri) {
           'type': 'FACE_DETECTION'
         }, {
           'type': 'LOGO_DETECTION'
+        }, {
+          'type': 'TEXT_DETECTION'
+        }, {
+          'type': 'DOCUMENT_TEXT_DETECTION'
         }
       ]
     }]

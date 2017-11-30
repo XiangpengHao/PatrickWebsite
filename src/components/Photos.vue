@@ -19,17 +19,17 @@
       </el-col>
     </el-row>
     <section class="img-container">
-      <div @click="toDetail($event, img)" v-for="(img,index) in reverseImage" v-bind:class="{detailview: !img.hidden&&detail}" :key="index" v-bind:style="{ width: img.width*250/img.height + 'px', flexGrow: img.width*250/img.height }" class="each-container">
-        <i v-bind:style="{paddingBottom: img.height/img.width*100 + '%'}"></i>
-        <img class="each-img" width="100%" :src="img.downloadURL" />
-        <figcaption class="caption">
+      <div @click="toDetail($event, img)" v-for="(img,index) in reverseImage" v-bind:class="{detailview: !img.hidden&&detail}" :key="index" v-bind:style="{ width: img.basic.width*250/img.basic.height + 'px', flexGrow: img.basic.width*250/img.basic.height }" class="each-container">
+        <i v-bind:style="{paddingBottom: img.basic.height/img.basic.width*100 + '%'}"></i>
+        <img class="each-img" width="100%" :src="img.thumbnail" />
+        <!-- <figcaption class="caption">
           <div>{{img.captions[0].text | capitalize}}</div>
           <span style="font-size: 0.7rem;color: #7f8c8d" v-for="tag in img.tags.slice(0,5)" :key="tag">{{tag}} </span>
-        </figcaption>
+        </figcaption> -->
       </div>
     </section>
 
-    <el-dialog style="margin-bottom: 0px" :size="currentImage.dialogSize" title="Details" v-if="currentImage" v-model="detail">
+    <!-- <el-dialog style="margin-bottom: 0px" :size="currentImage.dialogSize" title="Details" v-if="currentImage" v-model="detail">
       <el-row :gutter="20">
         <el-col :span="currentImage.imageSpan">
           <img style="width: 100%" ref="imageElement" @click="testElement" :src="currentImage.downloadURL">
@@ -55,7 +55,7 @@
           </div>
         </el-col>
       </el-row>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 
@@ -64,7 +64,7 @@ import Firebase from 'firebase'
 import EXIF from 'exif-js'
 import { db, storage, authFunc, auth } from './firebase'
 
-let imageRef = db.ref('images')
+let imageRef = db.ref('Photos')
 export default {
   name: 'photos',
   data() {
@@ -88,7 +88,7 @@ export default {
     }
   },
   firebase: {
-    images: imageRef.limitToFirst(10)
+    images: imageRef.limitToLast(20)
   },
   created: function () {
     let user = auth.currentUser
