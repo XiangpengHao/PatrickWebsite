@@ -19,6 +19,7 @@
     "element-ui": "^1.4.1",
     "exif-js": "^2.2.1",
     "firebase": "^4.2.0",
+    "lodash": "^4.17.4",
     "particles.js": "^2.0.0",
     "vue": "^2.5.8",
     "vue-echarts": "^2.4.0",

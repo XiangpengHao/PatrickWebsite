@@ -12,6 +12,8 @@
         </span>
         <span @click="upload" style="cursor: pointer" class="user-section">Upload
         </span>
+        <span @click="shuffle" style="cursor: pointer" class="user-section">Shuffle
+        </span>
       </el-col>
       <el-col :offset="10" :span="4">
         <el-input size="mini" placeholder="Filter by tag" icon="search" v-model="searchInput" :on-icon-click="handleSearchClick">
@@ -19,51 +21,42 @@
       </el-col>
     </el-row>
     <section class="img-container">
-      <div @click="toDetail($event, img)" v-for="(img,index) in reverseImage" v-bind:class="{detailview: !img.hidden&&detail}" :key="index" v-bind:style="{ width: img.basic.width*250/img.basic.height + 'px', flexGrow: img.basic.width*250/img.basic.height }" class="each-container">
-        <i v-bind:style="{paddingBottom: img.basic.height/img.basic.width*100 + '%'}"></i>
-        <img class="each-img" width="100%" :src="img.thumbnail" />
-        <!-- <figcaption class="caption">
-          <div>{{img.captions[0].text | capitalize}}</div>
-          <span style="font-size: 0.7rem;color: #7f8c8d" v-for="tag in img.tags.slice(0,5)" :key="tag">{{tag}} </span>
-        </figcaption> -->
-      </div>
+      <transition-group name="image-group" tag="div" style="display:flex;flex-wrap:wrap;">
+        <div @click="toDetail($event, img)" v-for="(img,index) in reverseImage" v-bind:class="{detailview: !img.hidden&&detail}" :key="index" v-bind:style="{ width: img.basic.width*250/img.basic.height + 'px', flexGrow: img.basic.width*250/img.basic.height }" class="each-container">
+          <i v-bind:style="{paddingBottom: img.basic.height/img.basic.width*100 + '%'}"></i>
+          <img class="each-img" width="100%" :src="img.thumbnail" />
+          <figcaption class="caption">
+            <div>{{img.dateName.getFullYear()}}-{{img.dateName.getMonth()+1}}-{{img.dateName.getDate()}}</div>
+            <span style="font-size: 0.7rem;color: #7f8c8d" v-for="(tag,index) in img.annotation.labelAnnotations" :key="index">{{tag.description}} </span>
+          </figcaption>
+        </div>
+      </transition-group>
     </section>
-
-    <!-- <el-dialog style="margin-bottom: 0px" :size="currentImage.dialogSize" title="Details" v-if="currentImage" v-model="detail">
-      <el-row :gutter="20">
-        <el-col :span="currentImage.imageSpan">
-          <img style="width: 100%" ref="imageElement" @click="testElement" :src="currentImage.downloadURL">
-        </el-col>
-        <el-col :span="24 - currentImage.imageSpan">
-          <p style="font-size: 1.2rem;">{{currentImage.captions[0].text|capitalize}}</p>
-          <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;" type="primary" :close-transition="true" v-for="tag in currentImage.tags" :key="tag">{{tag}} </el-tag>
-          <div>
-            <el-tag style="margin-right: 0.2rem; margin-bottom: 0.2rem;" type="primary" :close-transition="true" v-for="tag in exifInfo" :key="tag">{{tag}} </el-tag>
+    <transition name="bounce">
+      <div v-if="currentImage" style="" :style="{backgroundColor:parseColor(currentImage.annotation.imagePropertiesAnnotation.dominantColors.colors[0].color)}" class="detailDialog">
+        <div style="display:flex; justify-content:flex-end;">
+          <i @click="closeIt" style="color:#cecece;margin:1em;font-size:1em;" class="fa fa-window-close" aria-hidden="true"></i>
+        </div>
+        <div style="display:flex;margin:1em 1em 1em 1em;max-height:100%;">
+          <div style="width:70%;max-height:100%">
+            <img style="max-width:100%;max-height:100%;margin:0 auto;display:block;" :src="currentImage.basic.downloadURL">
           </div>
-          <div v-if="currentImage.exifInfo" style="font-style: italic;margin-left: 0.2rem; font-weight: lighter;">
-            <p style="margin-bottom: 0.2rem;">{{currentImage.exifInfo.model}} </p>
-            <p style="font-size: 0.75rem;margin-top: 0;margin-bottom: 0.2rem;">
-              <span>{{currentImage.exifInfo.exposureTime.numerator}}/{{currentImage.exifInfo.exposureTime.denominator}}s </span>
-              <span> ISO {{currentImage.exifInfo.iso}} </span>
-              <span> f/{{currentImage.exifInfo.fnumber.numerator/currentImage.exifInfo.fnumber.denominator}} </span>
-              <span> {{currentImage.exifInfo.focalLength.numerator/currentImage.exifInfo.focalLength.denominator}}mm</span>
-            </p>
-            <p style="font-size: 0.75rem;margin-top: 0;"> {{exifInfo.date}} </p>
+          <div style="width:30%;margin-left:1em;">
+            <imagedetailtab :detailData="currentImage.annotation" :back-color="'#fefefe'"></imagedetailtab>
           </div>
-          <div>
-            <el-button type="text" v-if="user" style="color: #c0392b" @click="toDelete">Delete</el-button>
-          </div>
-        </el-col>
-      </el-row>
-    </el-dialog> -->
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import Firebase from 'firebase'
+import lodash from 'lodash'
 import EXIF from 'exif-js'
 import { db, storage, authFunc, auth } from './firebase'
-
+import { parseColor } from './AssistFunction/assist.js'
+import imagedetailtab from './subcomponents/ImageDetail.vue'
 let imageRef = db.ref('Photos')
 export default {
   name: 'photos',
@@ -74,21 +67,29 @@ export default {
       user: '',
       token: '',
       exifInfo: [],
-      searchInput: ''
+      searchInput: '',
+      reverseImage: []
     }
+  },
+  components: {
+    imagedetailtab
   },
   filters: {
     capitalize: function (value) {
       return value.slice(0, 1).toUpperCase() + value.slice(1)
     }
   },
-  computed: {
-    reverseImage: function () {
-      return this.images.reverse()
-    }
-  },
   firebase: {
-    images: imageRef.limitToLast(20)
+    images: {
+      source: imageRef.limitToLast(20),
+      readyCallback: function () {
+        let newImages = this.images.map(item => {
+          item.dateName = new Date(parseInt(item.name.split('.')[0]))
+          return item
+        })
+        this.reverseImage = newImages.reverse()
+      }
+    }
   },
   created: function () {
     let user = auth.currentUser
@@ -115,6 +116,9 @@ export default {
         console.log(self.exifInfo)
       })
     },
+    shuffle: function () {
+      this.reverseImage = lodash.shuffle(this.reverseImage)
+    },
     reset: function () {
       this.detail = false
       this.currentImage = ''
@@ -138,7 +142,6 @@ export default {
         this.currentImage.imageSpan = 16
         this.currentImage.dialogSize = 'large'
       }
-      console.log(event)
     },
     toDelete: function () {
       console.log(this.user.displayName !== 'Hao Xiangpeng')
@@ -165,13 +168,54 @@ export default {
     },
     upload: function () {
       this.$router.push('/upload')
-    }
+    },
+    closeIt: function () {
+      this.currentImage = null
+    },
+    parseColor: parseColor
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.image-group-item {
+  transition: all 1s;
+}
+.image-group-enter,
+.image-group-leave-to {
+  opacity: 0;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.3s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.2s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.detailDialog {
+  background-color: #2f3c3d;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 p span {
   margin-right: 1rem;
 }
@@ -209,7 +253,9 @@ p span {
   -moz-transition: all 0.6s ease;
   -o-transition: all 0.6s ease;
 }
-
+.caption > div {
+  font-size: 0.9em;
+}
 .each-img:hover + .caption {
   opacity: 1;
 }
@@ -217,6 +263,7 @@ p span {
 .img-container {
   display: flex;
   flex-wrap: wrap;
+  transition: all 10s;
 }
 
 .img-container::after {

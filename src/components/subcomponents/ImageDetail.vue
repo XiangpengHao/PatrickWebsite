@@ -1,6 +1,6 @@
 <template>
-<!-- TODO: landmark, document, face improved -->
-  <el-tabs style="color:#545d6a" v-if='detailData' v-model='activeTabName'>
+  <!-- TODO: landmark, document, face improved -->
+  <el-tabs :style="{backgroundColor: backColor}" style="color:#545d6a;padding:1em;" v-if='detailData' v-model='activeTabName'>
     <el-tab-pane name="prop" label="Properties" v-if="imageProperties">
       <div class="sectiontitle">Dominant Color</div>
       <div style="min-height: 200px; width:100%; display:flex;">
@@ -38,8 +38,8 @@
       </div>
       <div class="subsection">
         <div class="subtitle">Similar Images</div>
-        <div v-for="(item,index) in webDetection.visuallySimilarImages" :key="index">
-          <a :href="item.url">{{item.url}}</a>
+        <div style="font-size:0.8em;font-family:consolars;overflow:hidden;" v-for="(item,index) in webDetection.visuallySimilarImages" :key="index">
+          <a :href="item.url">{{item.url.split('/')[2]}}</a>
         </div>
       </div>
     </el-tab-pane>
@@ -58,9 +58,10 @@
 </template>
 
 <script>
+import { parseColor } from '../AssistFunction/assist.js'
 export default {
   name: 'detail',
-  props: ['detailData'],
+  props: ['detailData', 'backColor'],
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -106,9 +107,7 @@ export default {
       }, 0) / 100
       this.allScore = allSum
     },
-    parseColor: function (item) {
-      return 'rgb(' + item.red + ',' + item.green + ',' + item.blue + ')'
-    },
+    parseColor: parseColor,
     parseWidth: function (item) {
       return item.score / this.allScore + '%'
     },
