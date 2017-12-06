@@ -52,7 +52,7 @@
 
 <script>
 import Firebase from 'firebase'
-import lodash from 'lodash'
+import lodashShuffle from 'lodash/fp/shuffle'
 import EXIF from 'exif-js'
 import { db, storage, authFunc, auth } from './firebase'
 import { parseColor } from './AssistFunction/assist.js'
@@ -117,7 +117,7 @@ export default {
       })
     },
     shuffle: function () {
-      this.reverseImage = lodash.shuffle(this.reverseImage)
+      this.reverseImage = lodashShuffle(this.reverseImage)
     },
     reset: function () {
       this.detail = false
