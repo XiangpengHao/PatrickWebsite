@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <div>WebAssembly Playground</div>
     <iframe src="https://assembly.haoxp.xyz" title="webassembly" width="1000" height="700">
       <p>Your browser does not support iframes.</p>
     </iframe>
@@ -15,13 +16,6 @@ export default {
     }
   },
   created: function () {
-    // return
-    // let gameInstance = UnityLoader.instantiate(
-    //   'gameContainer', './Assembly/Build/web.json', {
-    //     onProgress: UnityProgress
-    //   }
-    // )
-    // console.log(gameInstance)
   },
   methods: {
   }

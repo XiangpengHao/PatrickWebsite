@@ -8,7 +8,8 @@ import Photos from '../components/Photos'
 import Digits from '../components/Digits'
 import Home from '../components/Home'
 import IoT from '../components/IoT'
-import test from '../components/subcomponents/ImageDetail'
+import test from '../components/test'
+import Assembly from '../components/Assembly'
 Vue.use(Router)
 
 export default new Router({
@@ -56,6 +57,11 @@ export default new Router({
       path: '/test',
       name: 'test',
       component: test
+    },
+    {
+      path: '/wasm',
+      name: 'wasm',
+      component: Assembly
     }
   ]
 })
