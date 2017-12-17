@@ -10,10 +10,13 @@ const config = {
 
 export default function firebase() {
   return importFirebase().then((firebase) => {
-    const app = firebase.initializeApp(config, 'asdf')
+    const app = firebase.initializeApp(config, 'all')
     return {
       database: app.database(),
-      auth: app.auth()
+      authFunc: app.auth(),
+      auth: app.auth,
+      firebase: firebase,
+      storage: app.storage()
     }
   })
 }

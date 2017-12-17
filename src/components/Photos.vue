@@ -53,10 +53,11 @@
 <script>
 import lodashShuffle from 'lodash/fp/shuffle'
 import EXIF from 'exif-js'
-import { db, storage, auth, authFunc, firebase } from './firebase'
+import firebaseApp from './AssistFunction/firebase'
 import { parseColor } from './AssistFunction/assist.js'
 import imagedetailtab from './subcomponents/ImageDetail.vue'
-let imageRef = db.ref('Photos')
+let db, storage, auth, authFunc, firebase
+let imageRef
 export default {
   name: 'photos',
   data() {
@@ -78,23 +79,28 @@ export default {
       return value.slice(0, 1).toUpperCase() + value.slice(1)
     }
   },
-  firebase: {
-    images: {
-      source: imageRef.limitToLast(20),
-      readyCallback: function () {
-        let newImages = this.images.map(item => {
-          item.dateName = new Date(parseInt(item.name.split('.')[0]))
-          return item
-        })
-        this.reverseImage = newImages.reverse()
-      }
-    }
-  },
   created: function () {
-    let user = auth.currentUser
-    if (user) {
-      this.user = user
-    }
+    let self = this
+    firebaseApp().then(item => {
+      db = item.database
+      storage = item.storage
+      firebase = item.firebase
+      auth = item.auth
+      authFunc = item.authFunc
+      imageRef = db.ref('Photos').limitToLast(20)
+      let user = auth.currentUser
+      if (user) {
+        self.user = user
+      }
+      self.$bindAsArray('images', imageRef, null,
+        () => {
+          let newImages = self.images.map(item => {
+            item.dateName = new Date(parseInt(item.name.split('.')[0]))
+            return item
+          })
+          self.reverseImage = newImages.reverse()
+        })
+    })
   },
   methods: {
     handleSearchClick: function () {

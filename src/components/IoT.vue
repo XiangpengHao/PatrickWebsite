@@ -22,32 +22,26 @@ export default {
   name: 'IoT',
   data() {
     return {
+      axisTemp: null,
+      axisHumidity: null,
+      axisCategory: null,
+      polar: null,
       allData: []
     }
   },
   created: function () {
     let self = this
     firebaseApp().then(({ database }) => {
-      self.$bindAsArray('allData', database.ref('iot').limitToLast(1000))
+      self.$bindAsArray('allData', database.ref('iot').limitToLast(1000), null, () => {
+        self.axisTemp = self.allData.map(item => item.temp)
+        self.axisHumidity = self.allData.map(item => item.hum)
+        self.axisCategory = self.allData.map(item => item.time)
+        self.polar = self.getPolar()
+      })
     })
   },
-  computed: {
-    axisTemp: function () {
-      return this.allData.map(item => {
-        return item.temp
-      })
-    },
-    axisHumidity: function () {
-      return this.allData.map(item => {
-        return item.hum
-      })
-    },
-    axisCategory: function () {
-      return this.allData.map(item => {
-        return item.time
-      })
-    },
-    polar: function () {
+  methods: {
+    getPolar: function () {
       let self = this
       if (!self.allData) return null
       return {
@@ -124,6 +118,8 @@ export default {
         ]
       }
     }
+  },
+  computed: {
   },
   components: {
     'chart': Echarts

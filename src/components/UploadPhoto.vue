@@ -36,10 +36,10 @@
 import EXIF from 'exif-js'
 import axios from 'axios'
 
-import { db, storage } from './firebase'
+// import { db, storage } from './firebase'
+import firebaseApp from './AssistFunction/firebase.js'
 import imageDetail from './subcomponents/ImageDetail.vue'
-let storageRef = storage.ref()
-let dbRef = db.ref('Photos')
+let db, storage, storageRef, dbRef
 export default {
   name: 'hello',
   computed: {
@@ -67,7 +67,13 @@ export default {
       activeTabName: ''
     }
   },
-  firebase: {
+  created: function () {
+    firebaseApp().then(item => {
+      db = item.database
+      storage = item.storage
+      storageRef = storage.ref()
+      dbRef = db.ref('Photos')
+    })
   },
   methods: {
     handleInputConfirm: function () {

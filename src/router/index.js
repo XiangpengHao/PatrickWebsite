@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 const Resume = () => import('../components/Resume')
-const Memo = () => import('../components/Memo')
 const UploadPhoto = () => import('../components/UploadPhoto')
 const Photos = () => import('../components/Photos')
 const Home = () => import('../components/Home')
@@ -25,11 +24,6 @@ export default new Router({
       path: '/resume',
       name: 'Resume',
       component: Resume
-    },
-    {
-      path: '/memo',
-      name: 'Memo',
-      component: Memo
     },
     {
       path: '/upload',
