@@ -1,19 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Resume from '../components/Resume'
-import Memo from '../components/Memo'
-import UploadPhoto from '../components/UploadPhoto'
-import Photos from '../components/Photos'
-// import Word from '../components/Word'
-import Digits from '../components/Digits'
-import Home from '../components/Home'
-import IoT from '../components/IoT'
-import test from '../components/test'
-import Assembly from '../components/Assembly'
-import Playground from '../components/Playground'
+const Resume = () => import('../components/Resume')
+const Memo = () => import('../components/Memo')
+const UploadPhoto = () => import('../components/UploadPhoto')
+const Photos = () => import('../components/Photos')
+const Home = () => import('../components/Home')
+const IoT = () => import('../components/IoT')
+const test = () => import('../components/test')
+
+const Digits = () => import(/* webpackChunkName: "group-playground" */ '../components/Digits')
+const Assembly = () => import(/* webpackChunkName: "group-playground" */ '../components/Assembly')
+const Playground = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground')
+
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',

@@ -3,12 +3,12 @@
     <div style="font-size: 1.5rem;color: #34495e; margin: 4px; margin-bottom:1rem;">
       Patrick's IoT Lab
     </div>
-    <chart :options='polar'></chart>
+    <chart v-if="polar" :options='polar'></chart>
   </div>
 </template>
 
 <script>
-import { db } from './firebase'
+import firebaseApp from './AssistFunction/firebase.js'
 import Echarts from 'vue-echarts/components/ECharts.vue'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/legend'
@@ -18,35 +18,38 @@ import 'echarts/lib/component/dataZoom'
 import 'echarts/lib/component/title'
 import 'echarts/lib/component/tooltip'
 
-let infoRef = db.ref('iot').limitToLast(1000)
 export default {
   name: 'IoT',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      allData: []
     }
+  },
+  created: function () {
+    let self = this
+    firebaseApp().then(({ database }) => {
+      self.$bindAsArray('allData', database.ref('iot').limitToLast(1000))
+    })
   },
   computed: {
     axisTemp: function () {
-      let self = this
-      return self.allData.map(item => {
+      return this.allData.map(item => {
         return item.temp
       })
     },
     axisHumidity: function () {
-      let self = this
-      return self.allData.map(item => {
+      return this.allData.map(item => {
         return item.hum
       })
     },
     axisCategory: function () {
-      let self = this
-      return self.allData.map(item => {
+      return this.allData.map(item => {
         return item.time
       })
     },
     polar: function () {
       let self = this
+      if (!self.allData) return null
       return {
         title: {
           text: 'Coquitlam(indoors)'
@@ -124,9 +127,6 @@ export default {
   },
   components: {
     'chart': Echarts
-  },
-  firebase: {
-    allData: infoRef
   }
 }
 </script>
@@ -134,6 +134,6 @@ export default {
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
 .iot-wrapper {
-  margin: 1em 1em 1em 1em; 
+  margin: 1em 1em 1em 1em;
 }
 </style>

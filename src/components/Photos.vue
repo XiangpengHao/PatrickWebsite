@@ -51,10 +51,9 @@
 </template>
 
 <script>
-import Firebase from 'firebase'
 import lodashShuffle from 'lodash/fp/shuffle'
 import EXIF from 'exif-js'
-import { db, storage, authFunc, auth } from './firebase'
+import { db, storage, auth, authFunc, firebase } from './firebase'
 import { parseColor } from './AssistFunction/assist.js'
 import imagedetailtab from './subcomponents/ImageDetail.vue'
 let imageRef = db.ref('Photos')
@@ -157,7 +156,7 @@ export default {
     },
     login: function () {
       let self = this
-      let provider = new Firebase.auth.GoogleAuthProvider()
+      let provider = new firebase.auth.GoogleAuthProvider()
       provider.addScope('https://www.googleapis.com/auth/plus.login')
       authFunc.signInWithPopup(provider).then(
         result => {
