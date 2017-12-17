@@ -46,7 +46,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="digits">
+          <router-link to="playground">
             <el-tooltip class="item" effect="dark" content="Playground" placement="top">
               <i class="fa fa-terminal" aria-hidden="true"> </i>
             </el-tooltip>

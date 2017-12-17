@@ -10,6 +10,7 @@ import Home from '../components/Home'
 import IoT from '../components/IoT'
 import test from '../components/test'
 import Assembly from '../components/Assembly'
+import Playground from '../components/Playground'
 Vue.use(Router)
 
 export default new Router({
@@ -44,9 +45,19 @@ export default new Router({
       component: IoT
     },
     {
-      path: '/digits',
-      name: 'Digits',
-      component: Digits
+      path: '/playground',
+      name: 'playground',
+      component: Playground,
+      children: [
+        {
+          path: 'digit',
+          component: Digits
+        },
+        {
+          path: 'wasm',
+          component: Assembly
+        }
+      ]
     },
     {
       path: '/home',
@@ -57,11 +68,6 @@ export default new Router({
       path: '/test',
       name: 'test',
       component: test
-    },
-    {
-      path: '/wasm',
-      name: 'wasm',
-      component: Assembly
     }
   ]
 })
