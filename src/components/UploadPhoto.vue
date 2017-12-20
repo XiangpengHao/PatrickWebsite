@@ -105,9 +105,14 @@ export default {
       let files = e.target.files || e.dataTransfer.files
       let self = this
       self.cloudValue = null
-      let _URL = window.URL || window.webkitURL
+      // let _URL = window.URL || window.webkitURL
       if (files.length === 1) {
-        this.file = files[0]
+        const uploadFile = files[0]
+        if (uploadFile.size > 1024 * 1024 * 4) {
+          this.$message('Photo size reached limit of 4MB')
+          return
+        }
+        this.file = uploadFile
       }
       let img = new Image()
       img.onload = function () {
