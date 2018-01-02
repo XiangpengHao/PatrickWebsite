@@ -40,23 +40,25 @@
 
     <subtitle :title="mainData.education"></subtitle>
 
-    <div class="sub-main-title">
-      {{mainData.school}} ({{mainData.major}})
-      <span class="location">{{mainData.location1}}</span>
-    </div>
-    <div class="sub-content">
-      {{mainData.degree|toUpper}}
-      <span class="duration">{{mainData.duration1}}</span>
-    </div>
-    <div>
-      <ul class="list-content">
-        <li>{{mainData.eduOne}}</li>
-        <li>{{mainData.eduTwo}}</li>
-      </ul>
+    <div class="card-container">
+      <div class="sub-main-title">
+        {{mainData.school}} ({{mainData.major}})
+        <span class="location">{{mainData.location1}}</span>
+      </div>
+      <div class="sub-content">
+        {{mainData.degree|toUpper}}
+        <span class="duration">{{mainData.duration1}}</span>
+      </div>
+      <div>
+        <ul class="list-content">
+          <li>{{mainData.eduOne}}</li>
+          <li>{{mainData.eduTwo}}</li>
+        </ul>
+      </div>
     </div>
 
     <subtitle :title="mainData.experience"></subtitle>
-    <div v-for="(item,index) in mainData.experienceDetail" :key="index">
+    <div class="card-container" v-for="(item,index) in mainData.experienceDetail" :key="index">
       <div class="sub-main-title">
         <a :href="item.link">
           {{item.title}}</a>
@@ -74,7 +76,7 @@
     </div>
 
     <subtitle :title="mainData.project"></subtitle>
-    <div v-for="(item,index) in mainData.projectDetail" :key="index">
+    <div class="card-container" v-for="(item,index) in mainData.projectDetail" :key="index">
       <div class="sub-main-title">
         <a :href="item.link">
           {{item.name}}
@@ -119,7 +121,7 @@ export default {
         address: ["Zijingang Campus, Zhejiang University, Hangzhou, Zhejiang Province, China", "紫金港校区, 浙江大学, 杭州, 浙江省, 中国"],
         moto: ["\"He who has to kindle the lightning one day, must for a long time -- be a cloud.\"", "\"谁将声震人间，必将长久深自缄默\""],
         education: ["Education", "教育"],
-        school: ["Zhejiang University and Simon Fraser University", "浙江大学和 SFU"],
+        school: ["Simon Fraser University and Zhejiang University ", "浙江大学和 SFU"],
         location1: ["Hangzhou, China", "杭州, 中国"],
         degree: ["Bachelor's degree in computer science", "计算机科学学士学位"],
         duration1: ["Sept. 2015 - PRESENT", "Sept. 2015 - PRESENT"],
@@ -131,6 +133,18 @@ export default {
         skills: [["Linux Server", "Python", "C++", "JavaScript", "Git"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
         experienceDetail: [
           [{
+            link: 'https://github.com/sfu-cl-lab/',
+            title: 'CSCL Lab in Simon Fraser University',
+            duration: 'Sept. 2017 - Now',
+            location: 'Vancouver, Canada',
+            job: 'Research Asisstant',
+            mainWork: 'Data Visualization & Database Management',
+            workDetails: [
+              'NHL player data visualization',
+              'NBA player data crawling',
+              'Other research related work'
+            ]
+          }, {
             link: 'https://www.zjuqsc.com',
             title: 'QSC in Zhejiang University',
             duration: 'June. 2016 - June. 2017',
@@ -161,17 +175,17 @@ export default {
             ]
           }]
         ],
-        project: ["project", "项目"],
+        project: ["projects", "项目"],
         projectDetail: [
           [
             {
-              name: 'Tmplaye',
-              link: 'https://github.com/HaoPatrick/Tmplaye',
-              location: 'Hangzhou, China',
-              duration: 'Jan. 2017',
-              feature0: 'A Python3.6 project',
-              feature1: 'A template engine similar to Django\'s',
-              feature2: 'Support various inline expression and complex condition control'
+              name: 'Telegram Channel Bot',
+              link: 'https://t.me/newsathlh',
+              location: 'Vancouver, Canada',
+              duration: 'Sept. 2017 - Now',
+              feature0: 'Get news, weather, Iot data automatically',
+              feature1: 'Machine learning introduced',
+              feature2: 'Cutting edge Python3.6 type annotation'
             },
             {
               name: 'Houaa',
@@ -189,7 +203,15 @@ export default {
               feature0: 'Official 120th Anniversary Assistant of Zhejiang University',
               feature1: 'Webpack, Gaode map, Vue',
               feature2: 'Frontend develop, Server Architect'
-            }
+            }, {
+              name: 'Tmplaye',
+              link: 'https://github.com/HaoPatrick/Tmplaye',
+              location: 'Hangzhou, China',
+              duration: 'Jan. 2017',
+              feature0: 'A Python3.6 project',
+              feature1: 'A template engine similar to Django\'s',
+              feature2: 'Support various inline expression and complex condition control'
+            },
           ],
           [
             {
@@ -250,6 +272,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.card-container {
+  border: 1px solid #f5f5f5;
+  background-color: #f7f7f7;
+  margin-bottom: 1em;
+  padding: 0.5em;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s;
@@ -309,6 +337,7 @@ export default {
   font-size: 1rem;
   margin-bottom: 0.3rem;
   margin-top: 0.4em;
+  color: #2c3e50;
 }
 
 .location {
@@ -325,7 +354,7 @@ export default {
   /* color: #e74c3c; */
   display: flex;
   margin-bottom: 0.2rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .moto {
@@ -360,6 +389,9 @@ a:visited {
 
 li {
   margin-bottom: 0.3em;
+}
+ul {
+  margin-bottom: 0em;
 }
 .address {
   text-align: center;
