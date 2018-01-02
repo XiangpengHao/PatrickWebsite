@@ -105,7 +105,7 @@ export default {
       let files = e.target.files || e.dataTransfer.files
       let self = this
       self.cloudValue = null
-      // let _URL = window.URL || window.webkitURL
+      let _URL = window.URL || window.webkitURL
       if (files.length === 1) {
         const uploadFile = files[0]
         if (uploadFile.size > 1024 * 1024 * 4) {
