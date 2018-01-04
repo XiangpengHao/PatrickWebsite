@@ -10,7 +10,7 @@ const config = {
 
 export default function firebase() {
   return importFirebase().then((firebase) => {
-    const app = firebase.initializeApp(config, 'all')
+    const app = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app()
     return {
       database: app.database(),
       authFunc: app.auth(),
