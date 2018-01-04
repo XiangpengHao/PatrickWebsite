@@ -10,6 +10,7 @@
     </el-carousel>
     <router-link to="/playground/digit">Hand-crafted Neuron Network Digit recognition</router-link>
     <router-link to="/playground/wasm">Unity WebAssembly tiny game</router-link>
+    <router-link to="/playground/graphqltest">Graphql Test</router-link>
   </div>
 </template>
 

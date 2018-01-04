@@ -11,6 +11,8 @@ const Digits = () => import(/* webpackChunkName: "group-playground" */ '../compo
 const Assembly = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Assembly')
 const Playground = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Playground')
 const PlaygroundContainer = () => import(/* webpackChunkName: "group-playground" */'../components/Playground/Container')
+const GraphqlTest = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/GraphqlTest')
+
 Vue.use(Router)
 
 export default new Router({
@@ -42,7 +44,6 @@ export default new Router({
     },
     {
       path: '/playground',
-      name: 'playground',
       component: PlaygroundContainer,
       children: [
         {
@@ -56,9 +57,14 @@ export default new Router({
         {
           path: 'home',
           component: Playground
-        }, {
+        },
+        {
           path: '/',
           redirect: 'home'
+        },
+        {
+          path: 'graphqltest',
+          component: GraphqlTest
         }
       ]
     },

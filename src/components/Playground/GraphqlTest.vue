@@ -1,14 +1,35 @@
 <template>
   <div class="hello">
+    {{news}}
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
 export default {
-  name: 'hello',
-  data () {
+  name: 'graphql_test',
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      news: ''
+    }
+  },
+  apollo: {
+    news: {
+      query: gql`query News($limit: Int!){
+          news(limit:$limit) {
+            id,
+            author,
+            title,
+            description,
+            url,
+            date,
+            source,
+            importance
+          }
+        }`,
+      variables: {
+        limit: 10
+      }
     }
   }
 }
