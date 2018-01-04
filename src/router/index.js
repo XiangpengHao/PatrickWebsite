@@ -7,10 +7,10 @@ const Home = () => import('../components/Home')
 const IoT = () => import('../components/IoT')
 const test = () => import('../components/test')
 
-const Digits = () => import(/* webpackChunkName: "group-playground" */ '../components/Digits')
-const Assembly = () => import(/* webpackChunkName: "group-playground" */ '../components/Assembly')
-const Playground = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground')
-
+const Digits = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Digits')
+const Assembly = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Assembly')
+const Playground = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Playground')
+const PlaygroundContainer = () => import(/* webpackChunkName: "group-playground" */'../components/Playground/Container')
 Vue.use(Router)
 
 export default new Router({
@@ -43,7 +43,7 @@ export default new Router({
     {
       path: '/playground',
       name: 'playground',
-      component: Playground,
+      component: PlaygroundContainer,
       children: [
         {
           path: 'digit',
@@ -52,6 +52,13 @@ export default new Router({
         {
           path: 'wasm',
           component: Assembly
+        },
+        {
+          path: 'home',
+          component: Playground
+        }, {
+          path: '/',
+          redirect: 'home'
         }
       ]
     },
