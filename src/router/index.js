@@ -12,6 +12,7 @@ const Assembly = () => import(/* webpackChunkName: "group-playground" */ '../com
 const Playground = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Playground')
 const PlaygroundContainer = () => import(/* webpackChunkName: "group-playground" */'../components/Playground/Container')
 const GraphqlTest = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/GraphqlTest')
+const Channel = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Channel')
 
 Vue.use(Router)
 
@@ -65,6 +66,9 @@ export default new Router({
         {
           path: 'graphqltest',
           component: GraphqlTest
+        }, {
+          path: 'channel',
+          component: Channel
         }
       ]
     },
