@@ -3,9 +3,13 @@
     <div class="container">
       <div class="config item">
         <h3>Config</h3>
-        <div>
-          <span>Limit: </span>
+        <div class="config-section">
+          <div>News Limit: </div>
           <el-input-number :min="1" v-model="newsLimit" :max="50"></el-input-number>
+        </div>
+        <div class="config-section">
+          <div>Weather Limit:</div>
+          <el-input-number v-model="weatherLimit" :min="10" :max="100"></el-input-number>
         </div>
       </div>
       <div class="news item">
@@ -29,6 +33,10 @@
       </div>
       <div class="chart-container item">
         <h3>Charts</h3>
+        <div id="newsData" style="min-width:350px;min-height:350px;">
+        </div>
+        <div id="weatherData" style="min-width:300px;min-height:300px;">
+        </div>
       </div>
     </div>
   </div>
@@ -36,14 +44,103 @@
 
 <script>
 import gql from 'graphql-tag'
+import echarts from 'echarts'
+import { stringToWordList } from '../AssistFunction/assist'
+import 'echarts/lib/component/legend'
+import 'echarts/lib/chart/line'
+import 'echarts/lib/component/tooltip'
+require('echarts-wordcloud')
 export default {
   name: 'channel_console',
   data() {
     return {
-      newsLimit: 5
+      newsLimit: 10,
+      newsChart: null,
+      weatherChart: null,
+      weatherLimit: 20,
+      newsConfig: {
+        title: {
+          text: 'WordCloud',
+          x: 'center'
+        },
+        tooltip: {
+          show: false
+        },
+        series: [{
+          name: 'news',
+          type: 'wordCloud',
+          sizeRange: [10, 50],
+          rotationRange: [-30, 30],
+          textPadding: 0,
+          autoSize: {
+            enable: true,
+            minSize: 10
+          },
+          textStyle: {
+            normal: {
+              color: function () {
+                return 'rgb(' + [
+                  Math.round(Math.random() * 255),
+                  Math.round(Math.random() * 255),
+                  Math.round(Math.random() * 255)
+                ].join(',') + ')'
+              }
+            },
+            emphasis: {
+              shadowBlur: 10,
+              shadowColor: '#333'
+            }
+          },
+          data: []
+        }]
+      },
+      weatherConfig: {
+        title: {
+          text: 'Weather',
+          x: 'center'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['Humidity', 'Temperature']
+        },
+        xAxis: {
+          type: 'time'
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [{
+          type: 'line',
+          data: []
+        }, {
+          type: 'line',
+          data: []
+        }]
+      },
+      news: null,
+      weather: null
     }
   },
-  created: function () {
+  mounted: function () {
+    this.newsChart = echarts.init(document.getElementById('newsData'))
+    this.newsChart.setOption(this.newsConfig)
+    this.weatherChart = echarts.init(document.getElementById('weatherData'))
+    this.weatherChart.setOption(this.weatherConfig)
+  },
+  methods: {
+    getWorldList: function (news) {
+      console.log(news)
+      const totalString = news.reduce((a, b) => {
+        return a + ' ' + b.title + ' ' + b.description
+      }, '')
+      const frequency = stringToWordList(totalString)
+      const scaledFrequency = frequency.map(item => {
+        return { name: item[0], value: Math.pow(item[1], 2) }
+      })
+      return scaledFrequency
+    }
   },
   apollo: {
     news: {
@@ -64,6 +161,42 @@ export default {
         return {
           limit: this.newsLimit
         }
+      },
+      update: function (data) {
+        const scaledFrequency = this.getWorldList(data.news)
+        this.newsConfig.series[0].data = scaledFrequency
+        if (this.newsChart) {
+          this.newsChart.setOption(this.newsConfig)
+        }
+        return data.news
+      }
+    },
+    weather: {
+      query: gql`query Weather($limit: Int!){
+        weather(limit:$limit){
+          temp,
+          humidity,
+          date
+        }
+      }`,
+      variables() {
+        return {
+          limit: this.weatherLimit
+        }
+      },
+      update: function (data) {
+        const humidity = data.weather.map(item => {
+          return [item.date, item.humidity]
+        })
+        const temp = data.weather.map(item => {
+          return [item.date, item.temp]
+        })
+        this.weatherConfig.series[0].data = humidity
+        this.weatherConfig.series[1].data = temp
+        if (this.weatherChart) {
+          this.weatherChart.setOption(this.weatherConfig)
+        }
+        return data.weather
       }
     }
   }
@@ -72,6 +205,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.config-section {
+  margin-bottom: 1em;
+}
 .thumbnail {
   border-radius: 5px;
   width: 100%;
