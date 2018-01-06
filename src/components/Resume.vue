@@ -91,6 +91,21 @@
         </ul>
       </div>
     </div>
+
+    <subtitle :title="mainData.openSource"></subtitle>
+    <div class="card-container" v-for="(item,index) in mainData.openSourceDetail" :key="index">
+      <div class="sub-main-title">
+        <a :href="item.link">
+          {{item.name}}
+        </a>
+        <span class="location">{{item.location}}</span>
+      </div>
+      <div>
+        <ul class="list-content">
+          <li v-for="(list,index) in item.features" :key="index">{{list}}</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -175,7 +190,7 @@ export default {
             ]
           }]
         ],
-        project: ["projects", "项目"],
+        project: ["selected projects", "项目"],
         projectDetail: [
           [
             {
@@ -203,15 +218,7 @@ export default {
               feature0: 'Official 120th Anniversary Assistant of Zhejiang University',
               feature1: 'Webpack, Gaode map, Vue',
               feature2: 'Frontend develop, Server Architect'
-            }, {
-              name: 'Tmplaye',
-              link: 'https://github.com/HaoPatrick/Tmplaye',
-              location: 'Hangzhou, China',
-              duration: 'Jan. 2017',
-              feature0: 'A Python3.6 project',
-              feature1: 'A template engine similar to Django\'s',
-              feature2: 'Support various inline expression and complex condition control'
-            },
+            }
           ],
           [
             {
@@ -240,6 +247,32 @@ export default {
               feature1: 'Webpack, Gaode map, Vue',
               feature2: '网页端开发，服务器架构'
             }
+          ]
+        ],
+        openSource: ['Open Source Contribution', '开源贡献'],
+        openSourceDetail: [
+          [
+            {
+              name: 'zju-icicles',
+              location: 'Vancouver, Canada',
+              link: 'https://github.com/QSCTech/zju-icicles',
+              duration: 'May. 2016 - Now',
+              features: [
+                'Course info sharing in Zhejiang University',
+                'Role: Maintainer'
+              ]
+            }, {
+              name: 'UPass-Script',
+              location: 'Vancouver, Canada',
+              link: 'https://github.com/Armour/UPass-Script',
+              duration: 'Jan. 2018',
+              features:[
+                'Automatically request UPass each month',
+                'Add feature of IFTTT notification'
+              ]
+            }
+          ], [
+            {}
           ]
         ]
         /* eslint-enable */
