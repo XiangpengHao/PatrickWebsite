@@ -1,6 +1,6 @@
 <template>
   <div class="main-title">
-    <span style="color: #2c3e50">{{title|toUpper}}</span>
+    <span style="color: #2980b9">{{title|toUpper}}</span>
     <span class="line">
     </span>
   </div>
@@ -37,7 +37,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .line {
-  border-bottom: 0.1rem solid #2c3e50;
+  border-bottom: 0.1rem solid rgb(67, 111, 155);
   flex-grow: 2;
   margin: auto auto 0.4rem 0.2rem;
 }

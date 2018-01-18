@@ -130,10 +130,10 @@ export default {
       allData: {
         /* eslint-disable */
         // I don't want to deal with double qoute from JSON.stringfy :(
-        name: ["Hao Xiangpeng", "郝翔鹏"],
+        name: ["Xiangpeng Hao", "郝翔鹏"],
         major: ["Computer Science", "计算机科学"],
         area: ["Web Enginnering", "网站开发"],
-        address: ["Zijingang Campus, Zhejiang University, Hangzhou, Zhejiang Province, China", "紫金港校区, 浙江大学, 杭州, 浙江省, 中国"],
+        address: ["8888 University Dr, Burnaby, BC V5A 1S6, Canada", "紫金港校区, 浙江大学, 杭州, 浙江省, 中国"],
         moto: ["\"He who has to kindle the lightning one day, must for a long time -- be a cloud.\"", "\"谁将声震人间，必将长久深自缄默\""],
         education: ["Education", "教育"],
         school: ["Simon Fraser University and Zhejiang University ", "浙江大学和 SFU"],
@@ -145,7 +145,7 @@ export default {
         eduTwo: ["Simon Fraser University majoring Computer Science", "Simon Fraser University， 计算机科学"],
         experience: ["experience", "经历"],
         skillsAbility: ["skills/abilities", "技能"],
-        skills: [["Linux Server", "Python", "C++", "JavaScript", "Git"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
+        skills: [[ "Python", "JavaScript", "C++", "Git", "Linux Server"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
         experienceDetail: [
           [{
             link: 'https://github.com/sfu-cl-lab/',
@@ -308,7 +308,7 @@ export default {
 .card-container {
   border: 1px solid #f5f5f5;
   background-color: #f7f7f7;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   padding: 0.5em;
 }
 .fade-enter-active,
