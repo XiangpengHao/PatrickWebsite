@@ -48,6 +48,6 @@ export default {
   /* color: #e74c3c; */
   display: flex;
   margin-bottom: 0.2rem;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 }
 </style>

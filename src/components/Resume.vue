@@ -14,19 +14,19 @@
     </div>
     <div class="other-info">
       <i class="fa fa-github" aria-hidden="true">
-        <a href="https://github.com/HaoPatrick"> Hao Patrick</a>
+        <a href="https://github.com/HaoPatrick"> HaoPatrick</a>
       </i>|
       <i class="fa fa-envelope" aria-hidden="true">
         <a href="mailto:haoxiangpeng@hotmail.com"> haoxiangpeng123@gmail.com</a>
       </i>|
       <i class="fa fa-home" aria-hidden="true">
-        <a href="https://haoxp.xyz"> haoxp.xyz</a>
+        <a href="https://haoxp.xyz"> https://haoxp.xyz</a>
       </i>|
       <i class="fa fa-telegram" aria-hidden="true">
         <a href="https://telegram.org/"> Haoooxiangpeng</a>
       </i>|
       <i class="fa fa-linkedin" aria-hidden="true">
-        <a href="https://www.linkedin.com/in/hao-xiangpeng-15ab33103"> Hao xiangpeng</a>
+        <a href="https://www.linkedin.com/in/hao-xiangpeng-15ab33103"> hao-xiangpeng</a>
       </i>
     </div>
     <div class="moto">
@@ -58,19 +58,19 @@
     </div>
 
     <subtitle :title="mainData.experience"></subtitle>
-    <div class="card-container" v-for="(item,index) in mainData.experienceDetail" :key="index">
+    <div class="card-container" v-for="(item,index) in mainData.experienceDetail" :key="'experience-'+index">
       <div class="sub-main-title">
         <a :href="item.link">
           {{item.title}}</a>
         <span class="location">{{item.location}}</span>
       </div>
       <div class="sub-content">
-        {{item.job|toUpper}} - {{item.mainWork|toUpper}}
+        {{item.job|toUpper}}
         <span class="duration">{{item.duration}}</span>
       </div>
       <div>
         <ul class="list-content">
-          <li v-for="(detail,j) in item.workDetails" :key="j">{{detail}}</li>
+          <li v-for="(detail,j) in item.workDetails" :key="'content'+j">{{detail}}</li>
         </ul>
       </div>
     </div>
@@ -93,7 +93,7 @@
     </div>
 
     <subtitle :title="mainData.openSource"></subtitle>
-    <div class="card-container" v-for="(item,index) in mainData.openSourceDetail" :key="index">
+    <div class="card-container" v-for="(item,index) in mainData.openSourceDetail" :key="'opensource-'+index">
       <div class="sub-main-title">
         <a :href="item.link">
           {{item.name}}
@@ -102,7 +102,7 @@
       </div>
       <div>
         <ul class="list-content">
-          <li v-for="(list,index) in item.features" :key="index">{{list}}</li>
+          <li v-for="(list,index) in item.features" :key="'content-'+index">{{list}}</li>
         </ul>
       </div>
     </div>
@@ -132,20 +132,20 @@ export default {
         // I don't want to deal with double qoute from JSON.stringfy :(
         name: ["Xiangpeng Hao", "郝翔鹏"],
         major: ["Computer Science", "计算机科学"],
-        area: ["Web Enginnering", "网站开发"],
+        area: ["Fullstack enginnering", "网站开发"],
         address: ["8888 University Dr, Burnaby, BC V5A 1S6, Canada", "紫金港校区, 浙江大学, 杭州, 浙江省, 中国"],
         moto: ["\"He who has to kindle the lightning one day, must for a long time -- be a cloud.\"", "\"谁将声震人间，必将长久深自缄默\""],
         education: ["Education", "教育"],
-        school: ["Simon Fraser University and Zhejiang University ", "浙江大学和 SFU"],
-        location1: ["Hangzhou, China", "杭州, 中国"],
-        degree: ["Bachelor's degree in computer science", "计算机科学学士学位"],
+        school: ["Simon Fraser University", "浙江大学和 SFU"],
+        location1: ["Vancouver, Canada", "杭州, 中国"],
+        degree: ["Dual-Degree Program of SFU&ZJU", "计算机科学学士学位"],
         duration1: ["Sept. 2015 - PRESENT", "Sept. 2015 - PRESENT"],
         duration2: ["Sept. 2016 - PRESENT", "Sept. 2016 - PRESENT"],
-        eduOne: ["First two years at Zhejiang University in China majoring Computer Science.", "前两年在浙江大学，计算机科学."],
-        eduTwo: ["Simon Fraser University majoring Computer Science", "Simon Fraser University， 计算机科学"],
+        eduOne: ["Simon Fraser University major in Computer Science", "Simon Fraser University， 计算机科学"],
+        eduTwo: ["Zhejiang University (top 3 in China) major in Computer Science.", "前两年在浙江大学，计算机科学."],
         experience: ["experience", "经历"],
         skillsAbility: ["skills/abilities", "技能"],
-        skills: [[ "Python", "JavaScript", "C++", "Git", "Linux Server"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
+        skills: [["Python", "JavaScript", "C++", "Git", "Linux Server"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
         experienceDetail: [
           [{
             link: 'https://github.com/sfu-cl-lab/',
@@ -153,10 +153,8 @@ export default {
             duration: 'Sept. 2017 - Now',
             location: 'Vancouver, Canada',
             job: 'Research Asisstant',
-            mainWork: 'Data Visualization & Database Management',
             workDetails: [
-              'NHL player data visualization',
-              'NBA player data crawling',
+              'Data mining & Sports analyze and prediction',
               'Other research related work'
             ]
           }, {
@@ -165,13 +163,10 @@ export default {
             duration: 'June. 2016 - June. 2017',
             location: 'Hangzhou, China',
             job: 'Chief Technology Officer',
-            mainWork: 'Web Developing Frontend&Backend',
             workDetails: [
-              'Freshman Mannual for Zhejiang University. Use pure css and js without any framwork, integrated various kinds of service to provide excellent user experience',
-              'Welcome Page for Recruitment in 2016. Use Vue.js and Bootstrap to boost developing efficiency',
-              'Recruiting Manage System. Python (Django) as the backend server, Bootstrap and Webpack to imporve the performance of such a large project',
-              'Linux Server management. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
-              'Telegram Bot. A bot to record all the message in the group and get statastic message everyday'
+              'Full-stack developing',
+              'Dev-ops. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
+              'Technical talk, meeting, news sharing every week'
             ]
           }],
           [{
@@ -194,24 +189,15 @@ export default {
         projectDetail: [
           [
             {
-              name: 'Telegram Channel Bot',
-              link: 'https://t.me/newsathlh',
-              location: 'Vancouver, Canada',
-              duration: 'Sept. 2017 - Now',
-              feature0: 'Get news, weather, Iot data automatically',
-              feature1: 'Machine learning introduced',
-              feature2: 'Cutting edge Python3.6 type annotation'
-            },
-            {
-              name: 'Houaa',
+              name: 'Houaa education',
               link: 'https://houaa.xyz',
               location: 'Hangzhou, China',
               duration: 'Feb. 2017 - Sept. 2017',
               feature0: 'An Education Sharing Platform',
-              feature1: 'Vue.js + Vue-Router + Vuex + Webpack',
+              feature1: 'Everything with modern Javascript. Vue.js + Webpack + Serverless + PWA',
               feature2: 'Web app developing, Server Architect'
             }, {
-              name: 'Anniversary Assistant of Zhejiang University',
+              name: 'Anniversary guide for Zhejiang University',
               link: 'https://120.zjuqsc.com',
               location: 'Hangzhou, China',
               duration: 'May. 2017 - Jun. 2017',
@@ -266,7 +252,7 @@ export default {
               location: 'Vancouver, Canada',
               link: 'https://github.com/Armour/UPass-Script',
               duration: 'Jan. 2018',
-              features:[
+              features: [
                 'Automatically request UPass each month',
                 'Add feature of IFTTT notification'
               ]
@@ -302,14 +288,35 @@ export default {
 }
 
 </script>
-
+<style>
+@media print {
+  .back-to-home {
+    display: none;
+  }
+  .language {
+    display: none;
+  }
+  .main-container {
+    margin: 10px 5% auto 5% !important;
+  }
+  .moto {
+    display: none;
+  }
+  .address {
+    display: none;
+  }
+}
+</style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+ul {
+  margin: 0;
+}
 .card-container {
   border: 1px solid #f5f5f5;
   background-color: #f7f7f7;
   margin-bottom: 0.5em;
-  padding: 0.5em;
+  padding: 0.3em;
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -350,8 +357,8 @@ export default {
 
 .list-content {
   padding-left: 1.1rem;
-  margin-top: 0.4rem;
-  font-weight: lighter;
+  /* margin-top: 0.4rem; */
+  /* font-weight: lighter; */
   font-size: 0.9rem;
 }
 
@@ -368,8 +375,7 @@ export default {
 .sub-main-title {
   font-weight: 600;
   font-size: 1rem;
-  margin-bottom: 0.3rem;
-  margin-top: 0.4em;
+  margin-bottom: 0.5rem;
   color: #2c3e50;
 }
 
@@ -387,7 +393,7 @@ export default {
   /* color: #e74c3c; */
   display: flex;
   margin-bottom: 0.2rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .moto {
@@ -423,9 +429,6 @@ a:visited {
 li {
   margin-bottom: 0.3em;
 }
-ul {
-  margin-bottom: 0em;
-}
 .address {
   text-align: center;
   font-size: 0.7rem;
@@ -443,7 +446,7 @@ ul {
 
 .main-container {
   margin: 60px 10% auto 10%;
-  font-family: "Noto Sans", "Noto Sans CJK JP", sans-serif;
+  font-family: "Century Gothic", "Noto Sans CJK JP", sans-serif;
 }
 
 @media (min-width: 1200px) {
@@ -464,5 +467,6 @@ ul {
   margin: 0 auto 0.5rem auto;
   width: 100%;
   text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
 }
 </style>
