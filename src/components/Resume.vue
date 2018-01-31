@@ -38,25 +38,6 @@
       <div class="skill-item" v-for="(skill,index) in mainData.skills" :key="index">{{skill}}</div>
     </div>
 
-    <subtitle :title="mainData.education"></subtitle>
-
-    <div class="card-container">
-      <div class="sub-main-title">
-        {{mainData.school}} ({{mainData.major}})
-        <span class="location">{{mainData.location1}}</span>
-      </div>
-      <div class="sub-content">
-        {{mainData.degree|toUpper}}
-        <span class="duration">{{mainData.duration1}}</span>
-      </div>
-      <div>
-        <ul class="list-content">
-          <li>{{mainData.eduOne}}</li>
-          <li>{{mainData.eduTwo}}</li>
-        </ul>
-      </div>
-    </div>
-
     <subtitle :title="mainData.experience"></subtitle>
     <div class="card-container" v-for="(item,index) in mainData.experienceDetail" :key="'experience-'+index">
       <div class="sub-main-title">
@@ -91,8 +72,8 @@
         </ul>
       </div>
     </div>
-
-    <subtitle :title="mainData.openSource"></subtitle>
+    <div class="page-break"></div>
+    <subtitle style="margin-top:1em;" :title="mainData.openSource"></subtitle>
     <div class="card-container" v-for="(item,index) in mainData.openSourceDetail" :key="'opensource-'+index">
       <div class="sub-main-title">
         <a :href="item.link">
@@ -104,6 +85,41 @@
         <ul class="list-content">
           <li v-for="(list,index) in item.features" :key="'content-'+index">{{list}}</li>
         </ul>
+      </div>
+    </div>
+    <subtitle :title="mainData.education"></subtitle>
+
+    <div class="card-container">
+      <div class="sub-main-title">
+        {{mainData.school}} ({{mainData.major}})
+        <span class="location">{{mainData.location1}}</span>
+      </div>
+      <div class="sub-content">
+        {{mainData.degree|toUpper}}
+        <span class="duration">{{mainData.duration1}}</span>
+      </div>
+      <div>
+        <ul class="list-content">
+          <li>{{mainData.eduOne}}</li>
+          <li>{{mainData.eduTwo}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="view-online">
+      <subtitle title="online resume"></subtitle>
+      <div class="card-container" style="padding:1em;display:flex;">
+        <div>
+          <div style="display:flex;justify-content:space-around;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://me.haoxp.xyz/resume">
+          </div>
+          <div>
+            https://haoxp.xyz/resume
+          </div>
+        </div>
+        <div style="min-width:10em">
+          Tools & Skills used in the website:<br> Vue.js, Webpack, PWA, Firebase<br>Flask(Python), Google Vision Service, Nginx, HTTPS
+        </div>
       </div>
     </div>
   </div>
@@ -158,11 +174,22 @@ export default {
               'Other research related work'
             ]
           }, {
+            link: 'https://houaa.xyz',
+            title: 'Houaa education',
+            duration: 'Jun. 2017 - Aug. 2017',
+            location: 'Hangzhou, China',
+            job: 'Full-stack developer',
+            workDetails: [
+              'Web app developing.',
+              'Develop on most fancy web features including PWA, modern css, SPA etc.',
+              'Dev-ops. Server Architect.'
+            ]
+          }, {
             link: 'https://www.zjuqsc.com',
             title: 'QSC in Zhejiang University',
             duration: 'June. 2016 - June. 2017',
             location: 'Hangzhou, China',
-            job: 'Chief Technology Officer',
+            job: 'Group leader',
             workDetails: [
               'Full-stack developing',
               'Dev-ops. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
@@ -189,7 +216,7 @@ export default {
         projectDetail: [
           [
             {
-              name: 'Houaa education',
+              name: 'Houaa webapp',
               link: 'https://houaa.xyz',
               location: 'Hangzhou, China',
               duration: 'Feb. 2017 - Sept. 2017',
@@ -204,6 +231,14 @@ export default {
               feature0: 'Official 120th Anniversary Assistant of Zhejiang University',
               feature1: 'Webpack, Gaode map, Vue',
               feature2: 'Frontend develop, Server Architect'
+            }, {
+              name: 'Telegram Channel Bot',
+              link: 'https://t.me/newsathlh',
+              location: 'Vancouver, Canada',
+              duration: 'Sept. 2017 - Now',
+              feature0: 'Get news, weather, Iot data from a raspi',
+              feature1: 'Self designed machine learning algorithm',
+              feature2: 'Industrial level type annotation in Python3.6+'
             }
           ],
           [
@@ -256,6 +291,12 @@ export default {
                 'Automatically request UPass each month',
                 'Add feature of IFTTT notification'
               ]
+            }, {
+              name: 'flask-graphql',
+              link: 'https://github.com/graphql-python/flask-graphql/pull/39',
+              location: 'Vancouver, Canada',
+              duration: 'Jan. 2018',
+              features: ['fix test error by changing unit test to latest graphene api']
             }
           ], [
             {}
@@ -297,18 +338,40 @@ export default {
     display: none;
   }
   .main-container {
-    margin: 10px 5% auto 5% !important;
+    margin: 40px 5% auto 5% !important;
   }
   .moto {
-    display: none;
+    /* display: none; */
   }
   .address {
     display: none;
+  }
+  .view-online {
+    display: block;
+  }
+  .page-break {
+    display: block;
+    page-break-before: always;
+    min-height:5em;
+  }
+  .page-after {
+    min-height: 7em;
   }
 }
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@media screen {
+  .view-online {
+    display: none;
+  }
+  .page-break {
+    display: none;
+  }
+  .page-after {
+    display: none;
+  }
+}
 ul {
   margin: 0;
 }
