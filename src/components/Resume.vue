@@ -178,7 +178,7 @@ export default {
             title: 'Houaa education',
             duration: 'Jun. 2017 - Aug. 2017',
             location: 'Hangzhou, China',
-            job: 'Full-stack developer',
+            job: 'Co-founder, CTO',
             workDetails: [
               'Web app developing.',
               'Develop on most fancy web features including PWA, modern css, SPA etc.',
@@ -189,7 +189,7 @@ export default {
             title: 'QSC in Zhejiang University',
             duration: 'June. 2016 - June. 2017',
             location: 'Hangzhou, China',
-            job: 'Group leader',
+            job: 'Deputy Technical Director',
             workDetails: [
               'Full-stack developing',
               'Dev-ops. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
