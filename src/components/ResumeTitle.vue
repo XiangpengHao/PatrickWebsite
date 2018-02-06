@@ -1,8 +1,7 @@
 <template>
   <div class="main-title">
     <span style="color: rgb(39, 109, 155)">{{title|toUpper}}</span>
-    <span class="line">
-    </span>
+    <span class="line"> </span>
   </div>
 </template>
 
@@ -13,15 +12,15 @@ export default {
     'title'
   ],
   filters: {
-    toUpper: function(value) {
+    toUpper: function (value) {
       if (!value) return ''
       value = value.toString()
       return value.toUpperCase()
     },
-    getFirst: function(value) {
+    getFirst: function (value) {
       return value.slice(0, 1)
     },
-    getRemain: function(value) {
+    getRemain: function (value) {
       return value.slice(1)
     }
   },

@@ -1,41 +1,26 @@
 <template>
   <div class="main-container">
     <div @click="changeLan" class="language">{{language}}</div>
-    <transition name="fade">
-      <div class="re-name">
-        {{mainData.name}}
-      </div>
-    </transition>
-    <div class="sub-title">
-      {{mainData.major | toUpper}} - {{mainData.area| toUpper}}
-    </div>
-    <div class="address">
-      {{mainData.address}}
-    </div>
-    <div class="other-info">
-      <i class="fa fa-github" aria-hidden="true">
-        <a href="https://github.com/HaoPatrick"> HaoPatrick</a>
-      </i>|
-      <i class="fa fa-envelope" aria-hidden="true">
-        <a href="mailto:haoxiangpeng@hotmail.com"> haoxiangpeng123@gmail.com</a>
-      </i>|
-      <i class="fa fa-home" aria-hidden="true">
-        <a href="https://haoxp.xyz"> https://haoxp.xyz</a>
-      </i>|
-      <i class="fa fa-telegram" aria-hidden="true">
-        <a href="https://telegram.org/"> Haoooxiangpeng</a>
-      </i>|
-      <i class="fa fa-linkedin" aria-hidden="true">
-        <a href="https://www.linkedin.com/in/hao-xiangpeng-15ab33103"> hao-xiangpeng</a>
-      </i>
-    </div>
-    <div class="moto">
-      {{mainData.moto}}
-    </div>
+    <toptitle></toptitle>
 
     <subtitle :title="mainData.skillsAbility"></subtitle>
     <div class="skill-content">
       <div class="skill-item" v-for="(skill,index) in mainData.skills" :key="index">{{skill}}</div>
+    </div>
+
+    <subtitle :title="mainData.project"></subtitle>
+    <div class="card-container" v-for="(item,index) in mainData.projectDetail" :key="index">
+      <div class="sub-main-title">
+        <a :href="item.link">
+          {{item.name}}
+        </a>
+        <span class="location">{{item.location}}</span>
+      </div>
+      <div>
+        <ul class="list-content">
+          <li v-for="(feature,index) in item.features" :key="index">{{feature}}</li>
+        </ul>
+      </div>
     </div>
 
     <subtitle :title="mainData.experience"></subtitle>
@@ -56,23 +41,8 @@
       </div>
     </div>
 
-    <subtitle :title="mainData.project"></subtitle>
-    <div class="card-container" v-for="(item,index) in mainData.projectDetail" :key="index">
-      <div class="sub-main-title">
-        <a :href="item.link">
-          {{item.name}}
-        </a>
-        <span class="location">{{item.location}}</span>
-      </div>
-      <div>
-        <ul class="list-content">
-          <li>{{item.feature0}}</li>
-          <li>{{item.feature1}}</li>
-          <li>{{item.feature2}}</li>
-        </ul>
-      </div>
-    </div>
-    <div class="page-break"></div>
+    <toptitle id="secondpage-title"></toptitle>
+
     <subtitle style="margin-top:1em;" :title="mainData.openSource"></subtitle>
     <div class="card-container" v-for="(item,index) in mainData.openSourceDetail" :key="'opensource-'+index">
       <div class="sub-main-title">
@@ -91,7 +61,7 @@
 
     <div class="card-container">
       <div class="sub-main-title">
-        {{mainData.school}} ({{mainData.major}})
+        {{mainData.school}}
         <span class="location">{{mainData.location1}}</span>
       </div>
       <div class="sub-content">
@@ -117,8 +87,11 @@
             https://haoxp.xyz/resume
           </div>
         </div>
-        <div style="min-width:10em">
-          Tools & Skills used in the website:<br> Vue.js, Webpack, PWA, Firebase<br>Flask(Python), Google Vision Service, Nginx, HTTPS
+        <div style="min-width:10em; margin-left:1em;">
+          Tools & Skills used in the website:<br> Vue.js, PWA, Firebase, Flask(Python)
+          <br><br> Most of my crazy ideas are experimented on this website before they go to production.
+          <br> So far, I have tried: WebGL, WebAssembly, GraphQL, PWA, SSR, Serverless, HSTS, Deep Learning etc.
+          <br> What an amazing world!
         </div>
       </div>
     </div>
@@ -127,10 +100,12 @@
 
 <script>
 import subtitle from './ResumeTitle'
+import toptitle from './subcomponents/ResumeTop'
 export default {
   name: 'hello',
   components: {
-    subtitle
+    subtitle,
+    toptitle
   },
   filters: {
     toUpper: function (value) {
@@ -146,11 +121,6 @@ export default {
       allData: {
         /* eslint-disable */
         // I don't want to deal with double qoute from JSON.stringfy :(
-        name: ["Xiangpeng Hao", "郝翔鹏"],
-        major: ["Computer Science", "计算机科学"],
-        area: ["Fullstack enginnering", "网站开发"],
-        address: ["8888 University Dr, Burnaby, BC V5A 1S6, Canada", "紫金港校区, 浙江大学, 杭州, 浙江省, 中国"],
-        moto: ["\"He who has to kindle the lightning one day, must for a long time -- be a cloud.\"", "\"谁将声震人间，必将长久深自缄默\""],
         education: ["Education", "教育"],
         school: ["Simon Fraser University", "浙江大学和 SFU"],
         location1: ["Vancouver, Canada", "杭州, 中国"],
@@ -164,36 +134,26 @@ export default {
         skills: [["Python", "JavaScript", "C++", "Git", "Linux Server"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
         experienceDetail: [
           [{
-            link: 'https://github.com/sfu-cl-lab/',
-            title: 'CSCL Lab in Simon Fraser University',
-            duration: 'Sept. 2017 - Now',
-            location: 'Vancouver, Canada',
-            job: 'Research Asisstant',
-            workDetails: [
-              'Data mining & Sports analyze and prediction',
-              'Other research related work'
-            ]
-          }, {
             link: 'https://houaa.xyz',
             title: 'Houaa education',
-            duration: 'Jun. 2017 - Aug. 2017',
+            duration: 'Jan. 2016 - Aug. 2017',
             location: 'Hangzhou, China',
             job: 'Co-founder, CTO',
             workDetails: [
-              'Web app developing.',
-              'Develop on most fancy web features including PWA, modern css, SPA etc.',
-              'Dev-ops. Server Architect.'
+              'In charge of the whole tech department',
+              'Develop on most fancy web features including PWA, modern css, SPA etc. ',
+              'Dev-ops. Wirte automatic Python script to test, deploy and dispatch our app'
             ]
           }, {
             link: 'https://www.zjuqsc.com',
             title: 'QSC in Zhejiang University',
-            duration: 'June. 2016 - June. 2017',
+            duration: 'Jun. 2016 - June. 2017',
             location: 'Hangzhou, China',
-            job: 'Deputy Technical Director',
+            job: 'Technical Director',
             workDetails: [
-              'Full-stack developing',
-              'Dev-ops. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
-              'Technical talk, meeting, news sharing every week'
+              'Lead a large department with 71 engineers',
+              'Dev-ops. Work on Docker, Shell, Git, Continuous Integration and Test Driven Develop',
+              'Meet on a weekly basis and share news & thoughts among the department'
             ]
           }],
           [{
@@ -212,7 +172,7 @@ export default {
             ]
           }]
         ],
-        project: ["selected projects", "项目"],
+        project: ["selected personal projects", "项目"],
         projectDetail: [
           [
             {
@@ -220,25 +180,34 @@ export default {
               link: 'https://houaa.xyz',
               location: 'Hangzhou, China',
               duration: 'Feb. 2017 - Sept. 2017',
-              feature0: 'An Education Sharing Platform',
-              feature1: 'Everything with modern Javascript. Vue.js + Webpack + Serverless + PWA',
-              feature2: 'Web app developing, Server Architect'
+              features: ['An Education Sharing Platform',
+                'Work with modern Javascript. Vue.js + Webpack + Serverless + PWA',
+                'Lead a group of 11, including engineer, project manager and designer']
+            }, {
+              name: 'Web Printer',
+              link: 'https://github.com/HaoPatrick/WebPrinter',
+              location: 'Vancouver, Canada',
+              duration: 'Feb. 2018',
+              features: [
+                'Use Python to drive the old printer which do not have network printing',
+                'Developed a nice user interface and print from anywhere on the Internet'
+              ]
             }, {
               name: 'Anniversary guide for Zhejiang University',
               link: 'https://120.zjuqsc.com',
               location: 'Hangzhou, China',
               duration: 'May. 2017 - Jun. 2017',
-              feature0: 'Official 120th Anniversary Assistant of Zhejiang University',
-              feature1: 'Webpack, Gaode map, Vue',
-              feature2: 'Frontend develop, Server Architect'
+              features: ['Write an web app for Zhejiang University to celebrate its 120th anniversary',
+                'In charge of the whole developing team, including coordinate with volunteer work',
+                'Used CDN and load balance to serve thousands of requests per second']
             }, {
               name: 'Telegram Channel Bot',
               link: 'https://t.me/newsathlh',
               location: 'Vancouver, Canada',
               duration: 'Sept. 2017 - Now',
-              feature0: 'Get news, weather, Iot data from a raspi',
-              feature1: 'Self designed machine learning algorithm',
-              feature2: 'Industrial level type annotation in Python3.6+'
+              features: ['Use Python to write a news, weather data provider, deployed on a raspberry pi',
+                'Designed a machine learning algorithm by myself',
+                'Use modern Python through the whole project (type annotation, test driven dev etc.)']
             }
           ],
           [
@@ -247,26 +216,20 @@ export default {
               location: '中国，杭州',
               link: 'https://github.com/HaoPatrick/Tmplaye',
               duration: 'Jan. 2017',
-              feature0: 'A Python3.6 project',
-              feature1: '一个类似 Django 正在使用的模板引擎',
-              feature2: '支持多种 inline 语法和复杂的条件循环控制'
+              features: ['A Python3.6 project', '一个类似 Django 正在使用的模板引擎', '支持多种 inline 语法和复杂的条件循环控制']
             },
             {
               name: '猴啊家教',
               location: '中国，杭州',
               link: 'https://houaa.xyz',
               duration: 'Feb. 2017 - Sept. 2017',
-              feature0: '一个家教分享管理平台',
-              feature1: 'Vue.js + Vue-Router + Vuex + Webpack',
-              feature2: '网页端开发，服务器架构'
+              features: ['一个家教分享管理平台', 'Vue.js + Vue-Router + Vuex + Webpack', '网页端开发，服务器架构']
             }, {
               name: '浙江大学120周年校庆助手',
               location: '中国，杭州',
               link: 'https://120.zjuqsc.com',
               duration: 'May. 2017 - Jun. 2017',
-              feature0: '浙江大学120周年官方校庆助手',
-              feature1: 'Webpack, Gaode map, Vue',
-              feature2: '网页端开发，服务器架构'
+              features: ['浙江大学120周年官方校庆助手', 'Webpack, Gaode map, Vue', '网页端开发，服务器架构']
             }
           ]
         ],
@@ -338,24 +301,14 @@ export default {
     display: none;
   }
   .main-container {
-    margin: 40px 5% auto 5% !important;
-  }
-  .moto {
-    /* display: none; */
-  }
-  .address {
-    display: none;
+    margin: 0px 5% auto 5% !important;
   }
   .view-online {
     display: block;
   }
-  .page-break {
+  #secondpage-title {
     display: block;
     page-break-before: always;
-    min-height:5em;
-  }
-  .page-after {
-    min-height: 7em;
   }
 }
 </style>
@@ -365,10 +318,7 @@ export default {
   .view-online {
     display: none;
   }
-  .page-break {
-    display: none;
-  }
-  .page-after {
+  #secondpage-title {
     display: none;
   }
 }
@@ -477,28 +427,8 @@ a:visited {
   color: #2c3e50;
 }
 
-.fa {
-  margin: 0 0.5rem 0 0.5rem;
-}
-
-.other-info {
-  font-size: 0.7rem;
-  text-align: center;
-}
-.other-info > i > a {
-  font-family: "Noto Sans", "Noto Sans CJK JP", sans-serif;
-}
-
 li {
   margin-bottom: 0.3em;
-}
-.address {
-  text-align: center;
-  font-size: 0.7rem;
-  /* font-style: italic; */
-  /* color: #7f8c8d; */
-  margin-bottom: 0.3rem;
-  margin-top: 0.3rem;
 }
 
 .sub-title {
@@ -508,19 +438,19 @@ li {
 }
 
 .main-container {
-  margin: 60px 10% auto 10%;
+  margin: 0px 10% auto 10%;
   font-family: "Century Gothic", "Noto Sans CJK JP", sans-serif;
 }
 
 @media (min-width: 1200px) {
   .main-container {
-    margin: 60px 20% auto 20%;
+    margin: 0px 20% auto 20%;
   }
 }
 
 @media (min-width: 1700px) {
   .main-container {
-    margin: 60px 25% auto 25%;
+    margin: 0px 25% auto 25%;
   }
 }
 
