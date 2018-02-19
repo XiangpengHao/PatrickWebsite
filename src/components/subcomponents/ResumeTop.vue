@@ -20,9 +20,9 @@
         <a href="https://www.linkedin.com/in/hao-xiangpeng-15ab33103"> hao-xiangpeng</a>
       </i>
     </div>
-    <div class="moto">
+    <!-- <div class="moto">
       {{mainData.moto}}
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
         major: "Computer Science",
         area: "Fullstack enginnering",
         address: "8888 University Dr, Burnaby, BC V5A 1S6, Canada",
-        moto: "\"He who has to kindle the lightning one day, must for a long time -- be a cloud.\""
+        moto: "\"He who has to kindle the lightning one day, must for a long time be a cloud.\" -- Friedrich Nietzsche"
         /* eslint-enable */
       }
     }

@@ -54,41 +54,38 @@
         </ul>
       </div>
     </div>
-    <subtitle :title="mainData.education"></subtitle>
-
-    <div class="card-container">
-      <div class="sub-main-title">
-        {{mainData.school}}
-        <span class="location">{{mainData.location1}}</span>
-      </div>
-      <div class="sub-content">
-        {{mainData.degree|toUpper}}
-        <span class="duration">{{mainData.duration1}}</span>
-      </div>
-      <div>
-        <ul class="list-content">
-          <li>{{mainData.eduOne}}</li>
-          <li>{{mainData.eduTwo}}</li>
-        </ul>
+    <div>
+      <subtitle :title="'Awards & Scholarship'"></subtitle>
+      <div class="card-container" v-for="(item,index) in mainData.awards" :key="'award-'+index">
+        <div class="sub-main-title">
+          <a :href="item.link">
+            {{item.name}}
+          </a>
+        </div>
+        <div>
+          <ul class="list-content">
+            <li v-for="(list,index) in item.features" :key="'award-content-'+index">{{list}}</li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div class="view-online">
-      <subtitle title="online resume"></subtitle>
-      <div class="card-container" style="padding:1em;display:flex;">
-        <div>
-          <div style="display:flex;justify-content:space-around;">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://me.haoxp.xyz/resume">
-          </div>
-          <div>
-            https://haoxp.xyz/resume
-          </div>
+    <div>
+      <subtitle :title="mainData.education"></subtitle>
+      <div class="card-container">
+        <div class="sub-main-title">
+          {{mainData.school}}
+          <span class="location">{{mainData.location1}}</span>
         </div>
-        <div style="min-width:10em; margin-left:1em;">
-          Tools & Skills used in the website:<br> Vue.js, PWA, Firebase, Flask(Python)
-          <br><br> Most of my crazy ideas are experimented on this website before they go to production.
-          <br> So far, I have tried: WebGL, WebAssembly, GraphQL, PWA, SSR, Serverless, HSTS, Deep Learning etc.
-          <br> What an amazing world!
+        <div class="sub-content">
+          {{mainData.degree|toUpper}}
+          <span class="duration">{{mainData.duration1}}</span>
+        </div>
+        <div>
+          <ul class="list-content">
+            <li>{{mainData.eduOne}}</li>
+            <li>{{mainData.eduTwo}}</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -178,20 +175,11 @@ export default {
             {
               name: 'My Website',
               link: 'https://me.haoxp.xyz',
-              location: 'Vancouver, China',
+              location: 'Vancouver, Canada',
               duration: 'Feb. 2017 - now',
               features: ['Developed the website to experiment most of my crazy ideas including WebGL, WebAssembly, GraphQL, PWA, SSR, Serverless, HSTS, Deep Learning etc.',
                 'Used vue.js as frontend framework and firebase as serverless backend, integrated deep learning and WebAssembly to discover a new way of demonstrating',
                 'Demonstrating my ideas, photographs and resume in a geek way']
-            }, {
-              name: 'Web Printer',
-              link: 'https://github.com/HaoPatrick/WebPrinter',
-              location: 'Vancouver, Canada',
-              duration: 'Feb. 2018',
-              features: [
-                'Use Python to drive the old printer which do not have network printing',
-                'Developed a nice user interface and print from anywhere on the Internet'
-              ]
             }, {
               name: 'Anniversary guide for Zhejiang University',
               link: 'https://120.zjuqsc.com',
@@ -264,6 +252,19 @@ export default {
           ], [
             {}
           ]
+        ],
+        awards: [
+          [{
+            name: 'SFU Entrance Scholarship',
+            link: 'https://www.sfu.ca/students/financialaid/entrance.html',
+            features: ['Entrance award valued at $5000 for academic standing students for the first two years study in Zhejiang University']
+          }, {
+            name: 'Mountain Madness Hackathon',
+            link: '',
+            features: ['Won best mobile app among all 10+ competitors']
+          }
+          ],
+          []
         ]
         /* eslint-enable */
       },
