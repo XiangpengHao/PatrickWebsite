@@ -3,18 +3,12 @@
     <div class="re-name">
       {{mainData.name}}
     </div>
-    <div class="sub-title">
-      {{mainData.major | toUpper}} - {{mainData.area| toUpper}}
-    </div>
-    <div class="address">
-      {{mainData.address}}
-    </div>
     <div class="other-info">
       <i class="fa fa-github" aria-hidden="true">
         <a href="https://github.com/HaoPatrick"> HaoPatrick</a>
       </i>|
       <i class="fa fa-envelope" aria-hidden="true">
-        <a href="mailto:haoxiangpeng@hotmail.com"> haoxiangpeng123@gmail.com</a>
+        <a href="mailto:xha62@sfu.ca"> xha62@sfu.ca</a>
       </i>|
       <i class="fa fa-home" aria-hidden="true">
         <a href="https://haoxp.xyz"> https://haoxp.xyz</a>

@@ -7,22 +7,6 @@
     <div class="skill-content">
       <div class="skill-item" v-for="(skill,index) in mainData.skills" :key="index">{{skill}}</div>
     </div>
-
-    <subtitle :title="mainData.project"></subtitle>
-    <div class="card-container" v-for="(item,index) in mainData.projectDetail" :key="index">
-      <div class="sub-main-title">
-        <a :href="item.link">
-          {{item.name}}
-        </a>
-        <span class="location">{{item.location}}</span>
-      </div>
-      <div>
-        <ul class="list-content">
-          <li v-for="(feature,index) in item.features" :key="index">{{feature}}</li>
-        </ul>
-      </div>
-    </div>
-
     <subtitle :title="mainData.experience"></subtitle>
     <div class="card-container" v-for="(item,index) in mainData.experienceDetail" :key="'experience-'+index">
       <div class="sub-main-title">
@@ -37,6 +21,20 @@
       <div>
         <ul class="list-content">
           <li v-for="(detail,j) in item.workDetails" :key="'content'+j">{{detail}}</li>
+        </ul>
+      </div>
+    </div>
+    <subtitle :title="mainData.project"></subtitle>
+    <div class="card-container" v-for="(item,index) in mainData.projectDetail" :key="index">
+      <div class="sub-main-title">
+        <a :href="item.link">
+          {{item.name}}
+        </a>
+        <span class="location">{{item.location}}</span>
+      </div>
+      <div>
+        <ul class="list-content">
+          <li v-for="(feature,index) in item.features" :key="index">{{feature}}</li>
         </ul>
       </div>
     </div>
@@ -129,24 +127,25 @@ export default {
         duration2: ["Sept. 2016 - PRESENT", "Sept. 2016 - PRESENT"],
         eduOne: ["Simon Fraser University major in Computer Science", "Simon Fraser University， 计算机科学"],
         eduTwo: ["Zhejiang University (top 3 in China) major in Computer Science.", "前两年在浙江大学，计算机科学."],
-        experience: ["experience", "经历"],
+        experience: ["Technical work experience", "经历"],
         skillsAbility: ["skills/abilities", "技能"],
-        skills: [["Python", "JavaScript", "C++", "Git", "Linux Server"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
+        skills: [["Python", "JavaScript", "C/C++", "Java", "HTML", "CSS", "GraphQL", "Git",
+          "Linux Server", "AWS", "Azure", "Docker", "PWA", "Serverless", "Deep Learning"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
         experienceDetail: [
           [{
             link: 'https://houaa.xyz',
-            title: 'Houaa education',
+            title: 'Houaa Education',
             duration: 'Jan. 2016 - Aug. 2017',
             location: 'Hangzhou, China',
             job: 'Co-founder, CTO',
             workDetails: [
-              'In charge of the whole tech department',
+              'Lead a group of 11, including engineers, project managers and designer to develop an education sharing platform',
               'Develop on most fancy web features including PWA, modern css, SPA etc. ',
               'Dev-ops. Wirte automatic Python script to test, deploy and dispatch our app'
             ]
           }, {
             link: 'https://www.zjuqsc.com',
-            title: 'QSC in Zhejiang University',
+            title: 'QSC - Zhejiang University',
             duration: 'Jun. 2016 - June. 2017',
             location: 'Hangzhou, China',
             job: 'Technical Director',
@@ -301,7 +300,7 @@ export default {
     display: none;
   }
   .main-container {
-    margin: 0px 5% auto 5% !important;
+    margin: 0px 4% auto 4% !important;
   }
   .view-online {
     display: block;
@@ -363,8 +362,11 @@ ul {
 }
 
 .skill-item {
-  margin-right: 2rem;
+  /* margin-right: 2rem; */
   font-size: 1.2rem;
+  min-width: 7em;
+  text-align: center;
+  margin-bottom: 0.3em;
   /*flex-grow: 1;*/
 }
 
@@ -373,6 +375,9 @@ ul {
   /* margin-top: 0.4rem; */
   /* font-weight: lighter; */
   font-size: 0.9rem;
+}
+.list-content > li {
+  max-width: 50em;
 }
 
 .sub-content {
@@ -444,13 +449,15 @@ li {
 
 @media (min-width: 1200px) {
   .main-container {
-    margin: 0px 20% auto 20%;
+    margin: 0 auto;
+    width: 750px;
   }
 }
 
 @media (min-width: 1700px) {
   .main-container {
-    margin: 0px 25% auto 25%;
+    margin: 0 auto;
+    width: 750px;
   }
 }
 
