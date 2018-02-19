@@ -39,19 +39,37 @@
     </div>
 
     <toptitle id="secondpage-title"></toptitle>
-
-    <subtitle style="margin-top:1em;" :title="mainData.openSource"></subtitle>
-    <div class="card-container" v-for="(item,index) in mainData.openSourceDetail" :key="'opensource-'+index">
-      <div class="sub-main-title">
-        <a :href="item.link">
-          {{item.name}}
-        </a>
-        <span class="location">{{item.location}}</span>
+    <div>
+      <subtitle class="hide-when-not-print" :title="'Selected personal projects continued'"></subtitle>
+      <div class="card-container" v-for="(item,index) in mainData.continuedProjects" :key="index">
+        <div class="sub-main-title">
+          <a :href="item.link">
+            {{item.name}}
+          </a>
+          <span class="location">{{item.location}}</span>
+        </div>
+        <div>
+          <ul class="list-content">
+            <li v-for="(feature,index) in item.features" :key="index">{{feature}}</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <ul class="list-content">
-          <li v-for="(list,index) in item.features" :key="'content-'+index">{{list}}</li>
-        </ul>
+    </div>
+
+    <div>
+      <subtitle style="margin-top:1em;" :title="mainData.openSource"></subtitle>
+      <div class="card-container" v-for="(item,index) in mainData.openSourceDetail" :key="'opensource-'+index">
+        <div class="sub-main-title">
+          <a :href="item.link">
+            {{item.name}}
+          </a>
+          <span class="location">{{item.location}}</span>
+        </div>
+        <div>
+          <ul class="list-content">
+            <li v-for="(list,index) in item.features" :key="'content-'+index">{{list}}</li>
+          </ul>
+        </div>
       </div>
     </div>
     <div>
@@ -181,14 +199,6 @@ export default {
                 'Used vue.js as frontend framework and firebase as serverless backend, integrated deep learning and WebAssembly to discover a new way of demonstrating',
                 'Demonstrating my ideas, photographs and resume in a geek way']
             }, {
-              name: 'Anniversary guide for Zhejiang University',
-              link: 'https://120.zjuqsc.com',
-              location: 'Hangzhou, China',
-              duration: 'May. 2017 - Jun. 2017',
-              features: ['Write an web app for Zhejiang University to celebrate its 120th anniversary',
-                'In charge of the whole developing team, including coordinate with volunteer work',
-                'Used CDN and load balance to serve thousands of requests per second']
-            }, {
               name: 'Telegram Channel Bot',
               link: 'https://t.me/newsathlh',
               location: 'Vancouver, Canada',
@@ -196,6 +206,14 @@ export default {
               features: ['Use Python to write a news, weather data provider, deployed on a raspberry pi',
                 'Designed a machine learning algorithm by myself',
                 'Use modern Python through the whole project (type annotation, test driven dev etc.)']
+            }, {
+              name: 'Anniversary guide for Zhejiang University',
+              link: 'https://120.zjuqsc.com',
+              location: 'Hangzhou, China',
+              duration: 'May. 2017 - Jun. 2017',
+              features: ['Write an web app for Zhejiang University to celebrate its 120th anniversary',
+                'In charge of the whole developing team, including coordinate with volunteer work',
+                'Used CDN and load balance to serve thousands of requests per second']
             }
           ],
           [
@@ -221,6 +239,26 @@ export default {
             }
           ]
         ],
+        continuedProjects: [[
+          {
+            name: 'Web Printer',
+            link: 'https://github.com/HaoPatrick/WebPrinter',
+            location: 'Vancouver, Canada',
+            duration: 'Feb. 2018',
+            features: [
+              'Used Python to drive the old printer which do not have network printing',
+              'Developed a nice user interface and print from anywhere on the Internet'
+            ]
+          }, {
+            name: 'NBA Draft Crawler',
+            link: 'https://github.com/HaoPatrick/NBA_draft_crawler',
+            location: 'Vancouver, Canada',
+            features: [
+              'Wrote a Python script to crawl the NBA draft data for research use',
+              'Worked on beautiful soup and requests library to parse HTML and send requests, used regex expressions to handle dirty formatted content.'
+            ]
+          }
+        ], []],
         openSource: ['Open Source Contribution', '开源贡献'],
         openSourceDetail: [
           [
@@ -311,6 +349,9 @@ export default {
     display: block;
     page-break-before: always;
   }
+  .hide-when-not-print {
+    display: block;
+  }
 }
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -321,6 +362,9 @@ export default {
   }
   #secondpage-title {
     display: none;
+  }
+  .hide-when-not-print {
+    display: none !important;
   }
 }
 ul {
