@@ -12,11 +12,10 @@
       <div class="sub-main-title">
         <a :href="item.link">
           {{item.title}}</a>
-        <span class="location">{{item.location}}</span>
+        <span class="location">{{item.location}}, {{item.duration}}</span>
       </div>
       <div class="sub-content">
         {{item.job|toUpper}}
-        <span class="duration">{{item.duration}}</span>
       </div>
       <div>
         <ul class="list-content">
@@ -139,9 +138,10 @@ export default {
             location: 'Hangzhou, China',
             job: 'Co-founder, CTO',
             workDetails: [
-              'Lead a group of 11, including engineers, project managers and designer to develop an education sharing platform',
-              'Develop on most fancy web features including PWA, modern css, SPA etc. ',
-              'Dev-ops. Wirte automatic Python script to test, deploy and dispatch our app'
+              'Lead a group of 11, including engineers, project managers and designer to develop an education sharing platform ' +
+              'which matches students with tutors',
+              'Developed on most fancy web features including PWA, Serverless, SPA, modern CSS etc. ',
+              'Used Python script to automate dev-ops work including testing, deploying and dispatching our app'
             ]
           }, {
             link: 'https://www.zjuqsc.com',
@@ -150,8 +150,9 @@ export default {
             location: 'Hangzhou, China',
             job: 'Technical Director',
             workDetails: [
-              'Lead a large department with 71 engineers',
-              'Dev-ops. Work on Docker, Shell, Git, Continuous Integration and Test Driven Develop',
+              'Lead a large department with 71 engineers which develop multi-platform apps for students in the university, ' +
+              'enabling them to manage their campus life with ease',
+              'Worked on docker, shell, git, continuous integration and test-driven-developing to ensure the availability and functionality of our services',
               'Meet on a weekly basis and share news & thoughts among the department'
             ]
           }],
@@ -175,13 +176,13 @@ export default {
         projectDetail: [
           [
             {
-              name: 'Houaa webapp',
-              link: 'https://houaa.xyz',
-              location: 'Hangzhou, China',
-              duration: 'Feb. 2017 - Sept. 2017',
-              features: ['An Education Sharing Platform',
-                'Work with modern Javascript. Vue.js + Webpack + Serverless + PWA',
-                'Lead a group of 11, including engineer, project manager and designer']
+              name: 'My Website',
+              link: 'https://me.haoxp.xyz',
+              location: 'Vancouver, China',
+              duration: 'Feb. 2017 - now',
+              features: ['Developed the website to experiment most of my crazy ideas including WebGL, WebAssembly, GraphQL, PWA, SSR, Serverless, HSTS, Deep Learning etc.',
+                'Used vue.js as frontend framework and firebase as serverless backend, integrated deep learning and WebAssembly to discover a new way of demonstrating',
+                'Demonstrating my ideas, photographs and resume in a geek way']
             }, {
               name: 'Web Printer',
               link: 'https://github.com/HaoPatrick/WebPrinter',
@@ -362,12 +363,10 @@ ul {
 }
 
 .skill-item {
-  /* margin-right: 2rem; */
   font-size: 1.2rem;
   min-width: 7em;
   text-align: center;
   margin-bottom: 0.3em;
-  /*flex-grow: 1;*/
 }
 
 .list-content {
@@ -377,7 +376,7 @@ ul {
   font-size: 0.9rem;
 }
 .list-content > li {
-  max-width: 50em;
+  /* max-width: 40em; */
 }
 
 .sub-content {
@@ -399,7 +398,7 @@ ul {
 
 .location {
   font-weight: normal;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-style: italic;
   float: right;
   color: #e74c3c;
