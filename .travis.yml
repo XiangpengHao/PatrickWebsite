@@ -13,16 +13,16 @@ deploy:
     skip_cleanup: true
     script:
     - echo "begin deploying mainsite"
-    - rsync -r --delete-after --quiet dist/ hao@vul.haoxp.xyz:/home/hao/personal_profile
+    - rsync -avzhe ssh ./dist/ hao@vul.haoxp.xyz:/home/hao/personal_profile
     on:
       branch: master
   - provider: script
     skip_cleanup: true
     script: 
     - echo "begin deploying resume.pdf"
-    - node src/assets/capturePDF.js
+    - node ./src/assets/capturePDF.js
     - echo "done capturing resume.pdf"
-    - rsync -r --delete-after --quiet /tmp/resume.pdf hao@vul.haoxp.xyz:/home/hao/file_server
+    - rsync -avzhe ssh /tmp/resume.pdf hao@vul.haoxp.xyz:/home/hao/file_server
     on:
       branch: master
 
