@@ -9,7 +9,7 @@ const puppeteer = require('puppeteer');
     waitUntil: 'networkidle2'
   })
   await page.pdf({
-    path: '/temp/resume.pdf'
+    path: '/tmp/resume.pdf'
   })
 
   await browser.close()

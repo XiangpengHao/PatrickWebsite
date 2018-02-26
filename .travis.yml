@@ -18,13 +18,13 @@ deploy:
     skip_cleanup: true
     script: 
     - node $TRAVIS_BUILD_DIR/src/assets/capturePDF.js
-    - rsync -r --delete-after --quiet /temp/resume.pdf hao@vul.haoxp.xyz:/home/hao/file_server
+    - rsync -r --delete-after --quiet /tmp/resume.pdf hao@vul.haoxp.xyz:/home/hao/file_server
     on:
       branch: master
 
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_fbf95acb6d79_key -iv $encrypted_fbf95acb6d79_iv
-  -in deploy_rsa.enc -out /temp/deploy_rsa -d
+  -in deploy_rsa.enc -out /tmp/deploy_rsa -d
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/deploy_rsa
 - ssh-add /tmp/deploy_rsa
