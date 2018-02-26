@@ -295,7 +295,7 @@ export default {
           [{
             name: 'SFU Entrance Scholarship',
             link: 'https://www.sfu.ca/students/financialaid/entrance.html',
-            features: ['Entrance award valued at $5000 for academic standing students for the first two years study in Zhejiang University']
+            features: ['Entrance award valued at $5000 for academic outstanding students for the first two years study in Zhejiang University']
           }, {
             name: 'Mountain Madness Hackathon',
             link: '',
