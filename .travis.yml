@@ -11,13 +11,17 @@ cache:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist/ hao@vul.haoxp.xyz:/home/hao/personal_profile
+    script:
+    - echo "begin deploying mainsite"
+    - rsync -r --delete-after --quiet dist/ hao@vul.haoxp.xyz:/home/hao/personal_profile
     on:
       branch: master
   - provider: script
     skip_cleanup: true
     script: 
-    - node $TRAVIS_BUILD_DIR/src/assets/capturePDF.js
+    - echo "begin deploying resume.pdf"
+    - node src/assets/capturePDF.js
+    - echo "done capturing resume.pdf"
     - rsync -r --delete-after --quiet /tmp/resume.pdf hao@vul.haoxp.xyz:/home/hao/file_server
     on:
       branch: master

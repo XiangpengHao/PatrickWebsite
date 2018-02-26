@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
+  console.log('begin capture')
   const browser = await puppeteer.launch({
     args: ['--no-sandbox']
   })
@@ -13,4 +14,5 @@ const puppeteer = require('puppeteer');
   })
 
   await browser.close()
+  console.log('done caturing pdf, saving result to /tmp/resume.pdf')
 })()
