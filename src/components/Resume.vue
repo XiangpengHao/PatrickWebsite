@@ -107,6 +107,14 @@
         </div>
       </div>
     </div>
+    <div class="download-button">
+      <a target="_blank" href="https://file.haoxp.xyz/resume.pdf">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-download fa-stack-1x"></i>
+        </span>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -352,10 +360,22 @@ export default {
   .hide-when-not-print {
     display: block;
   }
+  .download-button {
+    display: none;
+  }
 }
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.download-button {
+  cursor: pointer;
+  width: 3em;
+  height: 3em;
+  position: fixed;
+  bottom: 1em;
+  right: 4em;
+  font-size: 0.8em;
+}
 @media screen {
   .view-online {
     display: none;

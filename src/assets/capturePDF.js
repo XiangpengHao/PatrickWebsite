@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
   })
   const page = await browser.newPage()
   await page.goto('https://haoxp.xyz/resume', {
-    waitUntil: 'networkidle2'
+    waitUntil: 'networkidle0'
   })
   await page.pdf({
     path: '/tmp/resume.pdf'
