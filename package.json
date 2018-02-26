@@ -30,6 +30,7 @@
     "graphql-tag": "^2.6.1",
     "lodash": "^4.17.4",
     "particles.js": "^2.0.0",
+    "puppeteer": "^1.1.1",
     "vue": "^2.5.8",
     "vue-apollo": "^3.0.0-alpha.3",
     "vue-echarts": "^2.4.0",
