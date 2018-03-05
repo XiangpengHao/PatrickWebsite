@@ -508,7 +508,7 @@ li {
 
 .main-container {
   margin: 0px 10% auto 10%;
-  font-family: "Century Gothic", "Noto Sans CJK JP", sans-serif;
+  font-family: 'PT Sans', sans-serif;
 }
 
 @media (min-width: 1200px) {

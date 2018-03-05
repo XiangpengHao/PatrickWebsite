@@ -4,57 +4,59 @@
       <vue-particles color="#dedede" :particleOpacity="0.7" :particlesNumber="80" shapeType="circle" :particleSize="4" linesColor="#dedede" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
       </vue-particles>
     </div>
-    <div style="font-family:'Open Sans', sans-serif;;position:absolute;top:50%;left:50%;transform: translate(-50%, -30%);color:#eee;text-align:center;">
+    <div style="position:absolute;top:50%;left:50%;transform: translate(-50%, -30%);color:#eee;text-align:center;">
       <h1 style="font-size:2.5em;margin-bottom:0.2em;">
-        Hao, he said.
+        Xiangpeng Hao
       </h1>
-      <div style="font-family:'Slabo 27px', serif;font-size:1.2em;">
+      <div style="font-family:'Roboto Slab', serif;font-size:1.2em;">
         <ul style="display:inline;list-style:none;margin:0;">
           <li class="inline-li">He who has to kindle the lighting one day, </li>
           <li class="inline-li">must for a long time -- be a cloud.</li>
         </ul>
       </div>
-      <ul class="icon-ul">
-        <li>
-          <a href="https://github.com/HaoPatrick">
-            <el-tooltip class="item" effect="dark" content="GitHub" placement="top">
-              <i class="fa fa-github" aria-hidden="true">
-              </i>
-            </el-tooltip>
-          </a>
-        </li>
-        <li>
-          <router-link to="photos">
-            <el-tooltip class="item" effect="dark" content="Photography" placement="top">
-              <i class="fa fa-camera" aria-hidden="true">
-              </i>
-            </el-tooltip>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="resume">
-            <el-tooltip class="item" effect="dark" content="Resume" placement="top">
-              <i class="fa fa-address-card" aria-hidden="true"></i>
-            </el-tooltip>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="iot">
-            <el-tooltip class="item" effect="dark" content="IoT Lab" placement="top">
-              <i class="fa fa-flask" aria-hidden="true"></i>
-            </el-tooltip>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="playground">
-            <el-tooltip class="item" effect="dark" content="Playground" placement="top">
-              <i class="fa fa-terminal" aria-hidden="true"> </i>
-            </el-tooltip>
-          </router-link>
-        </li>
-      </ul>
-      <div style="font-size:0.7em;margin-top:0.6em;">
-        <span style="border-top:1px solid #eee;padding:0 1em 0 1em;text-align:center;">© 2012-{{year}} Hao Xiangpeng</span>
+      <div class="icon-ul">
+        <ul>
+          <li>
+            <a href="https://github.com/HaoPatrick">
+              <el-tooltip class="item" effect="dark" content="GitHub" placement="top">
+                <i class="fa fa-github" aria-hidden="true">
+                </i>
+              </el-tooltip>
+            </a>
+          </li>
+          <li>
+            <router-link to="photos">
+              <el-tooltip class="item" effect="dark" content="Photography" placement="top">
+                <i class="fa fa-camera" aria-hidden="true">
+                </i>
+              </el-tooltip>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="resume">
+              <el-tooltip class="item" effect="dark" content="Resume" placement="top">
+                <i class="fa fa-address-card" aria-hidden="true"></i>
+              </el-tooltip>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="iot">
+              <el-tooltip class="item" effect="dark" content="IoT Lab" placement="top">
+                <i class="fa fa-flask" aria-hidden="true"></i>
+              </el-tooltip>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="playground">
+              <el-tooltip class="item" effect="dark" content="Playground" placement="top">
+                <i class="fa fa-terminal" aria-hidden="true"> </i>
+              </el-tooltip>
+            </router-link>
+          </li>
+        </ul>
+        <div style="font-size:0.7em;margin-top:0.6em;">
+          <span style="border-top:1px solid #eee;padding:0 1em 0 1em;text-align:center;">© 2012-{{year}} Hao Xiangpeng</span>
+        </div>
       </div>
     </div>
   </div>
@@ -107,10 +109,14 @@ h1 {
 }
 
 .icon-ul {
-  margin-top: 50%;
+  margin-top: 15em;
+  margin-bottom: 5em;
 }
-
-.icon-ul > li {
+.icon-ul > ul {
+  display: flex;
+  justify-content: center;
+}
+.icon-ul > ul > li {
   display: inline;
   margin-right: 0.4em;
   margin-left: 0.4em;
