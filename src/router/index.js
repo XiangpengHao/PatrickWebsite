@@ -6,6 +6,7 @@ const Photos = () => import('../components/Photos')
 const Home = () => import('../components/Home')
 const IoT = () => import('../components/IoT')
 const test = () => import('../components/test')
+const NewHome = () => import('../components/NewHome')
 
 const Digits = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Digits')
 const Assembly = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Assembly')
@@ -69,6 +70,9 @@ export default new Router({
         }, {
           path: 'channel',
           component: Channel
+        }, {
+          path: 'newhome',
+          component: NewHome
         }
       ]
     },
