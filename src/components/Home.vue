@@ -115,7 +115,7 @@ h1 {
 .icon-ul > ul {
   display: flex;
   justify-content: center;
-  margin-left: 0px;
+  padding-left: 0px;
 }
 .icon-ul > ul > li {
   display: inline;
