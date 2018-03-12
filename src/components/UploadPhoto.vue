@@ -182,7 +182,7 @@ export default {
           self.msTags = response.data.description.tags
           // self.saveToDatabse()
         }
-        )
+      )
     },
     tagClose: function (tag) {
       let tagIndex = this.msTags.indexOf(tag)

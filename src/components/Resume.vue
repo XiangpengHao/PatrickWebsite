@@ -337,7 +337,6 @@ export default {
     }
   }
 }
-
 </script>
 <style>
 @media print {

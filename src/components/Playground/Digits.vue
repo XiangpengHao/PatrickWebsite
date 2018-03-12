@@ -17,8 +17,8 @@
 </template>
 
 <script>
-let debug = false
 import axios from 'axios'
+let debug = false
 export default {
   name: 'digits',
   data() {
