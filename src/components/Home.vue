@@ -1,8 +1,8 @@
 <template>
   <div style="width:100%;height:100%;position:absolute;overflow:hidden;">
     <div style="background-color:#AD002B;position:relative;width:100%;height:100%;">
-      <vue-particles color="#dedede" :particleOpacity="0.7" :particlesNumber="80" shapeType="circle" :particleSize="4" linesColor="#dedede" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
-      </vue-particles>
+      <div id="particles-js" color="#dedede">
+      </div>
     </div>
     <div style="position:absolute;top:50%;left:50%;transform: translate(-50%, -30%);color:#eee;text-align:center;">
       <h1 style="font-size:2.5em;margin-bottom:0.2em;">
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import particleConfig from '../assets/particles.json'
 export default {
   name: 'home',
   data() {
@@ -76,6 +77,20 @@ export default {
     }
   },
   mounted() {
+    require('particles.js')
+    // console.log(particlesJS)
+    this.$nextTick(() => {
+      this.initParticlesJS()
+    })
+  },
+  methods: {
+    initParticlesJS() {
+      /* eslint-disable */
+      particlesJS('particles-js', particleConfig, function () {
+        console.log('call back particles loaded')
+      })
+      /* eslint-enable */
+    }
   }
 }
 </script>

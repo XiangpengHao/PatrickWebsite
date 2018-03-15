@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import VueFire from 'vuefire'
 import ElementUI from 'element-ui'
-import VueParticles from 'vue-particles'
 import 'element-ui/lib/theme-default/index.css'
 import {
   ApolloClient
@@ -31,7 +30,6 @@ const apolloProvider = new VueApollo({
 })
 Vue.use(VueFire)
 Vue.use(ElementUI)
-Vue.use(VueParticles)
 Vue.use(VueApollo)
 
 /* eslint-disable no-new */
