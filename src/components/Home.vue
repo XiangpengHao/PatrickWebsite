@@ -27,7 +27,7 @@
           <li>
             <router-link to="photos">
               <el-tooltip class="item" effect="dark" content="Photography" placement="top">
-                <i class="fa fa-camera" aria-hidden="true">
+                <i class="fa fa-camera fa-4" aria-hidden="true">
                 </i>
               </el-tooltip>
             </router-link>
@@ -38,6 +38,13 @@
                 <i class="fa fa-address-card" aria-hidden="true"></i>
               </el-tooltip>
             </router-link>
+          </li>
+          <li>
+            <a href="https://blog.haoxp.xyz">
+              <el-tooltip class="item" effect="dark" content="Blog" placement="top">
+                <i class="fa fa-rss-square" aria-hidden="true"></i>
+              </el-tooltip>
+            </a>
           </li>
           <li>
             <router-link to="iot">
