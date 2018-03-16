@@ -142,6 +142,7 @@ h1 {
   margin-right: 0.6em;
   margin-left: 0.6em;
   font-size: 2em;
+  width:1em;
 }
 
 .inline-li {
