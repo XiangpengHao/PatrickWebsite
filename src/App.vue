@@ -2,10 +2,7 @@
   <div id="app">
     <router-view></router-view>
     <div v-show="showHome" class="back-to-home" v-on:click="backhome">
-      <span class="fa-stack fa-lg">
-        <i  class="fa fa-square-o fa-stack-2x"></i>
-        <i class="fa fa-home fa-stack-1x"></i>
-      </span>
+        <img src="./assets/icons/home.svg">
     </div>
   </div>
 </template>

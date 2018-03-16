@@ -109,10 +109,7 @@
     </div>
     <div class="download-button">
       <a target="_blank" href="https://file.haoxp.xyz/resume.pdf">
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-square-o fa-stack-2x"></i>
-          <i class="fa fa-download fa-stack-1x"></i>
-        </span>
+        <img src="../assets/icons/download.svg">
       </a>
     </div>
   </div>
@@ -372,8 +369,11 @@ export default {
   height: 3em;
   position: fixed;
   bottom: 1em;
-  right: 4em;
+  right: 5em;
   font-size: 0.8em;
+}
+.download-button >a > img {
+  margin: 0.25em;
 }
 @media screen {
   .view-online {
@@ -507,7 +507,7 @@ li {
 
 .main-container {
   margin: 0px 10% auto 10%;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 @media (min-width: 1200px) {

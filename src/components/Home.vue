@@ -18,35 +18,27 @@
         <ul>
           <li>
             <a href="https://github.com/HaoPatrick">
-              <el-tooltip class="item" effect="dark" content="GitHub" placement="top">
-                <img class="icons" src="../assets/icons/github.svg">
-              </el-tooltip>
+              <img class="icons" src="../assets/icons/github.svg">
             </a>
           </li>
           <li>
             <router-link to="resume">
-              <el-tooltip class="item" effect="dark" content="Resume" placement="top">
-                <img class="icons" src="../assets/icons/address-card.svg">
-              </el-tooltip>
+              <img class="icons" src="../assets/icons/address-card.svg">
             </router-link>
           </li>
           <li>
             <a href="https://blog.haoxp.xyz">
-                <img class="icons" src="../assets/icons/blogger-b.svg">
+              <img class="icons" src="../assets/icons/edit.svg">
             </a>
           </li>
           <li>
             <router-link to="playground">
-              <el-tooltip class="item" effect="dark" content="Playground" placement="top">
-                <img class="icons" src="../assets/icons/flask.svg">
-              </el-tooltip>
+              <img class="icons" src="../assets/icons/flask.svg">
             </router-link>
           </li>
           <li>
             <router-link to="photos">
-              <el-tooltip class="item" effect="dark" content="Photography" placement="top">
-                <img class="icons" src="../assets/icons/camera.svg">
-              </el-tooltip>
+              <img class="icons" src="../assets/icons/camera.svg">
             </router-link>
           </li>
         </ul>
@@ -105,7 +97,7 @@ body {
 .icons {
   min-width: 1em;
   min-width: 1.2em;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 .icons:hover {
