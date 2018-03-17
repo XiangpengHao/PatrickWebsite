@@ -2,9 +2,10 @@
   <div class="main-container">
     <div class="content-div">
       <div>
-        <h3 class="main-title">Playground</h3>
+        <h3 style="cursor:pointer" v-on:click="shuffleList" class="main-title">Playground</h3>
       </div>
-      <div class="project-list">
+      <!-- <div class="project-list"> -->
+      <transition-group name="slide-fade" tag="div" class="project-list">
         <el-card v-on:click.native="routeTo(proj.url)" class="project-item" v-for="(proj,index) in porjectList" :key="index">
           <div class="card-content">
             <div class="card-left">
@@ -20,12 +21,14 @@
             <div class="card-image"><img :src="proj.image"></div>
           </div>
         </el-card>
-      </div>
+      </transition-group>
+      <!-- </div> -->
     </div>
   </div>
 </template>
 
 <script>
+import lodashShuffle from 'lodash/fp/shuffle'
 export default {
   name: 'playground',
   data() {
@@ -62,13 +65,29 @@ export default {
   methods: {
     routeTo(url) {
       this.$router.push(url)
+    },
+    shuffleList() {
+      this.porjectList = lodashShuffle(this.porjectList)
     }
   }
 }
 </script>
+<style>
+.flip-list-move {
+  transition: transform 1s;
+}
+</style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.flip-list-enter-active, .flip-list-leave-active {
+  transition: all 1s;
+}
+.flip-list-enter, .flip-list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 ul {
   margin: 0.5em 0;
   list-style: none;
@@ -100,7 +119,7 @@ li {
 .el-card {
   border-radius: 1px;
   box-shadow: 0 0 0 0;
-  transition: box-shadow 0.7s;
+  transition: all 0.7s ;
 }
 .el-card:hover {
   box-shadow: 0 3px 3px 0 hsla(0, 0%, 0%, 0.2);
