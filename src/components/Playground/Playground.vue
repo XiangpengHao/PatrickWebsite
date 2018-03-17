@@ -34,7 +34,8 @@ export default {
   data() {
     return {
       msg: 'playground',
-      porjectList: [{
+      porjectList: [],
+      porjectListBck: [{
         name: 'Digit Recognition',
         desc: ['Pure python implementation of villain neuron network',
           'Use canvas to paint the user input and send to backend server',
@@ -62,12 +63,19 @@ export default {
       }]
     }
   },
+  mounted: function () {
+    for (let i = 0; i < this.porjectListBck.length; i++) {
+      setTimeout(() => {
+        this.porjectList.push(this.porjectListBck[i])
+      }, i * 400)
+    }
+  },
   methods: {
     routeTo(url) {
       this.$router.push(url)
     },
     shuffleList() {
-      this.porjectList = lodashShuffle(this.porjectList)
+      this.porjectList = lodashShuffle(this.porjectListBck)
     }
   }
 }
@@ -80,14 +88,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.flip-list-enter-active, .flip-list-leave-active {
-  transition: all 1s;
+.slide-fade-enter-active {
+  transition: all 0.5s ease;
 }
-.flip-list-enter, .flip-list-leave-to /* .list-leave-active below version 2.1.8 */ {
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
   opacity: 0;
-  transform: translateY(30px);
 }
-
 ul {
   margin: 0.5em 0;
   list-style: none;
@@ -119,10 +130,10 @@ li {
 .el-card {
   border-radius: 1px;
   box-shadow: 0 0 0 0;
-  transition: all 0.7s ;
+  transition: all 0.7s;
 }
 .el-card:hover {
-  box-shadow: 0 3px 3px 0 hsla(0, 0%, 0%, 0.2);
+  box-shadow: 0 0 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 .project-item {
   margin-top: 1em;

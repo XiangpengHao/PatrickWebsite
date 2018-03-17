@@ -6,7 +6,7 @@
     </div>
     <div style="position:absolute;top:50%;left:50%;transform: translate(-50%, -30%);color:#eee;text-align:center;">
       <h1 style="font-size:4em;margin-bottom:0.2em;">
-        Xiangpeng Hao
+        <span class="typing">Xiangpeng Hao</span>
       </h1>
       <div style="font-family:'Roboto Slab', serif;font-size:1.2em;">
         <ul style="display:inline;list-style:none;margin:0;">
@@ -91,6 +91,26 @@ body {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@keyframes caret {
+  50% {
+    border-right-color: currentColor;
+  }
+}
+.typing {
+  display: inline-block;
+  width: 14ch;
+  font-family: Consolas, Monaco, monospace;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 500;
+  border-right: 1px solid transparent;
+  animation: typing 1s steps(14), caret 0.5s steps(1) 5;
+}
 :root {
   --icon-fill-color: #fefefe;
 }
@@ -142,7 +162,7 @@ h1 {
   margin-right: 0.6em;
   margin-left: 0.6em;
   font-size: 2em;
-  width:1em;
+  width: 1em;
 }
 
 .inline-li {
