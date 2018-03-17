@@ -1,16 +1,27 @@
 <template>
   <div class="main-container">
-    <div>
-      <h3 class="main-title">Patrick's Playground</h3>
+    <div class="content-div">
+      <div>
+        <h3 class="main-title">Playground</h3>
+      </div>
+      <div class="project-list">
+        <el-card v-on:click.native="routeTo(proj.url)" class="project-item" v-for="(proj,index) in porjectList" :key="index">
+          <div class="card-content">
+            <div class="card-left">
+              <h3 class="card-name">{{proj.name}}</h3>
+              <div class="card-desc">
+                <ul>
+                  <li v-for="(d,i) in proj.desc" :key="i">
+                    {{d}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-image"><img :src="proj.image"></div>
+          </div>
+        </el-card>
+      </div>
     </div>
-    <el-carousel :interval="5000" type="card" height="300px">
-      <el-carousel-item v-for="item in 6" :key="item">
-        <h3>{{ item }}</h3>
-      </el-carousel-item>
-    </el-carousel>
-    <router-link to="/playground/digit">Hand-crafted Neuron Network Digit recognition</router-link>
-    <router-link to="/playground/wasm">Unity WebAssembly tiny game</router-link>
-    <router-link to="/playground/graphqltest">Graphql Test</router-link>
   </div>
 </template>
 
@@ -19,7 +30,38 @@ export default {
   name: 'playground',
   data() {
     return {
-      msg: 'playground'
+      msg: 'playground',
+      porjectList: [{
+        name: 'Digit Recognition',
+        desc: ['Pure python implementation of villain neuron network',
+          'Use canvas to paint the user input and send to backend server',
+          'Use Flask to hanlde HTTP requests and feed data to the neuron network'],
+        image: 'https://file.haoxp.xyz/img/playground-digit.png',
+        url: '/playground/digit'
+      }, {
+        name: 'News Channel',
+        desc: ['GraphQL client of my telegram news channel',
+          'flask-graphql, Docker, Wordcloud'],
+        image: 'https://file.haoxp.xyz/img/playground-news.png',
+        url: '/playground/channel'
+      }, {
+        name: 'WebAssembly Game',
+        desc: ['A Unity game', 'Using WebAssembly to improve game performance'],
+        image: 'https://file.haoxp.xyz/img/playground-wasm.png',
+        url: '/playground/wasm'
+      }, {
+        name: 'Photo upload',
+        desc: ['Upload my photos to gallery',
+          'Use machine learning to recognize the objects in Photos',
+          'Use firebase functions to generate the thumbnail'],
+        image: 'https://file.haoxp.xyz/img/playground-upload.png',
+        url: '/upload'
+      }]
+    }
+  },
+  methods: {
+    routeTo(url) {
+      this.$router.push(url)
     }
   }
 }
@@ -27,35 +69,73 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@media (min-width: 1200px) {
-  .main-container {
-    margin: 40px 20% auto 20%;
-  }
+ul {
+  margin: 0.5em 0;
+  list-style: none;
+  padding: 0;
 }
-
-@media (min-width: 1700px) {
-  .main-container {
-    margin: 40px 25% auto 25%;
-  }
+li {
+  list-style: none;
+  margin-top: 0.3em;
+}
+.card-left {
+  margin-right: 1em;
+  flex-grow: 1;
+}
+.card-name {
+  margin: 0;
+  /* font-weight: normal; */
+  font-weight: 800;
+}
+.card-image {
+  width: 13%;
+  margin-right: 5%;
+}
+.card-image > img {
+  width: 100%;
+}
+.card-content {
+  display: flex;
+}
+.el-card {
+  border-radius: 1px;
+  box-shadow: 0 0 0 0;
+  transition: box-shadow 0.7s;
+}
+.el-card:hover {
+  box-shadow: 0 3px 3px 0 hsla(0, 0%, 0%, 0.2);
+}
+.project-item {
+  margin-top: 1em;
+  cursor: pointer;
+}
+.project-list {
+  display: flex;
+  flex-direction: column;
+  color: #555;
+  font-family: "Courier New", Courier, monospace;
+}
+.content-div {
+  margin: 1% 21% 1% 21%;
+  background-color: #fefefe;
+  padding: 1em;
+  box-shadow: 0 6px 11px 0 hsla(0, 0%, 0%, 0.2);
+  border-top: 6px solid #00d2d3;
 }
 .main-title {
   color: #475669;
-  text-align: center;
-  font-size: 1.5em;
-}
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 200px;
+  font-size: 3em;
+  font-family: "Roboto Slab", serif;
   margin: 0;
 }
-
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
+.main-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  overflow: auto;
+  background-color: #d3d3d3;
 }
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
+::-webkit-scrollbar {
+  display: none;
 }
 </style>
