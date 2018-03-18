@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://haoxp.xyz/home",
+  "start_url": "https://haoxp.xyz/index.html",
   "display": "standalone",
   "background_color": "#ecf0f1",
   "theme_color": "#AD002B"
