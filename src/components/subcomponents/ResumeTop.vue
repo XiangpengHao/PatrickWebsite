@@ -6,7 +6,7 @@
     <div class="icon-column">
       <div v-for="(item,index) in this.iconColumnData " :key="index">
         <img style="margin-right:0.3em;" height="16px;" :src="item.imgSrc">
-        <a :href="item.src">
+        <a :href="item.href">
           {{item.text}}
         </a>
       </div>
@@ -36,7 +36,7 @@ export default {
       iconColumnData: [
         {
           imgSrc: require('../../assets/icons/github_b.svg'),
-          href: 'https://github_b.com/HaoPatrick',
+          href: 'https://github.com/HaoPatrick',
           text: 'HaoPatrick'
         }, {
           imgSrc: require('../../assets/icons/envelope.svg'),
@@ -52,7 +52,7 @@ export default {
           text: 'haoooxiangpeng'
         }, {
           imgSrc: require('../../assets/icons/linkedin.svg'),
-          href: 'https://www.linkedin.com/in/hao-xiangpeng-15ab33103',
+          href: 'https://www.linkedin.com/in/hao-xiangpeng',
           text: 'hao-xiangpeng'
         }]
     }
