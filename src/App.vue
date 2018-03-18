@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <transition name="fade" mode="in-out">
+      <router-view></router-view>
+    </transition>
     <div v-show="showHome" class="back-to-home" v-on:click="backhome">
-        <img src="./assets/icons/home.svg">
+      <img src="./assets/icons/home.svg">
     </div>
   </div>
 </template>
@@ -24,6 +26,14 @@ export default {
 </script>
 
 <style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 .back-to-home {
   cursor: pointer;
   width: 3em;
@@ -39,7 +49,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-body{
+body {
   margin: 0;
 }
 </style>

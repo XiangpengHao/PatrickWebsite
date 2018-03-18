@@ -4,7 +4,6 @@ const Resume = () => import('../components/Resume')
 const UploadPhoto = () => import('../components/UploadPhoto')
 const Photos = () => import('../components/Photos')
 const Home = () => import('../components/Home')
-const IoT = () => import('../components/IoT')
 const test = () => import('../components/test')
 const NewHome = () => import('../components/NewHome')
 
@@ -14,6 +13,7 @@ const Playground = () => import(/* webpackChunkName: "group-playground" */ '../c
 const PlaygroundContainer = () => import(/* webpackChunkName: "group-playground" */'../components/Playground/Container')
 const GraphqlTest = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/GraphqlTest')
 const Channel = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Channel')
+const IoT = () => import(/* webpackChunkName: "group-playground" */'../components/IoT')
 
 Vue.use(Router)
 
