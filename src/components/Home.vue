@@ -17,7 +17,7 @@
       <div class="icon-ul">
         <ul>
           <li>
-            <a href="https://github.com/HaoPatrick">
+            <a target="_blank" href="https://github.com/HaoPatrick">
               <img class="icons" src="../assets/icons/github.svg">
             </a>
           </li>
@@ -27,7 +27,7 @@
             </router-link>
           </li>
           <li>
-            <a href="https://blog.haoxp.xyz">
+            <a target="_blank" href="https://blog.haoxp.xyz">
               <img class="icons" src="../assets/icons/edit.svg">
             </a>
           </li>
