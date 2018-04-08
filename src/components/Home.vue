@@ -17,28 +17,28 @@
       <div class="icon-ul">
         <ul>
           <li>
-            <a target="_blank" href="https://github.com/HaoPatrick">
-              <img class="icons" src="../assets/icons/github.svg">
+            <a rel="noopener" target="_blank" href="https://github.com/HaoPatrick">
+              <img alt="github" class="icons" src="../assets/icons/github.svg">
             </a>
           </li>
           <li>
             <router-link to="resume">
-              <img class="icons" src="../assets/icons/address-card.svg">
+              <img alt="resume" class="icons" src="../assets/icons/address-card.svg">
             </router-link>
           </li>
           <li>
-            <a target="_blank" href="https://blog.haoxp.xyz">
-              <img class="icons" src="../assets/icons/edit.svg">
+            <a rel="noopener" target="_blank" href="https://blog.haoxp.xyz">
+              <img alt="blog" class="icons" src="../assets/icons/edit.svg">
             </a>
           </li>
           <li>
             <router-link to="playground">
-              <img class="icons" src="../assets/icons/flask.svg">
+              <img alt="playground" class="icons" src="../assets/icons/flask.svg">
             </router-link>
           </li>
           <li>
             <router-link to="photos">
-              <img class="icons" src="../assets/icons/camera.svg">
+              <img alt="photos" class="icons" src="../assets/icons/camera.svg">
             </router-link>
           </li>
         </ul>
