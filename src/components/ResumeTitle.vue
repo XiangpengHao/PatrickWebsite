@@ -47,5 +47,6 @@ export default {
   display: flex;
   margin-bottom: 0.2rem;
   margin-top: 1rem;
+  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 }
 </style>
