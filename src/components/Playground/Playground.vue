@@ -120,6 +120,7 @@ li {
 .card-image {
   width: 13%;
   margin-right: 5%;
+  min-width: 3em;
 }
 .card-image > img {
   width: 100%;
@@ -167,5 +168,13 @@ li {
 }
 ::-webkit-scrollbar {
   display: none;
+}
+@media only screen and (min-device-width: 300px) and (max-device-width: 667px) {
+  .main-title {
+    font-size: 10vw;
+  }
+  .content-div {
+    margin: 1% 5% 1% 5%;
+  }
 }
 </style>
