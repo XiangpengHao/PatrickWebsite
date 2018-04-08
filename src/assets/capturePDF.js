@@ -3,7 +3,8 @@ const puppeteer = require('puppeteer');
 (async () => {
   console.log('begin capture')
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox']
+    args: ['--no-sandbox'],
+    headless: true
   })
   const page = await browser.newPage()
   await page.goto('https://haoxp.xyz/resume', {

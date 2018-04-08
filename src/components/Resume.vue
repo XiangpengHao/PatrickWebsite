@@ -1,6 +1,5 @@
 <template>
   <div class="main-container">
-    <div @click="changeLan" class="language">{{language}}</div>
     <toptitle></toptitle>
 
     <subtitle :title="mainData.skillsAbility"></subtitle>
@@ -135,22 +134,22 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
       language: null,
-      allData: {
+      mainData: {
         /* eslint-disable */
         // I don't want to deal with double qoute from JSON.stringfy :(
-        education: ["Education", "教育"],
-        school: ["Simon Fraser University", "浙江大学和 SFU"],
-        location1: ["Vancouver, Canada", "杭州, 中国"],
-        degree: ["Dual-Degree Program of SFU&ZJU", "计算机科学学士学位"],
-        duration1: ["Sept. 2015 - PRESENT", "Sept. 2015 - PRESENT"],
-        duration2: ["Sept. 2016 - PRESENT", "Sept. 2016 - PRESENT"],
-        eduOne: ["Simon Fraser University major in Computer Science", "Simon Fraser University， 计算机科学"],
-        eduTwo: ["Zhejiang University (top 3 in China) major in Computer Science.", "前两年在浙江大学，计算机科学."],
-        experience: ["Technical work experience", "经历"],
-        skillsAbility: ["skills/abilities", "技能"],
-        skills: [["Python", "JavaScript", "C/C++", "Java", "HTML", "CSS", "GraphQL", "Git",
-          "Linux Server", "AWS", "Azure", "Docker", "PWA", "Serverless", "Deep Learning"], ["Linux Server", "Python", "C++", "JavaScript", "Git"]],
-        experienceDetail: [
+        education: "Education",
+        school: "Simon Fraser University",
+        location1: "Vancouver, Canada",
+        degree: "Dual-Degree Program of SFU&ZJU",
+        duration1: "Sept. 2015 - PRESENT",
+        duration2: "Sept. 2016 - PRESENT",
+        eduOne: "Simon Fraser University major in Computer Science",
+        eduTwo: "Zhejiang University (top 3 in China) major in Computer Science.",
+        experience: "Technical work experience",
+        skillsAbility: "skills/abilities",
+        skills: ["Python", "JavaScript", "C/C++", "Java", "HTML", "CSS", "GraphQL", "Git",
+          "Linux Server", "AWS", "Azure", "Docker", "PWA", "Serverless", "Deep Learning"],
+        experienceDetail:
           [{
             link: 'https://houaa.xyz',
             title: 'Houaa Education',
@@ -175,25 +174,10 @@ export default {
               'Worked on docker, shell, git, continuous integration and test-driven-developing to ensure the availability and functionality of our services',
               'Meet on a weekly basis and share news & thoughts among the department'
             ]
-          }],
-          [{
-            title: '浙江大学求是潮',
-            link: 'https://www.zjuqsc.com',
-            duration: 'June. 2016 - June. 2017',
-            location: '中国，杭州',
-            job: '技术研发中心总监',
-            mainWork: '网页前后端开发',
-            workDetails: [
-              '浙江大学新生手册. 使用纯 CSS 和 JS, 与各种第三方服务整合的新生手册',
-              '2016年求是潮纳新前端. 使用 Vue.js 和 Bootstrap 来实现动态报名表',
-              '求是潮纳新系统. Python (Django) 是后端服务器, 用 Bootstrap 和 Webpack 来提高大型工程的执行效率',
-              'Linux 服务器管理. Docker, Shell, Git, Continuous Integration and Test Driven Develop',
-              'Telegram 机器人. 记录下所有的群消息，并且获得每日统计，监控垃圾群消息'
-            ]
           }]
-        ],
-        project: ["selected personal projects", "项目"],
-        projectDetail: [
+        ,
+        project: "selected personal projects",
+        projectDetail:
           [
             {
               name: 'My Website',
@@ -220,52 +204,31 @@ export default {
                 'In charge of the whole developing team, including coordinate with volunteer work',
                 'Used CDN and load balance to serve thousands of requests per second']
             }
-          ],
+          ]
+        ,
+        continuedProjects:
           [
             {
-              name: 'Tmplaye',
-              location: '中国，杭州',
-              link: 'https://github.com/HaoPatrick/Tmplaye',
-              duration: 'Jan. 2017',
-              features: ['A Python3.6 project', '一个类似 Django 正在使用的模板引擎', '支持多种 inline 语法和复杂的条件循环控制']
-            },
-            {
-              name: '猴啊家教',
-              location: '中国，杭州',
-              link: 'https://houaa.xyz',
-              duration: 'Feb. 2017 - Sept. 2017',
-              features: ['一个家教分享管理平台', 'Vue.js + Vue-Router + Vuex + Webpack', '网页端开发，服务器架构']
+              name: 'Web Printer',
+              link: 'https://github.com/HaoPatrick/WebPrinter',
+              location: 'Vancouver, Canada',
+              duration: 'Feb. 2018',
+              features: [
+                'Used Python to drive the old printer which do not have network printing',
+                'Developed a nice user interface and print from anywhere on the Internet'
+              ]
             }, {
-              name: '浙江大学120周年校庆助手',
-              location: '中国，杭州',
-              link: 'https://120.zjuqsc.com',
-              duration: 'May. 2017 - Jun. 2017',
-              features: ['浙江大学120周年官方校庆助手', 'Webpack, Gaode map, Vue', '网页端开发，服务器架构']
+              name: 'NBA Draft Crawler',
+              link: 'https://github.com/HaoPatrick/NBA_draft_crawler',
+              location: 'Vancouver, Canada',
+              features: [
+                'Wrote a Python script to crawl the NBA draft data for research use',
+                'Worked on beautiful soup and requests library to parse HTML and send requests, used regex expressions to handle dirty formatted content.'
+              ]
             }
-          ]
-        ],
-        continuedProjects: [[
-          {
-            name: 'Web Printer',
-            link: 'https://github.com/HaoPatrick/WebPrinter',
-            location: 'Vancouver, Canada',
-            duration: 'Feb. 2018',
-            features: [
-              'Used Python to drive the old printer which do not have network printing',
-              'Developed a nice user interface and print from anywhere on the Internet'
-            ]
-          }, {
-            name: 'NBA Draft Crawler',
-            link: 'https://github.com/HaoPatrick/NBA_draft_crawler',
-            location: 'Vancouver, Canada',
-            features: [
-              'Wrote a Python script to crawl the NBA draft data for research use',
-              'Worked on beautiful soup and requests library to parse HTML and send requests, used regex expressions to handle dirty formatted content.'
-            ]
-          }
-        ], []],
-        openSource: ['Open Source Contribution', '开源贡献'],
-        openSourceDetail: [
+          ],
+        openSource: 'Open Source Contribution',
+        openSourceDetail:
           [
             {
               name: 'zju-icicles',
@@ -292,46 +255,28 @@ export default {
               duration: 'Jan. 2018',
               features: ['fix test error by changing unit test to latest graphene api']
             }
-          ], [
-            {}
           ]
-        ],
-        awards: [
-          [{
-            name: 'SFU Entrance Scholarship',
-            link: 'https://www.sfu.ca/students/financialaid/entrance.html',
-            features: ['Entrance award valued at $5000 for academic outstanding students for the first two years study in Zhejiang University']
-          }, {
-            name: 'Mountain Madness Hackathon',
-            link: '',
-            features: ['Won best mobile app among all 10+ competitors']
-          }
-          ],
-          []
-        ]
+        ,
+        awards:
+          [
+            {
+              name: 'SFU Entrance Scholarship',
+              link: 'https://www.sfu.ca/students/financialaid/entrance.html',
+              features: ['Entrance award valued at $5000 for academic outstanding students for the first two years study in Zhejiang University']
+            },
+            {
+              name: 'Mountain Madness Hackathon',
+              link: '',
+              features: ['Won best mobile app among all 10+ competitors']
+            }
+          ]
         /* eslint-enable */
-      },
-      mainData: {}
+      }
     }
   },
-  created() {
-    this.changeLan()
+  mounted() {
   },
   methods: {
-    changeLan: function () {
-      if (this.language === null) {
-        this.language = 'En'
-      } else if (this.language === 'Ch') {
-        this.language = 'En'
-      } else {
-        this.language = 'Ch'
-      }
-      let newLanedData = {}
-      for (let key in this.allData) {
-        newLanedData[key] = this.allData[key][this.language === 'Ch' ? 1 : 0]
-      }
-      this.mainData = newLanedData
-    }
   }
 }
 </script>
@@ -372,7 +317,7 @@ export default {
   right: 5em;
   font-size: 0.8em;
 }
-.download-button >a > img {
+.download-button > a > img {
   margin: 0.25em;
 }
 @media screen {

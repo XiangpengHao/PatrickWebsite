@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <transition name="fade" mode="in-out">
-      <router-view></router-view>
+    <transition name="fade" mode="in-out">'
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </transition>
     <div v-show="showHome" class="back-to-home" v-on:click="backhome">
       <img src="./assets/icons/home.svg">
