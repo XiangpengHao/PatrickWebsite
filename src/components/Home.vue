@@ -91,16 +91,20 @@ body {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px){
+@media only screen and (min-device-width: 300px) and (max-device-width: 667px) {
   .typing {
-    font-size: 0.7em;
+    font-size: 12vw;
   }
   .inline-li {
-    font-size: 0.8em;
+    font-size: 4vw;
   }
   .icon-ul {
-    margin-top: 10em !important; 
+    margin-top: 10em !important;
     margin-bottom: 15em !important;
+  }
+  .icon-ul > ul > li {
+    margin-left: 3vw !important;
+    margin-right: 3vw !important;
   }
 }
 @keyframes typing {
