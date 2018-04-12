@@ -7,89 +7,15 @@
       <div class="skill-item" v-for="(skill,index) in mainData.skills" :key="index">{{skill}}</div>
     </div>
 
-    <div>
-      <subtitle :title="mainData.technicalExperience.name"></subtitle>
-      <div class="card-container" v-for="(item,index) in mainData.technicalExperience.details" :key="'experience-'+index">
-        <div class="sub-main-title">
-          <a :href="item.link">
-            {{item.title}}</a>
-          <span class="location">{{item.location}}, {{item.duration}}</span>
-        </div>
-        <div class="sub-content">
-          {{item.job|toUpper}}
-        </div>
-        <div>
-          <ul class="list-content">
-            <li v-for="(detail,j) in item.workDetails" :key="'content'+j">{{detail}}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <subtitle :title="mainData.selectedProjects.name"></subtitle>
-      <div class="card-container" v-for="(item,index) in mainData.selectedProjects.details" :key="index">
-        <div class="sub-main-title">
-          <a :href="item.link">
-            {{item.name}}
-          </a>
-          <span class="location">{{item.location}}</span>
-        </div>
-        <div>
-          <ul class="list-content">
-            <li v-for="(feature,index) in item.features" :key="index">{{feature}}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <resumesection :infos='mainData.technicalExperience'></resumesection>
+    <resumesection :infos='mainData.selectedProjects'></resumesection>
 
     <toptitle id="secondpage-title"></toptitle>
 
-    <div>
-      <subtitle style="margin-top:1em;" :title="mainData.openSourceContributions.name"></subtitle>
-      <div class="card-container" v-for="(item,index) in mainData.openSourceContributions.details" :key="'opensource-'+index">
-        <div class="sub-main-title">
-          <a :href="item.link">
-            {{item.name}}
-          </a>
-          <span class="location">{{item.location}}</span>
-        </div>
-        <div>
-          <ul class="list-content">
-            <li v-for="(list,index) in item.features" :key="'content-'+index">{{list}}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div>
-      <subtitle :title="mainData.awardsAndScholarship.name"></subtitle>
-      <div class="card-container" v-for="(item,index) in mainData.awardsAndScholarship.details" :key="'award-'+index">
-        <div class="sub-main-title">
-          <a :href="item.link">
-            {{item.name}}
-          </a>
-        </div>
-        <div>
-          <ul class="list-content">
-            <li v-for="(list,index) in item.features" :key="'award-content-'+index">{{list}}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <resumesection :infos='mainData.openSourceContributions'></resumesection>
+    <resumesection :infos='mainData.awardsAndScholarship'></resumesection>
+    <resumesection :infos='mainData.education'></resumesection>
 
-    <div>
-      <subtitle :title="mainData.education.name"></subtitle>
-      <div class="card-container" v-for="(item,index) in mainData.education.details" :key="index">
-        <div class="sub-main-title">
-          {{item.name}}
-          <span class="location">{{item.location}}</span>
-        </div>
-        <div class="sub-content">
-          {{item.major}}
-          <span class="duration">{{item.time}}</span>
-        </div>
-      </div>
-    </div>
     <div class="download-button">
       <a target="_blank" href="https://file.haoxp.xyz/resume.pdf">
         <img src="../assets/icons/download.svg">
@@ -99,13 +25,15 @@
 </template>
 
 <script>
-import subtitle from './ResumeTitle'
-import toptitle from './subcomponents/ResumeTop'
+import toptitle from './resume/ResumeTop'
+import subtitle from './resume/ResumeSubTitle'
+import resumesection from './resume/ResumeSection'
 export default {
   name: 'hello',
   components: {
-    subtitle,
-    toptitle
+    toptitle,
+    resumesection,
+    subtitle
   },
   filters: {
     toUpper: function (value) {
@@ -128,16 +56,16 @@ export default {
           details:
             [
               {
-                name: 'Simon Fraser University',
+                title: 'Simon Fraser University',
                 location: 'Vancouver, Canada',
-                time: 'Sept. 2017 - PRESENT',
-                major: 'Bachelor\'s degree in Computer Science'
+                duration: 'Sept. 2017 - PRESENT',
+                subTitle: 'Bachelor\'s degree in Computer Science'
               },
               {
-                name: 'Zhejiang University',
+                title: 'Zhejiang University',
                 location: 'Hangzhou, China',
-                time: 'Sept. 2015 - Jun. 2017',
-                major: 'Bachelor\'s degree in Computer Science'
+                duration: 'Sept. 2015 - Jun. 2017',
+                subTitle: 'Bachelor\'s degree in Computer Science'
               }
             ]
         },
@@ -149,8 +77,8 @@ export default {
               title: 'Houaa Education',
               duration: 'Jan. 2016 - Aug. 2017',
               location: 'Hangzhou, China',
-              job: 'Co-founder, CTO',
-              workDetails: [
+              subTitle: 'Co-founder, CTO',
+              features: [
                 'Lead a group of 11, including engineers, project managers and designer to develop an education sharing platform ' +
                 'which matches students with tutors',
                 'Developed on most fancy web features including PWA, Serverless, SPA, modern CSS etc. ',
@@ -161,8 +89,8 @@ export default {
               title: 'QSC - Zhejiang University',
               duration: 'Jun. 2016 - June. 2017',
               location: 'Hangzhou, China',
-              job: 'Technical Director',
-              workDetails: [
+              subTitle: 'Technical Director',
+              features: [
                 'Lead a department with 31 engineers which develop multi-platform apps for students in the university, ' +
                 'enabling them to manage their campus life with ease',
                 'Worked on docker, shell, git, continuous integration and test-driven-developing to ensure the availability and functionality of our services',
@@ -175,7 +103,7 @@ export default {
           name: 'selected personal projects',
           details: [
             {
-              name: 'My Website',
+              title: 'My Website',
               link: 'https://me.haoxp.xyz',
               location: 'Vancouver, Canada',
               duration: 'Feb. 2017 - now',
@@ -183,7 +111,7 @@ export default {
                 'Used vue.js as frontend framework and firebase as the serverless backend, integrated deep learning and WebAssembly to discover a new way of demonstrating',
                 'Demonstrating my ideas, photographs and resume in a geek way']
             }, {
-              name: 'Telegram Channel Bot',
+              title: 'Telegram Channel Bot',
               link: 'https://t.me/newsathlh',
               location: 'Vancouver, Canada',
               duration: 'Sept. 2017 - Now',
@@ -191,7 +119,7 @@ export default {
                 'Designed a machine learning algorithm by myself',
                 'Use Python to drive the sensors installed on IoT devices']
             }, {
-              name: 'Anniversary guide for Zhejiang University',
+              title: 'Anniversary guide for Zhejiang University',
               link: 'https://120.zjuqsc.com',
               location: 'Hangzhou, China',
               duration: 'May. 2017 - Jun. 2017',
@@ -200,7 +128,7 @@ export default {
                 'Used CDN and load balance to serve thousands of requests per second']
             },
             {
-              name: 'Web Printer',
+              title: 'Web Printer',
               link: 'https://github.com/HaoPatrick/WebPrinter',
               location: 'Vancouver, Canada',
               duration: 'Feb. 2018',
@@ -209,7 +137,7 @@ export default {
                 'Developed a nice user interface and print from anywhere on the Internet'
               ]
             }, {
-              name: 'NBA Draft Crawler',
+              title: 'NBA Draft Crawler',
               link: 'https://github.com/HaoPatrick/NBA_draft_crawler',
               location: 'Vancouver, Canada',
               features: [
@@ -223,14 +151,14 @@ export default {
           name: 'additional experience',
           details: [
             {
-              name: 'Research Assistant in Computer Vision Lab at SFU',
-              time: 'Jan. 2018 - PRESENT',
+              title: 'Research Assistant in Computer Vision Lab at SFU',
+              duration: 'Jan. 2018 - PRESENT',
               features: [
 
               ]
             }, {
-              name: 'Research Assistant in Computer Logic Lab at SFU',
-              time: 'Sept. 2017 - Jan. 2018',
+              title: 'Research Assistant in Computer Logic Lab at SFU',
+              duration: 'Sept. 2017 - Jan. 2018',
               featuers: [
 
               ]
@@ -241,28 +169,25 @@ export default {
           name: 'Open Source Contributions',
           details: [
             {
-              name: 'zju-icicles',
+              title: 'zju-icicles',
               location: 'Vancouver, Canada',
               link: 'https://github.com/QSCTech/zju-icicles',
-              duration: 'May. 2016 - Now',
               features: [
                 'Course info sharing in Zhejiang University',
                 'Role: Maintainer'
               ]
             }, {
-              name: 'UPass-Script',
+              title: 'UPass-Script',
               location: 'Vancouver, Canada',
               link: 'https://github.com/Armour/UPass-Script',
-              duration: 'Jan. 2018',
               features: [
                 'Automatically request UPass each month',
                 'Add feature of IFTTT notification'
               ]
             }, {
-              name: 'flask-graphql',
+              title: 'flask-graphql',
               link: 'https://github.com/graphql-python/flask-graphql/pull/39',
               location: 'Vancouver, Canada',
-              duration: 'Jan. 2018',
               features: ['fix test error by changing the unit test to latest graphene api']
             }
           ]
@@ -271,12 +196,12 @@ export default {
           name: 'awards & scholarship',
           details: [
             {
-              name: 'SFU Entrance Scholarship',
+              title: 'SFU Entrance Scholarship',
               link: 'https://www.sfu.ca/students/financialaid/entrance.html',
               features: ['Entrance award valued at $5000 for academically outstanding students for the first two years study in Zhejiang University']
             },
             {
-              name: 'Mountain Madness Hackathon',
+              title: 'Mountain Madness Hackathon',
               link: '',
               features: ['Won best mobile app among all 10+ competitors']
             }
@@ -497,6 +422,6 @@ li {
   margin: 0 auto 0.5rem auto;
   width: 100%;
   text-align: center;
-  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  font-family: Cambria, Cochin, Georgia, durations, durations New Roman, serif;
 }
 </style>
