@@ -27,7 +27,7 @@
             </router-link>
           </li>
           <li>
-            <a rel="noopener" target="_blank" href="https://blog.haoxp.xyz">
+            <a rel="noopener" target="_blank" href="https://blog.haoxp.xyz/?utm_source=www.haoxp.xyz">
               <img alt="blog" class="icons" src="../assets/icons/edit.svg">
             </a>
           </li>

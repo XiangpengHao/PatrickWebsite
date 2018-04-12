@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top:2em;">
+  <div style="margin-top:1em;">
     <div class="re-name">
       {{mainData.name}}
     </div>
@@ -11,9 +11,6 @@
         </a>
       </div>
     </div>
-    <!-- <div class="moto">
-      {{mainData.moto}}
-    </div> -->
   </div>
 </template>
 
@@ -44,8 +41,8 @@ export default {
           text: 'xha62@sfu.ca'
         }, {
           imgSrc: require('../../assets/icons/home_b.svg'),
-          href: 'https://haoxp.xyz',
-          text: 'https://haoxp.xyz'
+          href: 'https://www.haoxp.xyz/?utm_source=resume',
+          text: 'haoxp.xyz'
         }, {
           imgSrc: require('../../assets/icons/telegram.svg'),
           href: 'https://t.me/Haooooxiangpeng',

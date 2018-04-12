@@ -6,41 +6,29 @@
     <div class="skill-content">
       <div class="skill-item" v-for="(skill,index) in mainData.skills" :key="index">{{skill}}</div>
     </div>
-    <subtitle :title="mainData.experience"></subtitle>
-    <div class="card-container" v-for="(item,index) in mainData.experienceDetail" :key="'experience-'+index">
-      <div class="sub-main-title">
-        <a :href="item.link">
-          {{item.title}}</a>
-        <span class="location">{{item.location}}, {{item.duration}}</span>
-      </div>
-      <div class="sub-content">
-        {{item.job|toUpper}}
-      </div>
-      <div>
-        <ul class="list-content">
-          <li v-for="(detail,j) in item.workDetails" :key="'content'+j">{{detail}}</li>
-        </ul>
-      </div>
-    </div>
-    <subtitle :title="mainData.project"></subtitle>
-    <div class="card-container" v-for="(item,index) in mainData.projectDetail" :key="index">
-      <div class="sub-main-title">
-        <a :href="item.link">
-          {{item.name}}
-        </a>
-        <span class="location">{{item.location}}</span>
-      </div>
-      <div>
-        <ul class="list-content">
-          <li v-for="(feature,index) in item.features" :key="index">{{feature}}</li>
-        </ul>
+
+    <div>
+      <subtitle :title="mainData.technicalExperience.name"></subtitle>
+      <div class="card-container" v-for="(item,index) in mainData.technicalExperience.details" :key="'experience-'+index">
+        <div class="sub-main-title">
+          <a :href="item.link">
+            {{item.title}}</a>
+          <span class="location">{{item.location}}, {{item.duration}}</span>
+        </div>
+        <div class="sub-content">
+          {{item.job|toUpper}}
+        </div>
+        <div>
+          <ul class="list-content">
+            <li v-for="(detail,j) in item.workDetails" :key="'content'+j">{{detail}}</li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <toptitle id="secondpage-title"></toptitle>
     <div>
-      <subtitle class="hide-when-not-print" :title="'Selected personal projects continued'"></subtitle>
-      <div class="card-container" v-for="(item,index) in mainData.continuedProjects" :key="index">
+      <subtitle :title="mainData.selectedProjects.name"></subtitle>
+      <div class="card-container" v-for="(item,index) in mainData.selectedProjects.details" :key="index">
         <div class="sub-main-title">
           <a :href="item.link">
             {{item.name}}
@@ -55,9 +43,11 @@
       </div>
     </div>
 
+    <toptitle id="secondpage-title"></toptitle>
+
     <div>
-      <subtitle style="margin-top:1em;" :title="mainData.openSource"></subtitle>
-      <div class="card-container" v-for="(item,index) in mainData.openSourceDetail" :key="'opensource-'+index">
+      <subtitle style="margin-top:1em;" :title="mainData.openSourceContributions.name"></subtitle>
+      <div class="card-container" v-for="(item,index) in mainData.openSourceContributions.details" :key="'opensource-'+index">
         <div class="sub-main-title">
           <a :href="item.link">
             {{item.name}}
@@ -72,8 +62,8 @@
       </div>
     </div>
     <div>
-      <subtitle :title="'Awards & Scholarship'"></subtitle>
-      <div class="card-container" v-for="(item,index) in mainData.awards" :key="'award-'+index">
+      <subtitle :title="mainData.awardsAndScholarship.name"></subtitle>
+      <div class="card-container" v-for="(item,index) in mainData.awardsAndScholarship.details" :key="'award-'+index">
         <div class="sub-main-title">
           <a :href="item.link">
             {{item.name}}
@@ -88,21 +78,15 @@
     </div>
 
     <div>
-      <subtitle :title="mainData.education"></subtitle>
-      <div class="card-container">
+      <subtitle :title="mainData.education.name"></subtitle>
+      <div class="card-container" v-for="(item,index) in mainData.education.details" :key="index">
         <div class="sub-main-title">
-          {{mainData.school}}
-          <span class="location">{{mainData.location1}}</span>
+          {{item.name}}
+          <span class="location">{{item.location}}</span>
         </div>
         <div class="sub-content">
-          {{mainData.degree|toUpper}}
-          <span class="duration">{{mainData.duration1}}</span>
-        </div>
-        <div>
-          <ul class="list-content">
-            <li>{{mainData.eduOne}}</li>
-            <li>{{mainData.eduTwo}}</li>
-          </ul>
+          {{item.major}}
+          <span class="duration">{{item.time}}</span>
         </div>
       </div>
     </div>
@@ -135,57 +119,68 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       language: null,
       mainData: {
-        /* eslint-disable */
-        // I don't want to deal with double qoute from JSON.stringfy :(
-        education: "Education",
-        school: "Simon Fraser University",
-        location1: "Vancouver, Canada",
-        degree: "Dual-Degree Program of SFU&ZJU",
-        duration1: "Sept. 2015 - PRESENT",
-        duration2: "Sept. 2016 - PRESENT",
-        eduOne: "Simon Fraser University major in Computer Science",
-        eduTwo: "Zhejiang University (top 3 in China) major in Computer Science.",
-        experience: "Technical work experience",
-        skillsAbility: "skills/abilities",
-        skills: ["Python", "JavaScript", "C/C++", "Java", "HTML", "CSS", "GraphQL", "Git",
-          "Linux Server", "AWS", "Azure", "Docker", "PWA", "Serverless", "Deep Learning"],
-        experienceDetail:
-          [{
-            link: 'https://houaa.xyz',
-            title: 'Houaa Education',
-            duration: 'Jan. 2016 - Aug. 2017',
-            location: 'Hangzhou, China',
-            job: 'Co-founder, CTO',
-            workDetails: [
-              'Lead a group of 11, including engineers, project managers and designer to develop an education sharing platform ' +
-              'which matches students with tutors',
-              'Developed on most fancy web features including PWA, Serverless, SPA, modern CSS etc. ',
-              'Used Python script to automate dev-ops work including testing, deploying and dispatching our app'
+        experience: 'Technical work experience',
+        skillsAbility: 'skills/abilities',
+        skills: ['Python', 'JavaScript', 'C/C++', 'Java', 'HTML/CSS', 'GraphQL', 'Git', 'Vue/React',
+          'Devops', 'AWS/GCP', 'Docker', 'PWA', 'Serverless', 'Deep Learning'],
+        education: {
+          name: 'education',
+          details:
+            [
+              {
+                name: 'Simon Fraser University',
+                location: 'Vancouver, Canada',
+                time: 'Sept. 2017 - PRESENT',
+                major: 'Bachelor\'s degree in Computer Science'
+              },
+              {
+                name: 'Zhejiang University',
+                location: 'Hangzhou, China',
+                time: 'Sept. 2015 - Jun. 2017',
+                major: 'Bachelor\'s degree in Computer Science'
+              }
             ]
-          }, {
-            link: 'https://www.zjuqsc.com',
-            title: 'QSC - Zhejiang University',
-            duration: 'Jun. 2016 - June. 2017',
-            location: 'Hangzhou, China',
-            job: 'Technical Director',
-            workDetails: [
-              'Lead a large department with 71 engineers which develop multi-platform apps for students in the university, ' +
-              'enabling them to manage their campus life with ease',
-              'Worked on docker, shell, git, continuous integration and test-driven-developing to ensure the availability and functionality of our services',
-              'Meet on a weekly basis and share news & thoughts among the department'
-            ]
-          }]
-        ,
-        project: "selected personal projects",
-        projectDetail:
-          [
+        },
+        technicalExperience: {
+          name: 'technical work experience',
+          details: [
+            {
+              link: 'https://houaa.xyz',
+              title: 'Houaa Education',
+              duration: 'Jan. 2016 - Aug. 2017',
+              location: 'Hangzhou, China',
+              job: 'Co-founder, CTO',
+              workDetails: [
+                'Lead a group of 11, including engineers, project managers and designer to develop an education sharing platform ' +
+                'which matches students with tutors',
+                'Developed on most fancy web features including PWA, Serverless, SPA, modern CSS etc. ',
+                'Used Python script to automate dev-ops work including testing, deploying and dispatching our app'
+              ]
+            }, {
+              link: 'https://www.zjuqsc.com',
+              title: 'QSC - Zhejiang University',
+              duration: 'Jun. 2016 - June. 2017',
+              location: 'Hangzhou, China',
+              job: 'Technical Director',
+              workDetails: [
+                'Lead a department with 31 engineers which develop multi-platform apps for students in the university, ' +
+                'enabling them to manage their campus life with ease',
+                'Worked on docker, shell, git, continuous integration and test-driven-developing to ensure the availability and functionality of our services',
+                'Meet on a weekly basis and share news & thoughts among the department'
+              ]
+            }
+          ]
+        },
+        selectedProjects: {
+          name: 'selected personal projects',
+          details: [
             {
               name: 'My Website',
               link: 'https://me.haoxp.xyz',
               location: 'Vancouver, Canada',
               duration: 'Feb. 2017 - now',
               features: ['Developed the website to experiment most of my crazy ideas including WebGL, WebAssembly, GraphQL, PWA, SSR, Serverless, HSTS, Deep Learning etc.',
-                'Used vue.js as frontend framework and firebase as serverless backend, integrated deep learning and WebAssembly to discover a new way of demonstrating',
+                'Used vue.js as frontend framework and firebase as the serverless backend, integrated deep learning and WebAssembly to discover a new way of demonstrating',
                 'Demonstrating my ideas, photographs and resume in a geek way']
             }, {
               name: 'Telegram Channel Bot',
@@ -194,27 +189,23 @@ export default {
               duration: 'Sept. 2017 - Now',
               features: ['Use Python to write a news, weather data provider, deployed on a raspberry pi',
                 'Designed a machine learning algorithm by myself',
-                'Use modern Python through the whole project (type annotation, test driven dev etc.)']
+                'Use Python to drive the sensors installed on IoT devices']
             }, {
               name: 'Anniversary guide for Zhejiang University',
               link: 'https://120.zjuqsc.com',
               location: 'Hangzhou, China',
               duration: 'May. 2017 - Jun. 2017',
-              features: ['Write an web app for Zhejiang University to celebrate its 120th anniversary',
+              features: ['Write a web app for Zhejiang University to celebrate its 120th birthday',
                 'In charge of the whole developing team, including coordinate with volunteer work',
                 'Used CDN and load balance to serve thousands of requests per second']
-            }
-          ]
-        ,
-        continuedProjects:
-          [
+            },
             {
               name: 'Web Printer',
               link: 'https://github.com/HaoPatrick/WebPrinter',
               location: 'Vancouver, Canada',
               duration: 'Feb. 2018',
               features: [
-                'Used Python to drive the old printer which do not have network printing',
+                'Used Python to drive the old printer which does not have network printing',
                 'Developed a nice user interface and print from anywhere on the Internet'
               ]
             }, {
@@ -226,10 +217,29 @@ export default {
                 'Worked on beautiful soup and requests library to parse HTML and send requests, used regex expressions to handle dirty formatted content.'
               ]
             }
-          ],
-        openSource: 'Open Source Contribution',
-        openSourceDetail:
-          [
+          ]
+        },
+        additionalExperience: {
+          name: 'additional experience',
+          details: [
+            {
+              name: 'Research Assistant in Computer Vision Lab at SFU',
+              time: 'Jan. 2018 - PRESENT',
+              features: [
+
+              ]
+            }, {
+              name: 'Research Assistant in Computer Logic Lab at SFU',
+              time: 'Sept. 2017 - Jan. 2018',
+              featuers: [
+
+              ]
+            }
+          ]
+        },
+        openSourceContributions: {
+          name: 'Open Source Contributions',
+          details: [
             {
               name: 'zju-icicles',
               location: 'Vancouver, Canada',
@@ -253,16 +263,17 @@ export default {
               link: 'https://github.com/graphql-python/flask-graphql/pull/39',
               location: 'Vancouver, Canada',
               duration: 'Jan. 2018',
-              features: ['fix test error by changing unit test to latest graphene api']
+              features: ['fix test error by changing the unit test to latest graphene api']
             }
           ]
-        ,
-        awards:
-          [
+        },
+        awardsAndScholarship: {
+          name: 'awards & scholarship',
+          details: [
             {
               name: 'SFU Entrance Scholarship',
               link: 'https://www.sfu.ca/students/financialaid/entrance.html',
-              features: ['Entrance award valued at $5000 for academic outstanding students for the first two years study in Zhejiang University']
+              features: ['Entrance award valued at $5000 for academically outstanding students for the first two years study in Zhejiang University']
             },
             {
               name: 'Mountain Madness Hackathon',
@@ -270,11 +281,9 @@ export default {
               features: ['Won best mobile app among all 10+ competitors']
             }
           ]
-        /* eslint-enable */
+        }
       }
     }
-  },
-  mounted() {
   },
   methods: {
   }
@@ -303,6 +312,17 @@ export default {
   }
   .download-button {
     display: none;
+  }
+  .list-content {
+    line-height: 1.3;
+  }
+  .card-container {
+    padding: 0 0.3em 0em 0.3em !important;
+    margin-bottom: 0.2em !important;
+  }
+  .main-title {
+    margin-top: 0.3em !important;
+    margin-bottom: 0 !important;
   }
 }
 </style>
@@ -335,8 +355,7 @@ ul {
   margin: 0;
 }
 .card-container {
-  border: 1px solid #f5f5f5;
-  background-color: #f7f7f7;
+  border: 2px solid #f1f1f1;
   margin-bottom: 0.5em;
   padding: 0.3em;
 }
@@ -372,8 +391,8 @@ ul {
 }
 
 .skill-item {
-  font-size: 1.2rem;
-  min-width: 7em;
+  font-size: 1rem;
+  min-width: 6.5em;
   text-align: center;
   margin-bottom: 0.3em;
 }
@@ -386,6 +405,7 @@ ul {
 }
 .list-content > li {
   /* max-width: 40em; */
+  margin-bottom: 0.1em;
 }
 
 .sub-content {
@@ -401,8 +421,9 @@ ul {
 .sub-main-title {
   font-weight: 600;
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   color: #2c3e50;
+  letter-spacing: 0.03em;
 }
 
 .location {
@@ -420,6 +441,7 @@ ul {
   display: flex;
   margin-bottom: 0.2rem;
   margin-top: 1rem;
+  letter-spacing: 0.025em;
 }
 
 .moto {
@@ -452,7 +474,7 @@ li {
 
 .main-container {
   margin: 0px 10% auto 10%;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
 }
 
 @media (min-width: 1200px) {
