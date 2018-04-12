@@ -14,6 +14,7 @@
 
     <resumesection :infos='mainData.openSourceContributions'></resumesection>
     <resumesection :infos='mainData.awardsAndScholarship'></resumesection>
+    <resumesection :infos='mainData.additionalExperience'></resumesection>
     <resumesection :infos='mainData.education'></resumesection>
 
     <div class="download-button">
@@ -106,7 +107,6 @@ export default {
               title: 'My Website',
               link: 'https://me.haoxp.xyz',
               location: 'Vancouver, Canada',
-              duration: 'Feb. 2017 - now',
               features: ['Developed the website to experiment most of my crazy ideas including WebGL, WebAssembly, GraphQL, PWA, SSR, Serverless, HSTS, Deep Learning etc.',
                 'Used vue.js as frontend framework and firebase as the serverless backend, integrated deep learning and WebAssembly to discover a new way of demonstrating',
                 'Demonstrating my ideas, photographs and resume in a geek way']
@@ -114,7 +114,6 @@ export default {
               title: 'Telegram Channel Bot',
               link: 'https://t.me/newsathlh',
               location: 'Vancouver, Canada',
-              duration: 'Sept. 2017 - Now',
               features: ['Use Python to write a news, weather data provider, deployed on a raspberry pi',
                 'Designed a machine learning algorithm by myself',
                 'Use Python to drive the sensors installed on IoT devices']
@@ -122,7 +121,6 @@ export default {
               title: 'Anniversary guide for Zhejiang University',
               link: 'https://120.zjuqsc.com',
               location: 'Hangzhou, China',
-              duration: 'May. 2017 - Jun. 2017',
               features: ['Write a web app for Zhejiang University to celebrate its 120th birthday',
                 'In charge of the whole developing team, including coordinate with volunteer work',
                 'Used CDN and load balance to serve thousands of requests per second']
@@ -131,7 +129,6 @@ export default {
               title: 'Web Printer',
               link: 'https://github.com/HaoPatrick/WebPrinter',
               location: 'Vancouver, Canada',
-              duration: 'Feb. 2018',
               features: [
                 'Used Python to drive the old printer which does not have network printing',
                 'Developed a nice user interface and print from anywhere on the Internet'
@@ -151,16 +148,22 @@ export default {
           name: 'additional experience',
           details: [
             {
-              title: 'Research Assistant in Computer Vision Lab at SFU',
+              title: 'Research Assistant',
               duration: 'Jan. 2018 - PRESENT',
+              location: 'Vancouver, Canada',
+              subTitle: 'Computer Vision Lab at SFU',
               features: [
-
+                'Research on Colorization and other color related CV work'
               ]
             }, {
-              title: 'Research Assistant in Computer Logic Lab at SFU',
+              title: 'Research Assistant',
               duration: 'Sept. 2017 - Jan. 2018',
-              featuers: [
-
+              location: 'Vancouver, Canada',
+              subTitle: 'Computer Logic Lab at SFU',
+              features: [
+                'Crawl data from various open datasets',
+                'Analyze and visualize the sports data from NBA and NHL, predict the players performance based on their history data',
+                'Build various tools and scripts to automatically manage and visualize the research results'
               ]
             }
           ]
@@ -169,26 +172,38 @@ export default {
           name: 'Open Source Contributions',
           details: [
             {
-              title: 'zju-icicles',
-              location: 'Vancouver, Canada',
-              link: 'https://github.com/QSCTech/zju-icicles',
-              features: [
-                'Course info sharing in Zhejiang University',
-                'Role: Maintainer'
-              ]
-            }, {
               title: 'UPass-Script',
               location: 'Vancouver, Canada',
               link: 'https://github.com/Armour/UPass-Script',
               features: [
                 'Automatically request UPass each month',
-                'Add feature of IFTTT notification'
+                'Added the feature of IFTTT notification'
               ]
             }, {
               title: 'flask-graphql',
               link: 'https://github.com/graphql-python/flask-graphql/pull/39',
               location: 'Vancouver, Canada',
-              features: ['fix test error by changing the unit test to latest graphene api']
+              features: [
+                'a flask integration for GraphQL',
+                'fixed a test error by changing the unit test to latest graphene api']
+            }, {
+              title: 'bsbang-crawler',
+              location: 'Vancouver, Canada',
+              link: 'https://github.com/justinccdev/bsbang-crawler',
+              features: [
+                'The crawler component of Buzzbang search (a google-like search engine) which allows biologists to search gene data without pain',
+                'Added continous integration of the crawler',
+                'Discussed a lot about the technical detailes and addressed a few bugs'
+              ]
+            },
+            {
+              title: 'zju-icicles',
+              location: 'Vancouver, Canada',
+              link: 'https://github.com/QSCTech/zju-icicles',
+              features: [
+                'Course info sharing in Zhejiang University',
+                'Role: Co-maintainer'
+              ]
             }
           ]
         },
@@ -203,7 +218,9 @@ export default {
             {
               title: 'Mountain Madness Hackathon',
               link: '',
-              features: ['Won best mobile app among all 10+ competitors']
+              features: [
+                'Won best mobile app among all 10+ competitors',
+                'Built an mobile app which gathers weather info from sensors installed among the mountains']
             }
           ]
         }
@@ -322,43 +339,6 @@ ul {
   margin-bottom: 0.3em;
 }
 
-.list-content {
-  padding-left: 1.1rem;
-  /* margin-top: 0.4rem; */
-  /* font-weight: lighter; */
-  font-size: 0.9rem;
-}
-.list-content > li {
-  /* max-width: 40em; */
-  margin-bottom: 0.1em;
-}
-
-.sub-content {
-  font-size: 0.8rem;
-}
-
-.duration {
-  float: right;
-  font-weight: lighter;
-  font-style: italic;
-}
-
-.sub-main-title {
-  font-weight: 600;
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
-  color: #2c3e50;
-  letter-spacing: 0.03em;
-}
-
-.location {
-  font-weight: normal;
-  font-size: 0.8rem;
-  font-style: italic;
-  float: right;
-  color: #e74c3c;
-}
-
 .main-title {
   font-size: 1.4rem;
   font-weight: bold;
@@ -367,14 +347,6 @@ ul {
   margin-bottom: 0.2rem;
   margin-top: 1rem;
   letter-spacing: 0.025em;
-}
-
-.moto {
-  color: #2c3e50;
-  text-align: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  font-style: italic;
 }
 
 a {
