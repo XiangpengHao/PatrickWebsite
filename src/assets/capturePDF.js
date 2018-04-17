@@ -11,9 +11,16 @@ const puppeteer = require('puppeteer');
     waitUntil: 'networkidle0'
   })
   await page.pdf({
-    path: '/tmp/resume.pdf'
+    path: '/tmp/resume_Xiangpeng_Hao.pdf'
+  })
+
+  await page.goto('https://haoxp.xyz/resume?simple=1', {
+    waitUntil: 'networkidle0'
+  })
+  await page.pdf({
+    path: '/tmp/resume_Xiangpeng_Hao_single_page.pdf'
   })
 
   await browser.close()
-  console.log('done caturing pdf, saving result to /tmp/resume.pdf')
+  console.log('done caturing pdf, saving result to /tmp/resume_Xiangpeng_Hao.pdf.pdf')
 })()

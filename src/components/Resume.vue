@@ -20,7 +20,7 @@
     <resumesection v-if='mainData.education' :infos='mainData.education'></resumesection>
 
     <div class="download-button">
-      <a target="_blank" href="https://file.haoxp.xyz/resume.pdf">
+      <a target="_blank" :href="`https://file.haoxp.xyz/resume_Xiangpeng_Hao${singlePage?'_single_page':''}.pdf`">
         <img src="../assets/icons/download.svg">
       </a>
     </div>
