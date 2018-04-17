@@ -10,13 +10,13 @@ export const singlePage = {
     name: 'education',
     details: [{
         title: 'Simon Fraser University',
-        location: 'Vancouver, Canada',
+        location: 'Vancouver',
         duration: 'Sept. 2017 - PRESENT',
         subTitle: 'Bachelor\'s degree in Computer Science'
       },
       {
         title: 'Zhejiang University',
-        location: 'Hangzhou, China',
+        location: 'Hangzhou',
         duration: 'Sept. 2015 - Jun. 2017',
         subTitle: 'Bachelor\'s degree in Computer Science'
       }
@@ -28,7 +28,7 @@ export const singlePage = {
       link: 'https://houaa.xyz',
       title: 'Houaa Education',
       duration: 'Jan. 2016 - Aug. 2017',
-      location: 'Hangzhou, China',
+      location: 'Hangzhou',
       subTitle: 'Co-founder, CTO',
       features: [
         'Led a group of 11, including engineers, project managers and designer to develop an education sharing platform ' +
@@ -40,13 +40,13 @@ export const singlePage = {
       link: 'https://www.zjuqsc.com',
       title: 'QSC - Zhejiang University',
       duration: 'Jun. 2016 - June. 2017',
-      location: 'Hangzhou, China',
+      location: 'Hangzhou',
       subTitle: 'Technical Director',
       features: [
-        'Lead a department with 31 engineers which develop multi-platform apps for students in the university, ' +
+        'Led a department of a student assocation with 31 engineers which develop multi-platform apps for students in the university, ' +
         'enabling them to manage their campus life with ease',
         'Worked on docker, shell, git, continuous integration and test-driven-developing to ensure the availability and functionality of our services',
-        'Meet on a weekly basis and share news & thoughts among the department'
+        'Met on a weekly basis and share news & thoughts among the department'
       ]
     }, {
       title: 'Mountain Pulse',
@@ -63,8 +63,8 @@ export const singlePage = {
       title: 'Anniversary guide for Zhejiang University',
       link: 'https://120.zjuqsc.com',
       duration: 'April. 2017 - May. 2017',
-      location: 'Hangzhou, China',
-      features: ['Write a web app for Zhejiang University to celebrate its 120th birthday',
+      location: 'Hangzhou',
+      features: ['Developed a web app for Zhejiang University to celebrate its 120th birthday',
         'In charge of the whole developing team, including coordinate with volunteer work',
         'Used CDN and load balance to serve thousands of requests per second'
       ]
@@ -99,13 +99,13 @@ export const doublePage = {
     name: 'education',
     details: [{
         title: 'Simon Fraser University',
-        location: 'Vancouver, Canada',
+        location: 'Vancouver',
         duration: 'Sept. 2017 - PRESENT',
         subTitle: 'Bachelor\'s degree in Computer Science'
       },
       {
         title: 'Zhejiang University',
-        location: 'Hangzhou, China',
+        location: 'Hangzhou',
         duration: 'Sept. 2015 - Jun. 2017',
         subTitle: 'Bachelor\'s degree in Computer Science'
       }
@@ -117,10 +117,10 @@ export const doublePage = {
       link: 'https://houaa.xyz',
       title: 'Houaa Education',
       duration: 'Jan. 2016 - Aug. 2017',
-      location: 'Hangzhou, China',
+      location: 'Hangzhou',
       subTitle: 'Co-founder, CTO',
       features: [
-        'Lead a group of 11, including engineers, project managers and designer to develop an education sharing platform ' +
+        'Led a group of 11, including engineers, project managers and designer to develop an education sharing platform ' +
         'which matches students with tutors',
         'Developed on most fancy web features including PWA, Serverless, SPA, modern CSS etc. ',
         'Used Python script to automate dev-ops work including testing, deploying and dispatching our app'
@@ -129,13 +129,13 @@ export const doublePage = {
       link: 'https://www.zjuqsc.com',
       title: 'QSC - Zhejiang University',
       duration: 'Jun. 2016 - June. 2017',
-      location: 'Hangzhou, China',
+      location: 'Hangzhou',
       subTitle: 'Technical Director',
       features: [
-        'Lead a department with 31 engineers which develop multi-platform apps for students in the university, ' +
+        'Lead a department of a student assocation with 31 engineers which develop multi-platform apps for students in the university, ' +
         'enabling them to manage their campus life with ease',
         'Worked on docker, shell, git, continuous integration and test-driven-developing to ensure the availability and functionality of our services',
-        'Meet on a weekly basis and share news & thoughts among the department'
+        'Met on a weekly basis and share news & thoughts among the department'
       ]
     }]
   },
@@ -144,7 +144,7 @@ export const doublePage = {
     details: [{
         title: 'My Website',
         link: 'https://me.haoxp.xyz',
-        location: 'Vancouver, Canada',
+        location: 'Vancouver',
         features: ['Developed the website to experiment most of my crazy ideas including WebGL, WebAssembly, GraphQL, PWA, SSR, Serverless, HSTS, Deep Learning etc.',
           'Used vue.js as frontend framework and firebase as the serverless backend, integrated deep learning and WebAssembly to discover a new way of demonstrating',
           'Demonstrating my ideas, photographs and resume in a geek way'
@@ -152,7 +152,7 @@ export const doublePage = {
       }, {
         title: 'Telegram Channel Bot',
         link: 'https://t.me/newsathlh',
-        location: 'Vancouver, Canada',
+        location: 'Vancouver',
         features: ['Use Python to write a news, weather data provider, deployed on a raspberry pi',
           'Designed a machine learning algorithm by myself',
           'Use Python to drive the sensors installed on IoT devices'
@@ -160,8 +160,8 @@ export const doublePage = {
       }, {
         title: 'Anniversary guide for Zhejiang University',
         link: 'https://120.zjuqsc.com',
-        location: 'Hangzhou, China',
-        features: ['Write a web app for Zhejiang University to celebrate its 120th birthday',
+        location: 'Hangzhou',
+        features: ['Developed a web app for Zhejiang University to celebrate its 120th birthday',
           'In charge of the whole developing team, including coordinate with volunteer work',
           'Used CDN and load balance to serve thousands of requests per second'
         ]
@@ -169,7 +169,7 @@ export const doublePage = {
       {
         title: 'Web Printer',
         link: 'https://github.com/HaoPatrick/WebPrinter',
-        location: 'Vancouver, Canada',
+        location: 'Vancouver',
         features: [
           'Used Python to drive the old printer which does not have network printing',
           'Developed a nice user interface and print from anywhere on the Internet'
@@ -177,7 +177,7 @@ export const doublePage = {
       }, {
         title: 'NBA Draft Crawler',
         link: 'https://github.com/HaoPatrick/NBA_draft_crawler',
-        location: 'Vancouver, Canada',
+        location: 'Vancouver',
         features: [
           'Wrote a Python script to crawl the NBA draft data for research use',
           'Worked on beautiful soup and requests library to parse HTML and send requests, used regex expressions to handle dirty formatted content.'
@@ -190,7 +190,7 @@ export const doublePage = {
     details: [{
       title: 'Research Assistant',
       duration: 'Jan. 2018 - PRESENT',
-      location: 'Vancouver, Canada',
+      location: 'Vancouver',
       subTitle: 'Computer Vision Lab at SFU',
       features: [
         'Research on Colorization and other color related CV work'
@@ -198,7 +198,7 @@ export const doublePage = {
     }, {
       title: 'Research Assistant',
       duration: 'Sept. 2017 - Jan. 2018',
-      location: 'Vancouver, Canada',
+      location: 'Vancouver',
       subTitle: 'Computer Logic Lab at SFU',
       features: [
         'Crawl data from various open datasets',
@@ -211,7 +211,7 @@ export const doublePage = {
     name: 'Open Source Contributions',
     details: [{
         title: 'UPass-Script',
-        location: 'Vancouver, Canada',
+        location: 'Vancouver',
         link: 'https://github.com/Armour/UPass-Script',
         features: [
           'Automatically request UPass each month',
@@ -220,14 +220,14 @@ export const doublePage = {
       }, {
         title: 'flask-graphql',
         link: 'https://github.com/graphql-python/flask-graphql/pull/39',
-        location: 'Vancouver, Canada',
+        location: 'Vancouver',
         features: [
           'a flask integration for GraphQL',
           'fixed a test error by changing the unit test to latest graphene api'
         ]
       }, {
         title: 'bsbang-crawler',
-        location: 'Vancouver, Canada',
+        location: 'Vancouver',
         link: 'https://github.com/justinccdev/bsbang-crawler',
         features: [
           'The crawler component of Buzzbang search (a google-like search engine) which allows biologists to search gene data without pain',
@@ -237,7 +237,7 @@ export const doublePage = {
       },
       {
         title: 'zju-icicles',
-        location: 'Vancouver, Canada',
+        location: 'Vancouver',
         link: 'https://github.com/QSCTech/zju-icicles',
         features: [
           'Course info sharing in Zhejiang University',
