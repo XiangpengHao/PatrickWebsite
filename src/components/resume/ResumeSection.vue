@@ -5,8 +5,8 @@
       <div class="sub-main-title">
         <a :href="item.link">
           {{item.title}}</a>
-        <span class="location">{{item.location}}
-          <span v-if="item.duration">, {{item.duration}}</span>
+        <span class="location">
+          <span v-if="item.duration">{{item.duration}}, </span>{{item.location}}
         </span>
       </div>
       <div v-if="item.subTitle" class="sub-content">

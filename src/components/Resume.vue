@@ -2,20 +2,22 @@
   <div class="main-container">
     <toptitle></toptitle>
 
-    <subtitle :title="mainData.skillsAbility"></subtitle>
-    <div class="skill-content">
-      <div class="skill-item" v-for="(skill,index) in mainData.skills" :key="index">{{skill}}</div>
+    <div>
+      <subtitle v-if="mainData.skills" :title="mainData.skills.name"></subtitle>
+      <div class="skill-content">
+        <div class="skill-item" v-for="(skill,index) in mainData.skills.items" :key="index">{{skill}}</div>
+      </div>
     </div>
 
-    <resumesection :infos='mainData.technicalExperience'></resumesection>
-    <resumesection :infos='mainData.selectedProjects'></resumesection>
+    <resumesection v-if="mainData.technicalExperience" :infos='mainData.technicalExperience'></resumesection>
+    <resumesection v-if="mainData.selectedProjects" :infos='mainData.selectedProjects'></resumesection>
 
-    <toptitle id="secondpage-title"></toptitle>
+    <toptitle v-if="!singlePage" id="secondpage-title"></toptitle>
 
-    <resumesection :infos='mainData.openSourceContributions'></resumesection>
-    <resumesection :infos='mainData.awardsAndScholarship'></resumesection>
-    <resumesection :infos='mainData.additionalExperience'></resumesection>
-    <resumesection :infos='mainData.education'></resumesection>
+    <resumesection v-if='mainData.openSourceContributions' :infos='mainData.openSourceContributions'></resumesection>
+    <resumesection v-if='mainData.awardsAndScholarship' :infos='mainData.awardsAndScholarship'></resumesection>
+    <resumesection v-if='mainData.additionalExperience' :infos='mainData.additionalExperience'></resumesection>
+    <resumesection v-if='mainData.education' :infos='mainData.education'></resumesection>
 
     <div class="download-button">
       <a target="_blank" href="https://file.haoxp.xyz/resume.pdf">
@@ -29,6 +31,7 @@
 import toptitle from './resume/ResumeTop'
 import subtitle from './resume/ResumeSubTitle'
 import resumesection from './resume/ResumeSection'
+import { doublePage, singlePage } from './resume/resumeData'
 export default {
   name: 'hello',
   components: {
@@ -43,191 +46,19 @@ export default {
       return value.toUpperCase()
     }
   },
+  mounted() {
+    this.singlePage = this.$route.query.simple === '1'
+    this.mainData = this.singlePage ? singlePage : doublePage
+  },
+  methods: {
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
       language: null,
-      mainData: {
-        experience: 'Technical work experience',
-        skillsAbility: 'skills/abilities',
-        skills: ['Python', 'JavaScript', 'C/C++', 'Java', 'HTML/CSS', 'GraphQL', 'Git', 'Vue/React',
-          'Devops', 'AWS/GCP', 'Docker', 'PWA', 'Serverless', 'Deep Learning'],
-        education: {
-          name: 'education',
-          details:
-            [
-              {
-                title: 'Simon Fraser University',
-                location: 'Vancouver, Canada',
-                duration: 'Sept. 2017 - PRESENT',
-                subTitle: 'Bachelor\'s degree in Computer Science'
-              },
-              {
-                title: 'Zhejiang University',
-                location: 'Hangzhou, China',
-                duration: 'Sept. 2015 - Jun. 2017',
-                subTitle: 'Bachelor\'s degree in Computer Science'
-              }
-            ]
-        },
-        technicalExperience: {
-          name: 'technical work experience',
-          details: [
-            {
-              link: 'https://houaa.xyz',
-              title: 'Houaa Education',
-              duration: 'Jan. 2016 - Aug. 2017',
-              location: 'Hangzhou, China',
-              subTitle: 'Co-founder, CTO',
-              features: [
-                'Lead a group of 11, including engineers, project managers and designer to develop an education sharing platform ' +
-                'which matches students with tutors',
-                'Developed on most fancy web features including PWA, Serverless, SPA, modern CSS etc. ',
-                'Used Python script to automate dev-ops work including testing, deploying and dispatching our app'
-              ]
-            }, {
-              link: 'https://www.zjuqsc.com',
-              title: 'QSC - Zhejiang University',
-              duration: 'Jun. 2016 - June. 2017',
-              location: 'Hangzhou, China',
-              subTitle: 'Technical Director',
-              features: [
-                'Lead a department with 31 engineers which develop multi-platform apps for students in the university, ' +
-                'enabling them to manage their campus life with ease',
-                'Worked on docker, shell, git, continuous integration and test-driven-developing to ensure the availability and functionality of our services',
-                'Meet on a weekly basis and share news & thoughts among the department'
-              ]
-            }
-          ]
-        },
-        selectedProjects: {
-          name: 'selected personal projects',
-          details: [
-            {
-              title: 'My Website',
-              link: 'https://me.haoxp.xyz',
-              location: 'Vancouver, Canada',
-              features: ['Developed the website to experiment most of my crazy ideas including WebGL, WebAssembly, GraphQL, PWA, SSR, Serverless, HSTS, Deep Learning etc.',
-                'Used vue.js as frontend framework and firebase as the serverless backend, integrated deep learning and WebAssembly to discover a new way of demonstrating',
-                'Demonstrating my ideas, photographs and resume in a geek way']
-            }, {
-              title: 'Telegram Channel Bot',
-              link: 'https://t.me/newsathlh',
-              location: 'Vancouver, Canada',
-              features: ['Use Python to write a news, weather data provider, deployed on a raspberry pi',
-                'Designed a machine learning algorithm by myself',
-                'Use Python to drive the sensors installed on IoT devices']
-            }, {
-              title: 'Anniversary guide for Zhejiang University',
-              link: 'https://120.zjuqsc.com',
-              location: 'Hangzhou, China',
-              features: ['Write a web app for Zhejiang University to celebrate its 120th birthday',
-                'In charge of the whole developing team, including coordinate with volunteer work',
-                'Used CDN and load balance to serve thousands of requests per second']
-            },
-            {
-              title: 'Web Printer',
-              link: 'https://github.com/HaoPatrick/WebPrinter',
-              location: 'Vancouver, Canada',
-              features: [
-                'Used Python to drive the old printer which does not have network printing',
-                'Developed a nice user interface and print from anywhere on the Internet'
-              ]
-            }, {
-              title: 'NBA Draft Crawler',
-              link: 'https://github.com/HaoPatrick/NBA_draft_crawler',
-              location: 'Vancouver, Canada',
-              features: [
-                'Wrote a Python script to crawl the NBA draft data for research use',
-                'Worked on beautiful soup and requests library to parse HTML and send requests, used regex expressions to handle dirty formatted content.'
-              ]
-            }
-          ]
-        },
-        additionalExperience: {
-          name: 'additional experience',
-          details: [
-            {
-              title: 'Research Assistant',
-              duration: 'Jan. 2018 - PRESENT',
-              location: 'Vancouver, Canada',
-              subTitle: 'Computer Vision Lab at SFU',
-              features: [
-                'Research on Colorization and other color related CV work'
-              ]
-            }, {
-              title: 'Research Assistant',
-              duration: 'Sept. 2017 - Jan. 2018',
-              location: 'Vancouver, Canada',
-              subTitle: 'Computer Logic Lab at SFU',
-              features: [
-                'Crawl data from various open datasets',
-                'Analyze and visualize the sports data from NBA and NHL, predict the players performance based on their history data',
-                'Build various tools and scripts to automatically manage and visualize the research results'
-              ]
-            }
-          ]
-        },
-        openSourceContributions: {
-          name: 'Open Source Contributions',
-          details: [
-            {
-              title: 'UPass-Script',
-              location: 'Vancouver, Canada',
-              link: 'https://github.com/Armour/UPass-Script',
-              features: [
-                'Automatically request UPass each month',
-                'Added the feature of IFTTT notification'
-              ]
-            }, {
-              title: 'flask-graphql',
-              link: 'https://github.com/graphql-python/flask-graphql/pull/39',
-              location: 'Vancouver, Canada',
-              features: [
-                'a flask integration for GraphQL',
-                'fixed a test error by changing the unit test to latest graphene api']
-            }, {
-              title: 'bsbang-crawler',
-              location: 'Vancouver, Canada',
-              link: 'https://github.com/justinccdev/bsbang-crawler',
-              features: [
-                'The crawler component of Buzzbang search (a google-like search engine) which allows biologists to search gene data without pain',
-                'Added continous integration of the crawler',
-                'Discussed a lot about the technical detailes and addressed a few bugs'
-              ]
-            },
-            {
-              title: 'zju-icicles',
-              location: 'Vancouver, Canada',
-              link: 'https://github.com/QSCTech/zju-icicles',
-              features: [
-                'Course info sharing in Zhejiang University',
-                'Role: Co-maintainer'
-              ]
-            }
-          ]
-        },
-        awardsAndScholarship: {
-          name: 'awards & scholarship',
-          details: [
-            {
-              title: 'SFU Entrance Scholarship',
-              link: 'https://www.sfu.ca/students/financialaid/entrance.html',
-              features: ['Entrance award valued at $5000 for academically outstanding students for the first two years study in Zhejiang University']
-            },
-            {
-              title: 'Mountain Madness Hackathon',
-              link: '',
-              features: [
-                'Won best mobile app among all 10+ competitors',
-                'Built an mobile app which gathers weather info from sensors installed among the mountains']
-            }
-          ]
-        }
-      }
+      singlePage: false,
+      mainData: {}
     }
-  },
-  methods: {
   }
 }
 </script>
