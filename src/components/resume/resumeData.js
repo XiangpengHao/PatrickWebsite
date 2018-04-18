@@ -31,10 +31,10 @@ export const singlePage = {
       location: 'Hangzhou',
       subTitle: 'Co-founder, CTO',
       features: [
-        'Led a group of 11, including engineers, project managers and designer to develop an education sharing platform ' +
-        'which matches students with tutors',
-        'Developed on most fancy web features including PWA, Serverless, SPA, modern CSS etc. ',
-        'Used Python script to automate dev-ops work including testing, deploying and dispatching our app'
+        'Led a group of 11, including engineers, project managers and designers to develop an education sharing platform ' +
+        'which establishes the connection between students and tutors',
+        'Built the frontend based on fresh web technologies including PWA, Serverless, SPA, modern CSS etc. ',
+        'Implemented the dev-ops automation toolkit including testing, deploying and dispatching our app'
       ]
     }, {
       link: 'https://www.zjuqsc.com',
@@ -43,7 +43,7 @@ export const singlePage = {
       location: 'Hangzhou',
       subTitle: 'Technical Director',
       features: [
-        'Led a department of a student assocation with 31 engineers which develop multi-platform apps for students in the university, ' +
+        'Led a department of the largest student association with 31 engineers and developed multi-platform apps for students in the university, ' +
         'enabling them to manage their campus life with ease',
         'Worked on docker, shell, git, continuous integration and test-driven-developing to ensure the availability and functionality of our services',
         'Met on a weekly basis and share news & thoughts among the department'
@@ -55,17 +55,15 @@ export const singlePage = {
       location: 'Vancouver',
       features: [
         'Won the best mobile app in Mountain Madness Hackathon',
-        'Developed a mobile web app which broadcasts the real time status of the Burnaby Mountain',
-        'Designed and made an Internet-of-Things system with Respberry Pi to collect temperature and humidity data from sensors and \
-         visualize these data on our web app'
+        'Developed services with Raspberry Pi to bring on IoT devices and a temperature and humidty collector to the Burnaby Mountain'
       ]
     }, {
       title: 'Anniversary guide for Zhejiang University',
       link: 'https://120.zjuqsc.com',
       duration: 'April. 2017 - May. 2017',
       location: 'Hangzhou',
-      features: ['Developed a web app for Zhejiang University to celebrate its 120th birthday',
-        'In charge of the whole developing team, including coordinate with volunteer work',
+      features: ['Developed a web protal to celebrate Zhejiang University\'s 120 anniversary year',
+        'In charge of the whole developing team, including coordinating with volunteer work',
         'Used CDN and load balance to serve thousands of requests per second'
       ]
     }]
@@ -81,7 +79,7 @@ export const singlePage = {
       linke: 'https://www.vexrobotics.com/vexedr/competition',
       features: [
         'Led a team of 8 members, capital of provincial VEX team',
-        'Won the gold medal (2nd place) in the Natinal VEX Competition (China)',
+        'Won the gold medal (2nd place) in the National VEX Competition (China)',
         'Won the 3rd place in VRC Programming Skills Challenge in VEX world championship 2015'
       ]
     }]
@@ -120,10 +118,10 @@ export const doublePage = {
       location: 'Hangzhou',
       subTitle: 'Co-founder, CTO',
       features: [
-        'Led a group of 11, including engineers, project managers and designer to develop an education sharing platform ' +
-        'which matches students with tutors',
-        'Developed on most fancy web features including PWA, Serverless, SPA, modern CSS etc. ',
-        'Used Python script to automate dev-ops work including testing, deploying and dispatching our app'
+        'Led a group of 11, including engineers, project managers and designers to develop an education sharing platform ' +
+        'which establishes the connection between students and tutors',
+        'Built the frontend based on fresh web technologies including PWA, Serverless, SPA, modern CSS etc. ',
+        'Implemented the dev-ops automation toolkit including testing, deploying and dispatching our app'
       ]
     }, {
       link: 'https://www.zjuqsc.com',
@@ -132,7 +130,7 @@ export const doublePage = {
       location: 'Hangzhou',
       subTitle: 'Technical Director',
       features: [
-        'Lead a department of a student assocation with 31 engineers which develop multi-platform apps for students in the university, ' +
+        'Lead a department of the largest student association with 31 engineers and developed multi-platform apps for students in the university, ' +
         'enabling them to manage their campus life with ease',
         'Worked on docker, shell, git, continuous integration and test-driven-developing to ensure the availability and functionality of our services',
         'Met on a weekly basis and share news & thoughts among the department'
@@ -161,8 +159,8 @@ export const doublePage = {
         title: 'Anniversary guide for Zhejiang University',
         link: 'https://120.zjuqsc.com',
         location: 'Hangzhou',
-        features: ['Developed a web app for Zhejiang University to celebrate its 120th birthday',
-          'In charge of the whole developing team, including coordinate with volunteer work',
+        features: ['Developed a web protal to celebrate Zhejiang University\'s 120 anniversary year',
+          'In charge of the whole developing team, including coordinating with volunteer work',
           'Used CDN and load balance to serve thousands of requests per second'
         ]
       },
