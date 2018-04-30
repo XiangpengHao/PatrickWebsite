@@ -11,7 +11,7 @@ export const singlePage = {
     details: [{
         title: 'Simon Fraser University',
         location: 'Vancouver',
-        duration: 'Sept. 2017 - PRESENT',
+        duration: 'Sept. 2017 - Sept. 2019 (expected)',
         subTitle: 'Bachelor\'s degree in Computer Science'
       },
       {
@@ -98,7 +98,7 @@ export const doublePage = {
     details: [{
         title: 'Simon Fraser University',
         location: 'Vancouver',
-        duration: 'Sept. 2017 - PRESENT',
+        duration: 'Sept. 2017 - Sept. 2019 (expected)',
         subTitle: 'Bachelor\'s degree in Computer Science'
       },
       {
