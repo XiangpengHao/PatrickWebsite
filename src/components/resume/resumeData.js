@@ -1,23 +1,26 @@
 /* eslint-disable */
+
+const skillItems = [
+  "Python",
+  "JavaScript",
+  "C/C++",
+  "Java",
+  "HTML/CSS",
+  "Git",
+  "Vue",
+  "Dev-ops",
+  "AWS/GCP",
+  "Docker",
+  "Kubernetes",
+  "PWA",
+  "Serverless",
+  "TypeScript",
+]
+
 export const singlePage = {
   skills: {
     name: "skills/abilities",
-    items: [
-      "Python",
-      "JavaScript",
-      "C/C++",
-      "Java",
-      "HTML/CSS",
-      "GraphQL",
-      "Git",
-      "Vue/React",
-      "Devops",
-      "AWS/GCP",
-      "Docker",
-      "PWA",
-      "Serverless",
-      "Deep Learning"
-    ]
+    items: skillItems
   },
   education: {
     name: "education",
@@ -48,7 +51,7 @@ export const singlePage = {
         features: [
           "Worked in a team of 20+ engineers to develop online gaming backend service",
           "Maintained a tool to perform loadtest on Call Of Duty, used Docker and Kubernetes to scale the loadtest",
-          "Refactored a internal productivity tool which track all the issues and pull requests in the internal repos"
+          "Developed a web application with 7k lines of code to visulize the loadtest"
         ]
       },
       {
@@ -56,10 +59,10 @@ export const singlePage = {
         title: "Houaa Education",
         duration: "Jan. 2016 - Aug. 2017",
         location: "Hangzhou",
-        subTitle: "Co-founder, CTO",
+        subTitle: "Co-founder",
         features: [
           "Led a group of 11, including engineers, project managers and designers to develop an education sharing platform " +
-            "which establishes the connection between students and tutors",
+          "which establishes the connection between students and tutors",
           "Built the frontend based on fresh web technologies including PWA, Serverless, SPA, modern CSS etc. ",
           "Implemented the dev-ops automation toolkit including testing, deploying and dispatching our app"
         ]
@@ -113,22 +116,7 @@ export const singlePage = {
 export const doublePage = {
   skills: {
     name: "skills/abilities",
-    items: [
-      "Python",
-      "JavaScript",
-      "C/C++",
-      "Java",
-      "HTML/CSS",
-      "GraphQL",
-      "Git",
-      "Vue/React",
-      "Devops",
-      "AWS/GCP",
-      "Docker",
-      "PWA",
-      "Serverless",
-      "Deep Learning"
-    ]
+    items: skillItems
   },
   education: {
     name: "education",
@@ -159,7 +147,7 @@ export const doublePage = {
         features: [
           "Worked in a team of 20+ engineers to develop online gaming backend service",
           "Maintained a tool to perform loadtest on Call Of Duty, used Docker and Kubernetes to scale the loadtest",
-          "Refactored a internal productivity tool which track all the issues and pull requests in the internal repos"
+          "Developed a complex web application with 7k lines of code to visulize the loadtest"
         ]
       },
       {
@@ -167,10 +155,10 @@ export const doublePage = {
         title: "Houaa Education",
         duration: "Jan. 2016 - Aug. 2017",
         location: "Hangzhou",
-        subTitle: "Co-founder, CTO",
+        subTitle: "Co-founder",
         features: [
           "Led a group of 11, including engineers, project managers and designers to develop an education sharing platform " +
-            "which establishes the connection between students and tutors",
+          "which establishes the connection between students and tutors",
           "Built the frontend based on fresh web technologies including PWA, Serverless, SPA, modern CSS etc. ",
           "Implemented the dev-ops automation toolkit including testing, deploying and dispatching our app"
         ]

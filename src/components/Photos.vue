@@ -10,8 +10,6 @@
         </div>
         <span v-else @click="login" style="cursor: pointer" class="user-section">Login
         </span>
-        <span @click="upload" style="cursor: pointer" class="user-section">Upload
-        </span>
         <span @click="shuffle" style="cursor: pointer" class="user-section">Shuffle
         </span>
       </el-col>
@@ -170,9 +168,6 @@ export default {
           self.user = result.user
         }
       )
-    },
-    upload: function () {
-      this.$router.push('/upload')
     },
     closeIt: function () {
       this.currentImage = null

@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 const Resume = () => import('../components/Resume')
-const UploadPhoto = () => import('../components/UploadPhoto')
 const Photos = () => import('../components/Photos')
 const Home = () => import('../components/Home')
-const test = () => import('../components/test')
 const NewHome = () => import('../components/NewHome')
 
 const Digits = () => import(/* webpackChunkName: "group-playground" */ '../components/Playground/Digits')
@@ -28,11 +26,6 @@ export default new Router({
       path: '/resume',
       name: 'Resume',
       component: Resume
-    },
-    {
-      path: '/upload',
-      name: 'Upload',
-      component: UploadPhoto
     },
     {
       path: '/photos',
@@ -80,11 +73,6 @@ export default new Router({
       path: '/home',
       name: 'Home',
       component: Home
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component: test
     }
   ]
 })
