@@ -9,20 +9,12 @@
           class="skill-item"
           v-for="(skill, index) in mainData.skills.items"
           :key="index"
-        >
-          {{ skill }}
-        </div>
+        >{{ skill }}</div>
       </div>
     </div>
 
-    <resumesection
-      v-if="mainData.technicalExperience"
-      :infos="mainData.technicalExperience"
-    ></resumesection>
-    <resumesection
-      v-if="mainData.selectedProjects"
-      :infos="mainData.selectedProjects"
-    ></resumesection>
+    <resumesection v-if="mainData.technicalExperience" :infos="mainData.technicalExperience"></resumesection>
+    <resumesection v-if="mainData.selectedProjects" :infos="mainData.selectedProjects"></resumesection>
 
     <toptitle v-if="!singlePage" id="secondpage-title"></toptitle>
 
@@ -30,18 +22,9 @@
       v-if="mainData.openSourceContributions"
       :infos="mainData.openSourceContributions"
     ></resumesection>
-    <resumesection
-      v-if="mainData.awardsAndScholarship"
-      :infos="mainData.awardsAndScholarship"
-    ></resumesection>
-    <resumesection
-      v-if="mainData.additionalExperience"
-      :infos="mainData.additionalExperience"
-    ></resumesection>
-    <resumesection
-      v-if="mainData.education"
-      :infos="mainData.education"
-    ></resumesection>
+    <resumesection v-if="mainData.awardsAndScholarship" :infos="mainData.awardsAndScholarship"></resumesection>
+    <resumesection v-if="mainData.additionalExperience" :infos="mainData.additionalExperience"></resumesection>
+    <resumesection v-if="mainData.education" :infos="mainData.education"></resumesection>
 
     <div class="download-button">
       <a
@@ -52,7 +35,7 @@
           }.pdf`
         "
       >
-        <img src="../assets/icons/download.svg" />
+        <img src="../assets/icons/download.svg">
       </a>
     </div>
   </div>
@@ -78,7 +61,7 @@ export default {
     }
   },
   mounted() {
-    this.singlePage = this.$route.query.simple === "1";
+    this.singlePage = this.$route.query.double !== "1";
     this.mainData = this.singlePage ? singlePage : doublePage;
   },
   methods: {},

@@ -1,17 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>patrick_website</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but patrick_website doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Home - Xiangpeng Hao</title>
+  <link rel="icon" type="image/png" sizes="48x48" href="/static/img/icons/hao_48.png">
+  <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
+  <!-- Add to home screen for Android and modern mobile browsers -->
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#AD002B">
+  <meta name="description"
+    content="Partric's ideas, photographs and resume in a geek way. This website is used to experiment some of my crazy ideas including WebGL, WebAssembly, GraphQL, PWA, SSR, Serverless, HSTS, Deep Learning etc.">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="new_profile">
+  <link rel="apple-touch-icon" href="/static/img/icons/hao_144.png">
+  <!-- Add to home screen for Windows -->
+  <meta name="msapplication-TileImage" content="/static/img/icons/hao_144.png">
+  <meta name="msapplication-TileColor" content="#000000">
+
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>patrick_website</title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but patrick_website doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Roboto+Slab']
+    }
+  });
+</script>
 </html>
