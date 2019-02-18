@@ -1,20 +1,20 @@
 {
-  "name": "patrick_website",
-  "short_name": "patrick_website",
+  "name": "Hao Xiangpeng",
+  "short_name": "Hao",
   "icons": [
     {
-      "src": "./img/icons/android-chrome-192x192.png",
+      "src": "./img/icons/hao_192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./img/icons/android-chrome-512x512.png",
+      "src": "./img/icons/hao_512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/?utm_source=homescreen",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4DBA87"
+  "background_color": "#ecf0f1",
+  "theme_color": "#AD002B"
 }
