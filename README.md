@@ -1,9 +1,29 @@
-# Patrick's homepage
+# patrick_website
 
-[![Build Status](https://travis-ci.org/HaoPatrick/Patrick_website.svg?branch=master)](https://travis-ci.org/HaoPatrick/Patrick_website)
+## Project setup
+```
+yarn install
+```
 
-> https://www.haoxp.xyz
+### Compiles and hot-reloads for development
+```
+yarn run serve
+```
 
-Download the PDF resume: https://file.haoxp.xyz/resume.pdf
+### Compiles and minifies for production
+```
+yarn run build
+```
 
-A vue, vuex, vue-router, GraphQL, Apollo Client, Firebase, Google Cloud Platform, Machine Learning, Element UI, Echarts, Webpack, ES6 Project.
+### Run your tests
+```
+yarn run test
+```
+
+### Lints and fixes files
+```
+yarn run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
