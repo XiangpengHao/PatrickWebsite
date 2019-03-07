@@ -36,6 +36,11 @@
               <img alt="blog" class="icons" src="../assets/icons/edit.svg">
             </a>
           </li>
+          <li>
+            <router-link to="about">
+              <img alt="about" class="icons" src="../assets/icons/helicopter-solid.svg">
+            </router-link>
+          </li>
         </ul>
         <div style="font-size:0.7em;">
           <span
