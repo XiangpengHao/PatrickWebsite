@@ -27,9 +27,6 @@
         <a href="https://lujc.me">Jason</a>
       </section>
       <section>
-        <a href="https://xugr.me/">Ray Xu</a>
-      </section>
-      <section>
         <a href="https://swineson.me/">James Swineson</a>
       </section>
     </article>
