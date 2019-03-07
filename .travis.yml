@@ -19,7 +19,7 @@ cache:
   - node_modules
 
 before_deploy:
-- echo tmp_home.haoxp.xyz > dist/CNAME
+- echo www.haoxp.xyz > dist/CNAME
 
 deploy:
   provider: pages
