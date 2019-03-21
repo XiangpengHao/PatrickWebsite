@@ -3,10 +3,14 @@
     <h1>Xiangpeng Hao</h1>
     <img style="max-width: 300px" alt="Xiangpeng Hao" src="../assets/photos/xiangpeng_hao.jpg">
     <article>
-    <p
-      style="margin-bottom: 2em;"
-    >He has general interest in every aspect of life. He loves arts, photography, literature and especially engineering.</p>
+      <p
+        style="margin-bottom: 2em;"
+      >He has general interest in every aspect of life. He loves arts, photography, literature and especially engineering.</p>
 
+      <p>
+        He owns a
+        <a href="https://t.me/newsathlh">Telegram Channel</a> to record some memorable clips in his life.
+      </p>
     </article>
     <p>
       Meet Leo:
@@ -32,7 +36,6 @@
         <a href="https://swineson.me/">James Swineson</a>
       </section>
     </article>
-    <p>This <a href="https://t.me/newsathlh">Telegram Channel</a> records some memorable clips in his life.</p>
   </div>
 </template>
 
