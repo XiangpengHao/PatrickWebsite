@@ -28,7 +28,7 @@ export const singlePage = {
       {
         title: "Simon Fraser University",
         location: "Vancouver",
-        duration: "Sept. 2017 - Sept. 2019 (expected)",
+        duration: "Sept. 2017 - Jun. 2020 (expected)",
         subTitle: "Bachelor's degree in Computer Science"
       },
       {
@@ -40,8 +40,32 @@ export const singlePage = {
     ]
   },
   technicalExperience: {
-    name: "work and project experience",
+    name: "Research and Work experience",
     details: [
+      {
+        link: "http://www.cs.sfu.ca/~tzwang/",
+        title: "SFU System Group",
+        duration: "Dec. 2018 - ",
+        location: "Vancouver, SFU",
+        subTitle: "Research Assistant",
+        features: [
+          "Adviced by <a class='inline-a' href='http://www.cs.sfu.ca/~tzwang'>Tianzheng Wang</a> to research on data-intensive systems and related topics that impacts the design of database systems, especially how persistent memory will impact the index design",
+          "Implemented a fully-functional BzTree in C++ and benchmarked on both main memory and persistent memory",
+          "Extended <a class='inline-a' href='https://github.com/HaoPatrick/pmwcas'>PMwCAS</a> by integrating the PMDK into it, allow the PMwCAS to have a safe allocator, and also extended its API so that PMwCAS can support more real world use cases"
+        ]
+      },
+      {
+        link: "http://www.cs.sfu.ca/~funt/",
+        title: "SFU Colour Vision Group",
+        duration: "Jan. 2017 - ",
+        location: "Vancouver, SFU",
+        subTitle: "Research Assistant",
+        features: [
+          "Adviced by <a class='inline-a' href='http://www.cs.sfu.ca/~funt'>Brian Funt</a> to research on colour constancy algorithms and related topics that help the colour constancy research.",
+          "Publishing: <span style='font-weight: 600'>Xiangpeng Hao</span>, Brian Funt, Hanxiao Jiang \"*****\" (under review), Color Imaging Conference, 2019",
+          "Publishing: <span style='font-weight: 600'>Xiangpeng Hao</span>, Brian Funt, \"*****\" (under review), IEEE Transactions on Image Processing, 2019"
+        ]
+      },
       {
         link: "https://www.demonware.net/",
         title: "Demonware",
@@ -55,37 +79,13 @@ export const singlePage = {
         ]
       },
       {
-        link: "https://houaa.xyz",
-        title: "Houaa Education",
-        duration: "Jan. 2016 - Aug. 2017",
-        location: "Hangzhou",
-        subTitle: "Co-founder",
-        features: [
-          "Led a group of 11, including engineers, project managers and designers to develop an education sharing platform " +
-          "which establishes the connection between students and tutors",
-          "Built the frontend based on fresh web technologies including PWA, Serverless, SPA, modern CSS etc. ",
-          "Implemented the dev-ops automation toolkit including testing, deploying and dispatching our app"
-        ]
-      },
-      {
-        title: "Mountain Pulse",
-        link: "https://github.com/sfu-mountain-madness/MountainPulse-Frontend",
-        duration: "March. 2018",
-        location: "Vancouver",
-        features: [
-          "Won the best mobile app in Mountain Madness Hackathon",
-          "Developed services with Raspberry Pi to bring on IoT devices and a temperature and humidty collector to the Burnaby Mountain"
-        ]
-      },
-      {
         title: "Anniversary guide for Zhejiang University",
         link: "https://120.zjuqsc.com",
         duration: "April. 2017 - May. 2017",
         location: "Hangzhou",
         features: [
-          "Developed a web protal to celebrate Zhejiang University's 120 anniversary year",
-          "In charge of the whole developing team, including coordinating with volunteer work",
-          "Used CDN and load balance to serve thousands of requests per second"
+          "Led a team of 6 engineers that developed a web protal to celebrate the 120 anniversary of Zhejiang University",
+          "Used a complex CDN and load balance strategy to manage thousands of requests per second"
         ]
       }
     ]
@@ -105,7 +105,7 @@ export const singlePage = {
         linke: "https://www.vexrobotics.com/vexedr/competition",
         features: [
           "Led a team of 8 members, capital of provincial VEX team",
-          "Won the gold medal (2nd place) in the National VEX Competition (China)",
+          "Won the gold medal (2nd place) in the National VEX Competition (China), 2015",
           "Won the 3rd place in VRC Programming Skills Challenge in VEX world championship 2015"
         ]
       }
@@ -124,7 +124,7 @@ export const doublePage = {
       {
         title: "Simon Fraser University",
         location: "Vancouver",
-        duration: "Sept. 2017 - Sept. 2019 (expected)",
+        duration: "Sept. 2017 - Jun. 2020 (expected)",
         subTitle: "Bachelor's degree in Computer Science"
       },
       {

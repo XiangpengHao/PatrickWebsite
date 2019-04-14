@@ -1,11 +1,7 @@
 <template>
   <div>
     <subtitle :title="infos.name"></subtitle>
-    <div
-      class="card-container"
-      v-for="(item, index) in infos.details"
-      :key="index"
-    >
+    <div class="card-container" v-for="(item, index) in infos.details" :key="index">
       <div class="sub-main-title">
         <a :href="item.link">{{ item.title }}</a>
         <span class="location">
@@ -13,13 +9,11 @@
           {{ item.location }}
         </span>
       </div>
-      <div v-if="item.subTitle" class="sub-content">
-        {{ item.subTitle | toUpper }}
-      </div>
+      <div v-if="item.subTitle" class="sub-content">{{ item.subTitle | toUpper }}</div>
       <div>
         <ul class="list-content">
           <li v-for="(detail, j) in item.features" :key="'content' + j">
-            {{ detail }}
+            <span v-html="detail"></span>
           </li>
         </ul>
       </div>
@@ -43,6 +37,19 @@ export default {
   }
 };
 </script>
+
+<style>
+.inline-a {
+  text-decoration: none;
+  color: #2c3e50;
+}
+
+.inline-a:visited {
+  text-decoration: none;
+  color: #2c3e50;
+}
+</style>
+
 
 <style scoped>
 ul {

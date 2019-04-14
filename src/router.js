@@ -20,6 +20,11 @@ export default new Router({
       component: Resume
     },
     {
+      path: "/cv",
+      name: "cv",
+      component: Resume
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting

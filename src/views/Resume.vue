@@ -26,7 +26,7 @@
     <resumesection v-if="mainData.additionalExperience" :infos="mainData.additionalExperience"></resumesection>
     <resumesection v-if="mainData.education" :infos="mainData.education"></resumesection>
 
-    <div class="download-button">
+    <!-- <div class="download-button">
       <a
         target="_blank"
         :href="
@@ -37,7 +37,7 @@
       >
         <img src="../assets/icons/download.svg">
       </a>
-    </div>
+    </div> -->
   </div>
 </template>
 
