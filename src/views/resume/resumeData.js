@@ -57,7 +57,7 @@ export const singlePage = {
       {
         link: "http://www.cs.sfu.ca/~funt/",
         title: "SFU Colour Vision Group",
-        duration: "Jan. 2017 - ",
+        duration: "Jan. 2018 - ",
         location: "Vancouver, SFU",
         subTitle: "Research Assistant",
         features: [
