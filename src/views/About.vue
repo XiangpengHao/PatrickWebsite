@@ -1,46 +1,86 @@
 <template>
   <div class="about">
     <h1>Xiangpeng Hao</h1>
-    <img style="max-width: 300px" alt="Xiangpeng Hao" src="../assets/photos/xiangpeng_hao.jpg">
+    <img style="max-width: 300px" alt="Xiangpeng Hao" src="../assets/photos/xiangpeng_hao.jpg" />
     <article>
-      <p style="margin-bottom: 2em;">
+      <p>
         He has general interest in every aspect of life. He loves arts,
         photography, literature and especially engineering.
       </p>
 
       <p>
-        Checkout his
-        <router-link to="/">homepage</router-link>, his
-        <router-link to="cv">CV</router-link>, and his
-        <a href="https://t.me/newsathlh">telegram channel</a>
+        His current research focuses on data-intensive systems,
+        where he builds high-performance data structures on emerging hardwares
+        (non-volatile memory and new SIMD instructions).
       </p>
+      <div>
+        <div style="cursor:pointer;" @click="toggleShow">more...</div>
+        <div v-show="showMore">
+          His previous research interests was Computer Vision,
+          where he researched on colour constancy (without deep learning).
+          After more than a year's thinking and learning,
+          he find himself more interested in building high-performance systems.
+        </div>
+      </div>
     </article>
-    <article>
-      Meet Leo:
-      <a href="https://aoli.al">https://aoli.al</a> and some fridends:
-      <div style="display:flex;">
-        <section>
-          <a href="https://aprilwang.me">April Wang</a>
-        </section>
-        <section>
-          <a href="https://wbx.life">Boxin Wang</a>
-        </section>
-        <section>
-          <a href="https://billzhu.me/">Wang Zhu</a>
-        </section>
-        <section>
-          <a href="http://jcchen.me/">CJC</a>
-        </section>
-        <section>
-          <a href="https://lujc.me">Jason</a>
-        </section>
-        <section>
-          <a href="https://swineson.me/">James Swineson</a>
-        </section>
+    <article style="margin: 2em 0 2em 0;">
+      <div style="font-weight:600;">Publications:</div>
+      <div class="pub">
+        <div>
+          Evaluating Persistent Memory based Range Indexes. [
+          <a
+            href="https://github.com/wangtzh/pibench"
+          >code</a>]
+        </div>
+        <div>
+          Lucas Lersch,
+          <span style="font-weight: 600">Xiangpeng Hao</span>, Ismail Oukid, Tianzheng Wang, Thomas Willhalm
+        </div>
+        <div>VLDB 2020</div>
+      </div>
+      <div class="pub">
+        <div>A Multi-illuminant Synthetic Image Test Set</div>
+        <div>
+          <span style="font-weight: 600">Xiangpeng Hao</span>, Brian Funt
+        </div>
+        <div>
+          IEEE Transactions on Image Processing
+          <span style="font-style:italic">under review</span>
+        </div>
+      </div>
+      <div class="pub">
+        <div>Evaluating Colour Constancy on the new MIST dataset of Multi-Illuminant Scenes.</div>
+        <div>
+          <span style="font-weight: 600">Xiangpeng Hao</span>, Brian Funt, Hanxiao Jiang
+        </div>
+        <div>Color Image Conference 2019</div>
+      </div>
+    </article>
+    <article style="margin: 2em 0 2em 0;">
+      <div style="font-weight:600;">Education:</div>
+      <div style="margin:1em;">
+        <p>B.Sc. Computer Science, Simon Fraser University (2017-2020, expected)</p>
+        <p>B.Eng. Computer Science, Zhejiang University (2015-2017)</p>
       </div>
     </article>
   </div>
 </template>
+
+<script>
+export default {
+  name: "about",
+  data() {
+    return {
+      showMore: false
+    };
+  },
+  methods: {
+    toggleShow() {
+      this.showMore = !this.showMore;
+    }
+  }
+};
+</script>
 
 <style scoped>
 .about {
@@ -49,5 +89,13 @@
 section {
   margin-top: 0.3em;
   margin-right: 0.5em;
+}
+
+article p {
+  margin: 0.5em 0 0.5em;
+}
+
+.pub {
+  margin: 1em;
 }
 </style>
