@@ -4,7 +4,7 @@
     <img style="max-width: 300px" alt="Xiangpeng Hao" src="../assets/photos/xiangpeng_hao.jpg" />
     <article>
       <p>
-        He has general interest in every aspect of life. He loves arts,
+        He has general interests in every aspect of life. He loves arts,
         photography, literature and especially engineering.
       </p>
 
