@@ -49,9 +49,9 @@ export const singlePage = {
         location: "Vancouver, SFU",
         subTitle: "Research Assistant",
         features: [
-          "Adviced by <a class='inline-a' href='http://www.cs.sfu.ca/~tzwang'>Tianzheng Wang</a> to research on data-intensive systems and related topics that impacts the design of database systems, especially how persistent memory will impact the index design",
+          "Advised by <a class='inline-a' href='http://www.cs.sfu.ca/~tzwang'>Tianzheng Wang</a> to research on data-intensive systems and related topics that impacts the design of database systems, especially how persistent memory will impact the database index design",
           "Implemented a fully-functional BzTree in C++ and benchmarked on both main memory and persistent memory",
-          "Extended <a class='inline-a' href='https://github.com/HaoPatrick/pmwcas'>PMwCAS</a> by integrating the PMDK into it, allow the PMwCAS to have a safe allocator, and also extended its API so that PMwCAS can support more real world use cases"
+          "Extended <a class='inline-a' href='https://github.com/HaoPatrick/pmwcas'>PMwCAS</a> by integrating the PMDK into it, allow the PMwCAS to have a safe allocator, and also extended its API so that PMwCAS can support more real world use cases",
         ]
       },
       {
@@ -61,9 +61,9 @@ export const singlePage = {
         location: "Vancouver, SFU",
         subTitle: "Research Assistant",
         features: [
-          "Adviced by <a class='inline-a' href='http://www.cs.sfu.ca/~funt'>Brian Funt</a> to research on colour constancy algorithms and related topics that help the colour constancy research.",
-          "Publishing: <span style='font-weight: 600'>Xiangpeng Hao</span>, Brian Funt, Hanxiao Jiang \"*****\" (under review), Color Imaging Conference, 2019",
-          "Publishing: <span style='font-weight: 600'>Xiangpeng Hao</span>, Brian Funt, \"*****\" (under review), IEEE Transactions on Image Processing, 2019"
+          "Advised by <a class='inline-a' href='http://www.cs.sfu.ca/~funt'>Brian Funt</a> to research on colour constancy algorithms and related topics that help the colour constancy research.",
+          "Paper: <span style='font-weight: 600'>Xiangpeng Hao</span>, Brian Funt, Hanxiao Jiang \"Evaluating Colour Constancy on the new MIST dataset of Multi-Illuminant Scenes.\", Color Imaging Conference, 2019",
+          "Paper: <span style='font-weight: 600'>Xiangpeng Hao</span>, Brian Funt, \"A Multi-illuminant Synthetic Image Test Set\" (under review), IEEE Transactions on Image Processing, 2019"
         ]
       },
       {
