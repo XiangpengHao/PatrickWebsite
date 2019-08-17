@@ -22,6 +22,11 @@
           he find himself more interested in building high-performance systems.
         </div>
       </div>
+      <div class="links">
+        <a href="https://www.haoxp.xyz/#/cv" target="_blank">CV</a>
+        <a href="https://blog.haoxp.xyz" target="_blank">Blog</a>
+        <a href="https://github.com/XiangpengHao" target="_blank">GitHub</a>
+      </div>
     </article>
     <article style="margin: 2em 0 2em 0;">
       <div style="font-weight:600;">Publications:</div>
@@ -53,7 +58,7 @@
         <div>
           <span style="font-weight: 600">Xiangpeng Hao</span>, Brian Funt, Hanxiao Jiang
         </div>
-        <div>Color Image Conference 2019</div>
+        <div>27th Color Image Conference</div>
       </div>
     </article>
     <article style="margin: 2em 0 2em 0;">
@@ -97,5 +102,12 @@ article p {
 
 .pub {
   margin: 1em;
+}
+
+.links {
+  margin-top: 1em;
+}
+.links a {
+  margin-right: 0.5em;
 }
 </style>
