@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="links">
-        <a href="https://www.haoxp.xyz/#/cv" target="_blank">CV</a>
+        <a :href="`${publicPath}CV_Xiangpeng_Hao.pdf`" target="_blank">CV</a>
         <a href="https://blog.haoxp.xyz" target="_blank">Blog</a>
         <a href="https://github.com/XiangpengHao" target="_blank">GitHub</a>
       </div>
@@ -76,7 +76,8 @@ export default {
   name: "about",
   data() {
     return {
-      showMore: false
+      showMore: false,
+      publicPath: process.env.BASE_URL
     };
   },
   methods: {
