@@ -16,12 +16,7 @@
           After more than a year's thinking and learning,
           he find himself more interested in building high-performance systems.
         </div>
-      </div>
-      <p>
-        He has general interests in every aspect of life. He loves arts,
-        photography, literature and especially engineering.
-      </p>
-
+      </div> 
       <div class="links">
         <a :href="`${publicPath}CV_Xiangpeng_Hao.pdf`" target="_blank">CV</a>
         <a href="https://blog.haoxp.xyz" target="_blank">Blog</a>
@@ -41,7 +36,7 @@
           Lucas Lersch,
           <span style="font-weight: 600">Xiangpeng Hao</span>, Ismail Oukid, Tianzheng Wang, Thomas Willhalm
         </div>
-        <div>VLDB 2020</div>
+        <div>VLDB 2020<span style="font-style:italic"> revision request</span></div>
       </div>
       <div class="pub">
         <div>A Multi-illuminant Synthetic Image Test Set</div>
