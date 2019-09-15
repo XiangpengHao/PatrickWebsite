@@ -4,11 +4,6 @@
     <img style="max-width: 300px" alt="Xiangpeng Hao" src="../assets/photos/xiangpeng_hao.jpg" />
     <article>
       <p>
-        He has general interests in every aspect of life. He loves arts,
-        photography, literature and especially engineering.
-      </p>
-
-      <p>
         His current research focuses on data-intensive systems,
         where he builds high-performance data structures on emerging hardwares
         (non-volatile memory and new SIMD instructions).
@@ -22,6 +17,11 @@
           he find himself more interested in building high-performance systems.
         </div>
       </div>
+      <p>
+        He has general interests in every aspect of life. He loves arts,
+        photography, literature and especially engineering.
+      </p>
+
       <div class="links">
         <a :href="`${publicPath}CV_Xiangpeng_Hao.pdf`" target="_blank">CV</a>
         <a href="https://blog.haoxp.xyz" target="_blank">Blog</a>
