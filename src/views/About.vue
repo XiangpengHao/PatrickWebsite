@@ -4,11 +4,6 @@
     <img style="max-width: 300px" alt="Xiangpeng Hao" src="../assets/photos/xiangpeng_hao.jpg" />
     <article>
       <p>
-        He has general interests in every aspect of life. He loves arts,
-        photography, literature and especially engineering.
-      </p>
-
-      <p>
         His current research focuses on data-intensive systems,
         where he builds high-performance data structures on emerging hardwares
         (non-volatile memory and new SIMD instructions).
@@ -21,7 +16,7 @@
           After more than a year's thinking and learning,
           he find himself more interested in building high-performance systems.
         </div>
-      </div>
+      </div> 
       <div class="links">
         <a :href="`${publicPath}CV_Xiangpeng_Hao.pdf`" target="_blank">CV</a>
         <a href="https://blog.haoxp.xyz" target="_blank">Blog</a>
@@ -41,7 +36,7 @@
           Lucas Lersch,
           <span style="font-weight: 600">Xiangpeng Hao</span>, Ismail Oukid, Tianzheng Wang, Thomas Willhalm
         </div>
-        <div>VLDB 2020</div>
+        <div>VLDB 2020<span style="font-style:italic"> revision request</span></div>
       </div>
       <div class="pub">
         <div>A Multi-illuminant Synthetic Image Test Set</div>
