@@ -64,8 +64,8 @@
     <article style="margin: 2em 0 2em 0;">
       <div style="font-weight:600;">Education:</div>
       <div style="margin:1em;">
-        <p>B.Sc. Computer Science (Dual-Degree), Simon Fraser University, Vancouver (2017-2020, expected)</p>
-        <p>B.Eng. Computer Science (Dual-Degree), Zhejiang University, China (2015 - 2020, expected)</p>
+        <p>B.Sc. Computer Science (Dual-Degree), Simon Fraser University, Vancouver, Canada (2017-2020, expected)</p>
+        <p>B.Eng. Computer Science (Dual-Degree), Zhejiang University, Hangzhou, China (2015 - 2020, expected)</p>
       </div>
     </article>
   </div>
