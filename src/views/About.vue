@@ -4,17 +4,20 @@
     <img style="max-width: 300px" alt="Xiangpeng Hao" src="../assets/photos/xiangpeng_hao.jpg" />
     <article>
       <p>
-        His current research focuses on data-intensive systems,
-        where he builds high-performance data structures on emerging hardwares
-        (non-volatile memory and new SIMD instructions).
+        My research interests lie broadly in software-hardware co-design systems, data-intensive systems, and
+        the application of machine learning systems. In particular, I am passionate about projects that have the
+        potential to solve real-world problems and aim to impact both the academia and the industry.
+      </p>
+      <p style="font-weight: 700;">
+        I'm looking for a Ph.D. position in active system groups with experienced mentors and motivated colleagues :)
       </p>
       <div>
         <div style="cursor:pointer;" @click="toggleShow">more...</div>
         <div v-show="showMore">
-          His previous research interests was Computer Vision,
-          where he researched on colour constancy (without deep learning).
+          My previous research interests was Computer Vision,
+          where I researched on colour constancy.
           After more than a year's thinking and learning,
-          he find himself more interested in building high-performance systems.
+          I find building high-performance systems is more interesting to me.
         </div>
       </div>
       <div class="links">
@@ -44,7 +47,7 @@
       </div>
     </article>
     <article style="margin: 2em 0 2em 0;">
-      <div style="font-weight:600;">Research Projects:</div>
+      <div style="font-weight:600;">On-going Researchs(Publications):</div>
       <div class="project">
         <div>1. Dynamic Hash Table on Persistent Memory</div>
         <div>Proposed a new approach to build dynamic and scalable hash table on real PM hardware. It achieves scalability by avoiding unnecessary PM access, and can achieve up to 3x better performance than the state-of-the-art.</div>
@@ -89,7 +92,7 @@ export default {
 .project {
   margin: 1em;
 }
-.project div:first-child{
+.project div:first-child {
   /* font-weight: 600; */
   margin-top: 1.1em;
   margin-bottom: 0.1em;
