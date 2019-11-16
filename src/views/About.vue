@@ -1,7 +1,11 @@
 <template>
   <div class="about">
     <h1>Xiangpeng Hao</h1>
-    <img style="max-width: 300px" alt="Xiangpeng Hao" src="../assets/photos/xiangpeng_hao.jpg" />
+    <img
+      style="max-width: 300px"
+      alt="Xiangpeng Hao"
+      src="../assets/photos/xiangpeng_hao.jpg"
+    />
     <article>
       <p>
         My research interests lie broadly in software-hardware co-design systems, data-intensive systems, and
@@ -12,7 +16,10 @@
         I'm looking for a Ph.D. position in active system groups with experienced mentors and motivated colleagues :)
       </p>
       <div>
-        <div style="cursor:pointer;" @click="toggleShow">more...</div>
+        <div
+          style="cursor:pointer;"
+          @click="toggleShow"
+        >more...</div>
         <div v-show="showMore">
           My previous research interests was Computer Vision,
           where I researched on colour constancy.
@@ -21,13 +28,31 @@
         </div>
       </div>
       <div class="links">
-        <a :href="`${publicPath}CV_Xiangpeng_Hao.pdf`" target="_blank">CV</a>
-        <a href="https://blog.haoxp.xyz" target="_blank">Blog</a>
-        <a href="https://github.com/XiangpengHao" target="_blank">GitHub</a>
+        <a
+          :href="`${publicPath}CV_Xiangpeng_Hao.pdf`"
+          target="_blank"
+        >CV</a>
+        <a
+          href="https://blog.haoxp.xyz"
+          target="_blank"
+        >Blog</a>
+        <a
+          href="https://github.com/XiangpengHao"
+          target="_blank"
+        >GitHub</a>
       </div>
     </article>
     <article style="margin: 2em 0 2em 0;">
       <div style="font-weight:600;">Publications:</div>
+      <div class="pub">
+        <div>Evaluating Persistent Memory based Range Indexes</div>
+        <div>
+          Lucas Lersch, <span style="font-weight: 600">Xiangpeng Hao</span>, Ismail Oukid, Tianzheng Wang, Thomas Willhalm.
+        </div>
+        <div>
+          45th International Conference on Very Large Data Bases (VLDB 2020)
+        </div>
+      </div>
       <div class="pub">
         <div>A Multi-illuminant Synthetic Image Test Set</div>
         <div>
@@ -51,10 +76,6 @@
       <div class="project">
         <div>1. Dynamic Hash Table on Persistent Memory</div>
         <div>Proposed a new approach to build dynamic and scalable hash table on real PM hardware. It achieves scalability by avoiding unnecessary PM access, and can achieve up to 3x better performance than the state-of-the-art.</div>
-      </div>
-      <div class="project">
-        <div>2. Evaluation of Persistent Memory based Range Indexes</div>
-        <div>Provided a comprehensive evaluation of recent persistent index structures. Through empirical evaluation using representative workloads, we identify key, eﬀective techniques, insights and caveats to guide the making of future PM-based index structures.</div>
       </div>
       <div class="project">
         <div>3. Open-source BzTree Implementation</div>
