@@ -32,7 +32,7 @@
       <div class="pub">
         <div>DASH: Dynamic and Scalable Hashing on Persistent Memory .</div>
         <div>
-          Baotong LU,
+          Baotong Lu,
           <span style="font-weight: 600">Xiangpeng Hao</span>, Tianzheng Wang, Eric Lo.
         </div>
         <div>45th International Conference on Very Large Data Bases (VLDB 2020)</div>
