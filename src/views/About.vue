@@ -8,9 +8,6 @@
         the application of machine learning systems. In particular, I am passionate about projects that have the
         potential to solve real-world problems and aim to impact both the academia and the industry.
       </p>
-      <p
-        style="font-weight: 700;"
-      >I'm looking for a Ph.D. position in active system groups with experienced mentors and motivated colleagues :)</p>
       <div>
         <div style="cursor:pointer;" @click="toggleShow">more...</div>
         <div v-show="showMore">
