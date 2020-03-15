@@ -4,19 +4,13 @@
     <img style="max-width: 300px" alt="Xiangpeng Hao" src="../assets/photos/xiangpeng_hao.jpg" />
     <article>
       <p>
-        My research interests lie broadly in software-hardware co-design systems, data-intensive systems, and
-        the application of machine learning systems. In particular, I am passionate about projects that have the
+        My research interests lie broadly in data-intensive systems, software-hardware co-design systems, and
+        the systems for machine learning. In particular, I am passionate about projects that have the
         potential to solve real-world problems and aim to impact both the academia and the industry.
       </p>
-      <div>
-        <div style="cursor:pointer;" @click="toggleShow">more...</div>
-        <div v-show="showMore">
-          My previous research interests was Computer Vision,
-          where I researched on colour constancy.
-          After more than a year's thinking and learning,
-          I find building high-performance systems is more interesting to me.
-        </div>
-      </div>
+      <p>
+        <span style="font-weight: 600;">[new]</span> I'll join the University of Wisconsin Madison as a PhD student in the Fall 2020.
+      </p>
       <div class="links">
         <a :href="`${publicPath}CV_Xiangpeng_Hao.pdf`" target="_blank">CV</a>
         <a href="https://blog.haoxp.xyz" target="_blank">Blog</a>
@@ -33,7 +27,6 @@
           <span style="font-weight: 600">Xiangpeng Hao</span>, Tianzheng Wang, Eric Lo.
         </div>
         <div>45th International Conference on Very Large Data Bases (VLDB 2020)</div>
-        <span style="font-style:italic">shepherding</span>
       </div>
       <div class="pub">
         <div>Evaluating Persistent Memory based Range Indexes</div>
@@ -44,32 +37,11 @@
         <div>45th International Conference on Very Large Data Bases (VLDB 2020)</div>
       </div>
       <div class="pub">
-        <div>A Multi-illuminant Synthetic Image Test Set</div>
-        <div>
-          <span style="font-weight: 600">Xiangpeng Hao</span>, Brian Funt
-        </div>
-        <div>
-          IEEE Transactions on Image Processing
-          <span style="font-style:italic">under review</span>
-        </div>
-      </div>
-      <div class="pub">
         <div>Evaluating Colour Constancy on the new MIST dataset of Multi-Illuminant Scenes.</div>
         <div>
           <span style="font-weight: 600">Xiangpeng Hao</span>, Brian Funt, Hanxiao Jiang
         </div>
         <div>27th Color Image Conference</div>
-      </div>
-    </article>
-    <article style="margin: 2em 0 2em 0;">
-      <div style="font-weight:600;">On-going Researchs (Publications):</div>
-      <div class="pub">
-        <div>PiBench Online: Interactive Benchmarking of Persistent Memory Indexes</div>
-        <div>
-          <span style="font-weight: 600">Xiangpeng Hao</span>
-          , Lucas Lersch, Tianzheng Wang, Ismail Oukid.
-        </div>
-        <div>ACM SIGMOD/PODS International Conference on Management of Data (SIGMOD ’20)</div>
       </div>
     </article>
     <article style="margin: 2em 0 2em 0;">
@@ -79,6 +51,7 @@
         <p>B.Eng. Computer Science (Dual-Degree), Zhejiang University, Hangzhou, China (2015 - 2020, expected)</p>
       </div>
     </article>
+    <p>Last update: March 2020</p>
   </div>
 </template>
 
@@ -87,7 +60,6 @@ export default {
   name: "about",
   data() {
     return {
-      showMore: false,
       publicPath: process.env.BASE_URL
     };
   },
