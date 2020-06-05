@@ -1,7 +1,11 @@
 <template>
   <div class="about">
     <h1>Xiangpeng Hao</h1>
-    <img style="max-width: 300px" alt="Xiangpeng Hao" src="../assets/photos/xiangpeng_hao.jpg" />
+    <img
+      style="max-width: 300px"
+      alt="Xiangpeng Hao"
+      src="../assets/photos/xiangpeng_hao.jpg"
+    />
     <article>
       <p>
         My research interests lie broadly in data-intensive systems, software-hardware co-design systems, and
@@ -12,13 +16,29 @@
         <span style="font-weight: 600;">[new]</span> I'll join the University of Wisconsin Madison as a PhD student in the Fall 2020.
       </p>
       <div class="links">
-        <a :href="`${publicPath}CV_Xiangpeng_Hao.pdf`" target="_blank">CV</a>
-        <a href="https://blog.haoxp.xyz" target="_blank">Blog</a>
-        <a href="https://github.com/XiangpengHao" target="_blank">GitHub</a>
+        <a
+          :href="`${publicPath}CV_Xiangpeng_Hao.pdf`"
+          target="_blank"
+        >CV</a>
+        <a
+          href="https://blog.haoxp.xyz"
+          target="_blank"
+        >Blog</a>
+        <a
+          href="https://github.com/XiangpengHao"
+          target="_blank"
+        >GitHub</a>
       </div>
     </article>
     <article style="margin: 2em 0 2em 0;">
       <div style="font-weight:600;">Publications:</div>
+      <div class="pub">
+        <div>PiBench Online: Interactive Benchmarking of Persistent Memory Indexes (Demo)</div>
+        <div>
+          <span style="font-weight: 600">Xiangpeng Hao</span>, Lucas Lersch, Tianzheng Wang, Ismail Oukid.
+        </div>
+        <div class="conf">45th International Conference on Very Large Data Bases (VLDB 2020)</div>
+      </div>
 
       <div class="pub">
         <div>DASH: Dynamic and Scalable Hashing on Persistent Memory</div>
@@ -26,7 +46,7 @@
           Baotong Lu,
           <span style="font-weight: 600">Xiangpeng Hao</span>, Tianzheng Wang, Eric Lo.
         </div>
-        <div>45th International Conference on Very Large Data Bases (VLDB 2020)</div>
+        <div class="conf">45th International Conference on Very Large Data Bases (VLDB 2020)</div>
       </div>
       <div class="pub">
         <div>Evaluating Persistent Memory based Range Indexes</div>
@@ -34,14 +54,21 @@
           Lucas Lersch,
           <span style="font-weight: 600">Xiangpeng Hao</span>, Ismail Oukid, Tianzheng Wang, Thomas Willhalm.
         </div>
-        <div>45th International Conference on Very Large Data Bases (VLDB 2020)</div>
+        <div class="conf">45th International Conference on Very Large Data Bases (VLDB 2020)</div>
       </div>
       <div class="pub">
         <div>Evaluating Colour Constancy on the new MIST dataset of Multi-Illuminant Scenes.</div>
         <div>
-          <span style="font-weight: 600">Xiangpeng Hao</span>, Brian Funt, Hanxiao Jiang
+          <span style="font-weight: 600">Xiangpeng Hao</span>, Brian Funt, Hanxiao Jiang.
         </div>
-        <div>27th Color Image Conference</div>
+        <div class="conf">27th Color Image Conference</div>
+      </div>
+      <div class="pub">
+        <div>A Multi-illuminant Synthetic Image Test Set</div>
+        <div>
+          <span style="font-weight: 600">Xiangpeng Hao</span>, Brian Funt.
+        </div>
+        <div class="conf">Color Research and Application</div>
       </div>
     </article>
     <article style="margin: 2em 0 2em 0;">
@@ -51,7 +78,7 @@
         <p>B.Eng. Computer Science (Dual-Degree), Zhejiang University, Hangzhou, China (2015 - 2020, expected)</p>
       </div>
     </article>
-    <p>Last update: March 2020</p>
+    <p>Last update: June 2020</p>
   </div>
 </template>
 
@@ -101,5 +128,9 @@ article p {
 }
 .links a {
   margin-right: 0.5em;
+}
+
+.conf {
+  font-style: italic;
 }
 </style>
