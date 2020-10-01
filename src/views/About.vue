@@ -28,6 +28,10 @@
           href="https://github.com/XiangpengHao"
           target="_blank"
         >GitHub</a>
+        <a
+          href="https://t.me/life_xiangpeng"
+          target="_blank"
+        >Life (Chinese)</a>
       </div>
     </article>
     <article style="margin: 2em 0 2em 0;">
