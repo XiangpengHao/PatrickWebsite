@@ -101,11 +101,11 @@
       <div style="margin: 0.5em 1em 1em 1em">
         <p>
           B.Sc. Computer Science (Dual-Degree), Simon Fraser University,
-          Vancouver, Canada (2017-2020, expected)
+          Vancouver, Canada (2017-2020)
         </p>
         <p>
           B.Eng. Computer Science (Dual-Degree), Zhejiang University, Hangzhou,
-          China (2015 - 2020, expected)
+          China (2015 - 2020)
         </p>
       </div>
     </article>
