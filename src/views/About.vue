@@ -20,7 +20,7 @@
         Fraser University supervised by
         <a href="https://www2.cs.sfu.ca/~tzwang/">Prof. Tianzheng Wang</a>.
       </p>
-      <p>I believe in [system research](http://herpolhode.com/rob/utah2000.pdf)</p>
+      <p>I believe in <a href="http://herpolhode.com/rob/utah2000.pdf">system research</a>.</p>
     </article>
     <article style="margin-top: 2em">
       <p>
