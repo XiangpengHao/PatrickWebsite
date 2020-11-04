@@ -20,7 +20,10 @@
         Fraser University supervised by
         <a href="https://www2.cs.sfu.ca/~tzwang/">Prof. Tianzheng Wang</a>.
       </p>
-      <p>I believe in <a href="http://herpolhode.com/rob/utah2000.pdf">system research</a>.</p>
+      <p>
+        I believe in
+        <a href="http://herpolhode.com/rob/utah2000.pdf">system research</a>.
+      </p>
     </article>
     <article style="margin-top: 2em">
       <p>
@@ -30,8 +33,11 @@
         2021.
       </p>
       <p>
-        <span style="font-weight: 600">[new]</span> I currently work at Qizhi
-        Insititute at Shanghai, China as a full time researcher.
+        <span style="font-weight: 600">[new]</span> I currently work at
+        <a href="https://iiis.tsinghua.edu.cn/sqi/"
+          >Shanghai Qizhi Insititute</a
+        >
+        as a full time researcher.
       </p>
       <div class="links">
         <a :href="`${publicPath}CV_Xiangpeng_Hao.pdf`" target="_blank">CV</a>
