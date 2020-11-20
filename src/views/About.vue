@@ -8,21 +8,20 @@
     />
     <article>
       <p>
+        Craftsman in
+        <a href="http://herpolhode.com/rob/utah2000.pdf">academia</a>.
+      </p>
+      <p>
         My research interests lie broadly in data-intensive systems,
-        software-hardware co-design systems, and the systems for machine
+        systems for new hardware and systems for machine
         learning. In particular, I am passionate about projects that have the
-        potential to solve real-world problems and aim to impact both the
-        academia and the industry.
+        potential to solve real-world problems and aim to impact both academia
+        and the industry.
       </p>
       <p>
-        During my undergraduate study I spent great time in the
-        <a href="https://github.com/sfu-dis">Data Intensive Lab</a> at Simon
-        Fraser University supervised by
+        During my undergraduate study, I spent a great time at Simon Fraser
+        University supervised by
         <a href="https://www2.cs.sfu.ca/~tzwang/">Prof. Tianzheng Wang</a>.
-      </p>
-      <p>
-        I believe in
-        <a href="http://herpolhode.com/rob/utah2000.pdf">system research</a>.
       </p>
     </article>
     <article style="margin-top: 2em">
@@ -162,7 +161,7 @@ article p {
 }
 
 .links {
-  margin-top: 0.5em;
+  margin-top: 1.5em;
 }
 .links a {
   margin-right: 0.5em;
