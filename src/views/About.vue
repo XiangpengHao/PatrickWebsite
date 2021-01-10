@@ -12,11 +12,10 @@
         <a href="http://herpolhode.com/rob/utah2000.pdf">academia</a>.
       </p>
       <p>
-        My research interests lie broadly in data-intensive systems,
-        systems for new hardware and systems for machine
-        learning. In particular, I am passionate about projects that have the
-        potential to solve real-world problems and aim to impact both academia
-        and the industry.
+        My research interests lie broadly in data-intensive systems, systems for
+        new hardware and systems for machine learning. In particular, I am
+        passionate about projects that have the potential to solve real-world
+        problems and aim to impact both academia and the industry.
       </p>
       <p>
         During my undergraduate study, I spent a great time at Simon Fraser
@@ -28,8 +27,11 @@
       <p>
         <span style="font-weight: 600">[new]</span> I'll join the University of
         Wisconsin Madison as a PhD student in the
-        <span style="text-decoration-line: line-through">Fall 2020</span> Spring
-        2021.
+        <span style="text-decoration-line: line-through">Fall 2020</span>
+        &nbsp;
+        <span style="text-decoration-line: line-through">Spring 2021</span>
+        &nbsp;
+        Fall 2021, I'll be working with <a href="http://pages.cs.wisc.edu/~yxy/">Prof. Xiangyao Yu</a> on next generation database systems.
       </p>
       <p>
         <span style="font-weight: 600">[new]</span> I currently work at
@@ -115,7 +117,7 @@
         </p>
       </div>
     </article>
-    <p>Last update: Oct. 2020</p>
+    <p>Last update: Jan. 2021</p>
   </div>
 </template>
 
