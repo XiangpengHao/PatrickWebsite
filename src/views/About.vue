@@ -42,7 +42,6 @@
       </p>
       <div class="links">
         <a :href="`${publicPath}CV_Xiangpeng_Hao.pdf`" target="_blank">CV</a>
-        <a href="https://blog.haoxp.xyz" target="_blank">Blog</a>
         <a href="https://github.com/XiangpengHao" target="_blank">GitHub</a>
         <a href="https://t.me/life_xiangpeng" target="_blank">Life (Chinese)</a>
       </div>
